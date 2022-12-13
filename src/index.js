@@ -3,9 +3,11 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import '../src/components/GlobalStyles/style.css'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+  // Strict Mode Call Api 2 lan dau
   <React.StrictMode>
     <App />
   </React.StrictMode>
