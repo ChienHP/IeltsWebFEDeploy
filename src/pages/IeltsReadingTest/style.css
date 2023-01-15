@@ -7,3 +7,17 @@
     overflow-x: hidden;
     padding-top: 20px;
   } */
+
+.reading-box {
+  display: flex;
+}
+
+.split {
+  height: 617px;
+  overflow-y: scroll;
+  flex-grow: 1;
+  width: 50%;
+}
+
+
+ 

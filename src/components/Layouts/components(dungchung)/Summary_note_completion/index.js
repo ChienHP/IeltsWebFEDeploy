@@ -1,9 +1,10 @@
 import NumberWrapInline from "../NumberWrapInline"
 import "./style.css"
-const SummaryNoteCompletion = ({questions}) => {
+const SummaryNoteCompletion = ({questions, handleChange}) => {
+    let startNumber = questions.from
     return (
         <div>
-            <h3>Questions {questions.name}</h3>
+            <h3>Questions {questions.from}-{questions.to}</h3>
             <div>
                 <em>Complete the summary.</em>
             </div>
@@ -17,16 +18,16 @@ const SummaryNoteCompletion = ({questions}) => {
             </div>
 
             <div>
-                <em>Write your answers in boxes {questions.name} on your answer sheet.</em>
+                <em>Write your answers in boxes {questions.from}-{questions.to} on your answer sheet.</em>
             </div>
 
             <div className="content">
-                {questions.questions.map((item,index) => {
+                {questions.listOfQuestions.map((item,index) => {
                     return (
                         <span key={index}>
-                            {item.content}
-                            <NumberWrapInline number={item.questionNumber}></NumberWrapInline>
-                            <input className="answer" type="text"></input>
+                            {item}
+                            <NumberWrapInline number={startNumber}></NumberWrapInline>
+                            <input className="answer" type="text" onChange={handleChange} id={startNumber++}></input>
                         </span>
                     )
                 })}

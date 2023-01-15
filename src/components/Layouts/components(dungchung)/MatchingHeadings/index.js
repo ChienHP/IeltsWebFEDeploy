@@ -26,7 +26,7 @@ const MatchingHeadings = ({questions}) => {
                 </tbody>
             </table>
 
-            {questions.listOfParagraph.map((item,index) => {
+            {questions.listOfParagraphs.map((item,index) => {
                 return (
                     <div key={index}>
                         <NumberWrapInline number={startNumber++}></NumberWrapInline>

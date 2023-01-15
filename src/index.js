@@ -7,10 +7,7 @@ import '../src/components/GlobalStyles/style.css'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  // Strict Mode Call Api 2 lan dau
-  <React.StrictMode>
     <App />
-  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -5,3 +5,20 @@ select.iot-question{
     outline: none;
     max-width: 130px;
 }
+
+.list-question{
+    list-style: none;
+}
+
+.lq-number{
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    line-height: 25px;
+    background-color: #ddd;
+    border-radius: 50%;
+    margin: 0px 7px 0px 0px;
+    font-weight: 600;
+    font-family: "Montserrat",Helvetica,Arial,sans-serif;
+}

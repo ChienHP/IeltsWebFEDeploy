@@ -37,7 +37,7 @@ const MatchingParagraphInformation = ({questions}) => {
 
             {questions.listOfStatements.map((item, index) => {
                 return (
-                    <div>
+                    <div key={index}>
                         <NumberWrapInline number={startNumber++}></NumberWrapInline>
                         <select className="iot-question">
                             <option></option>

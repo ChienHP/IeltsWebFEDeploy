@@ -1,8 +1,10 @@
 import NumberWrapInline from "../NumberWrapInline"
 import "./style.css"
-const YesNoQuestions = ({questions}) => {
+const YesNoQuestions = ({questions, handleChange}) => {
+    let startNumber = questions.from
     return (
         <div>
+            <h3> Questions {questions.from}-{questions.to}</h3>
             <table className="table table-striped">
                 <tbody>
                     <tr>
@@ -14,24 +16,24 @@ const YesNoQuestions = ({questions}) => {
                         <th>if the statement contradicts the views of the writer</th>
                     </tr>
                     <tr>
-                        <th>YES</th>
+                        <th>NOT GIVEN</th>
                         <th>if it is impossible to say what the writer thinks about this</th>
                     </tr>
                 </tbody>
             </table>
             
             
-            {questions.questions.map((item, index) => {
+            {questions.listOfQuestions.map((item, index) => {
                 return (
                     <div key={index}>
-                        <NumberWrapInline number={item.questionNumber}></NumberWrapInline>
-                        <select className="answers">
+                        <NumberWrapInline number={startNumber}></NumberWrapInline>
+                        <select className="answers" onChange={handleChange} id={startNumber++}>
                             <option></option>
                             <option>YES</option>
                             <option>NO</option>
                             <option>NOT GIVEN</option>
                         </select>
-                        {item.content}
+                        {item}
                     </div>
                 )
             })}
