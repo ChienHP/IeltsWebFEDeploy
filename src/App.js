@@ -1,8 +1,9 @@
 import "./App.css";
-import { publicRoutes } from "./routes";
+import { publicRoutes, privateRoutes } from "./routes";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import DefaultLayouts from "./components/Layouts/DefaultLayouts";
-import { Fragment } from "react";
+import DashboardLayout from "./components/Layouts/DashboardLayout";
+import {Fragment } from "react";
 function App() {
   return (
     <Router>
@@ -21,6 +22,21 @@ function App() {
                 }
               ></Route>
             );
+          })}
+
+          {privateRoutes.map(({path, Component, Layout = DashboardLayout, data = null}, index) => {
+            Layout ??= Fragment
+            return (
+              <Route
+                key={index}
+                path={path}
+                element={
+                  <Layout>
+                    <Component></Component>
+                  </Layout>
+                }
+                ></Route>
+            )
           })}
         </Routes>
       </div>

@@ -1,8 +1,10 @@
+import { Link } from "react-router-dom";
+
 const NavBar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
       <div className="container-fluid">
-        <a className="navbar-brand" href="/">
+        <Link className="navbar-brand" to="/">
           <img
             src="https://i2.wp.com/www.influentialenglish.com/wp-content/uploads/2020/07/ielts.png?resize=866%2C650&ssl=1"
             alt="Logo"
@@ -10,7 +12,7 @@ const NavBar = () => {
             height="30"
             className="d-inline-block align-text-top"
           ></img>
-        </a>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -25,76 +27,74 @@ const NavBar = () => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="/">
+              <Link className="nav-link active" aria-current="page" to="/">
                 Home
-              </a>
+              </Link>
             </li>
             <li className="nav-item dropdown">
-              <a
+              <Link
                 className="nav-link dropdown-toggle"
-                href="/ielts-courses"
+                to="/ielts-courses"
                 role="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
                 IELTS Courses
-              </a>
+              </Link>
               <ul className="dropdown-menu">
                 <li>
-                  <a className="dropdown-item" href="/ielts-courses">
+                  <Link className="dropdown-item" to="/ielts-courses">
                     IELTS Nguyễn Huyền
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a className="dropdown-item disabled" href="/">
+                  <Link className="dropdown-item disabled" to="/">
                     IELTS Fighter
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </li>
             <li className="nav-item dropdown">
-              <a
+              <Link
                 className="nav-link dropdown-toggle"
-                href="/"
+                to="/"
                 role="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
                 IELTS Exam Library
-              </a>
+              </Link>
               <ul className="dropdown-menu">
                 <li>
-                  <a className="dropdown-item" href="/">
+                  <Link className="dropdown-item" to="/">
                     IELTS Listening Test
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a className="dropdown-item" href="/ielts-reading-test">
-                    IELTS Reading Test
-                  </a>
+                  <Link className="dropdown-item" to="/ielts-reading-test-list">IELTS Reading Test</Link>
                 </li>
               </ul>
             </li>
             <li className="nav-item dropdown">
-              <a
+              <Link
                 className="nav-link dropdown-toggle disabled"
-                href="/"
+                to="/"
                 role="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
                 IELTS Tips
-              </a>
+              </Link>
               <ul className="dropdown-menu">
                 <li>
-                  <a className="dropdown-item" href="/">
+                  <Link className="dropdown-item" to="/">
                     IELTS Listening Tips
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a className="dropdown-item" href="/">
+                  <Link className="dropdown-item" to="/">
                     IELTS Reading Tips
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </li>
