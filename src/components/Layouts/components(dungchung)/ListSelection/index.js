@@ -7,7 +7,7 @@ const ListSelection = ({questions}) => {
             <em>{questions.question}</em>
 
             <ul className="list-question">
-                {questions.listOfAnswers.map((item,index) => {
+                {JSON.parse(questions.detail.listOfAnswers).map((item,index) => {
                     return (
                         <li key={index}>
                             <span className="lq-number">{ALPHABETS[index]}</span>

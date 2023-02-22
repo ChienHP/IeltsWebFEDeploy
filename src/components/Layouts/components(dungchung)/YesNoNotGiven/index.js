@@ -1,6 +1,7 @@
+import { useState } from "react"
 import NumberWrapInline from "../NumberWrapInline"
 import "./style.css"
-const YesNoQuestions = ({questions, handleChange}) => {
+export const YesNoNotGiven = ({questions, handleChoose}) => {
     let startNumber = questions.from
     return (
         <div>
@@ -23,11 +24,11 @@ const YesNoQuestions = ({questions, handleChange}) => {
             </table>
             
             
-            {questions.listOfQuestions.map((item, index) => {
+            {JSON.parse(questions.detail.listOfQuestions).map((item, index) => {
                 return (
                     <div key={index}>
                         <NumberWrapInline number={startNumber}></NumberWrapInline>
-                        <select className="answers" onChange={handleChange} id={startNumber++}>
+                        <select className="answers" onChange={(e) => handleChoose(questions.id, e, index)} id={startNumber++}>
                             <option></option>
                             <option>YES</option>
                             <option>NO</option>
@@ -40,4 +41,3 @@ const YesNoQuestions = ({questions, handleChange}) => {
         </div>
     )
 }
-export default YesNoQuestions

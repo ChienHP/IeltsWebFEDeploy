@@ -15,7 +15,7 @@ const MatchingHeadings = ({questions}) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {questions.listOfHeadings.map((item, index) => {
+                    {JSON.parse(questions.detail.listOfHeadings).map((item, index) => {
                         return (
                             <tr key={index}>
                                 <td>{index+1}</td>
@@ -26,13 +26,13 @@ const MatchingHeadings = ({questions}) => {
                 </tbody>
             </table>
 
-            {questions.listOfParagraphs.map((item,index) => {
+            {JSON.parse(questions.detail.listOfParagraphs).map((item,index) => {
                 return (
                     <div key={index}>
                         <NumberWrapInline number={startNumber++}></NumberWrapInline>
                         <select className="iot-question">
                             <option></option>
-                            {questions.listOfHeadings.map((item,index) => {
+                            {JSON.parse(questions.detail.listOfHeadings).map((item,index) => {
                                 return (
                                     <option key={index}>{index+1}</option>
                                 )

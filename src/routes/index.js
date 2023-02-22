@@ -1,5 +1,5 @@
 import Home from "../pages/Home";
-import IeltsReadingTest from "../pages/IeltsReadingTest";
+import {IeltsReadingTest} from "../pages/IeltsReadingTest";
 import IELTSCourses from "../pages/IELTS_Courses";
 import IeltsReadingTestDashboard from "../pages/Dashboard/IeltsReadingTestDashboard";
 import { IeltsReadingTestList } from "../pages/IeltsReadingTestList";
@@ -10,7 +10,7 @@ const publicRoutes = [
   {path: "/", Component: Home },
   {path: "/ielts_courses", Component: IELTSCourses},
   {path: "/ielts-reading-test-list", Component: IeltsReadingTestList},
-  {path: "/ielts-reading-test", Component: IeltsReadingTest},
+  {path: "/ielts-reading-test/:testId", Component: IeltsReadingTest},
 ];
 
 const privateRoutes = [

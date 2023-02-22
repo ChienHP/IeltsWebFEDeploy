@@ -23,7 +23,7 @@ const TrueFalseNotGiven = ({questions}) => {
                 </tbody>
             </table>
 
-            {questions.listOfQuestions.map((item,index) => {
+            {JSON.parse(questions.detail.listOfQuestions).map((item,index) => {
                 return (
                     <div key={index}>
                         <NumberWrapInline number={startNumber++}></NumberWrapInline>

@@ -11,7 +11,7 @@ const SentenceCompletion = ({questions}) => {
             <div>
                 <em>Use 
                     <strong style={{color:"#ff0000",margin:"0px 4px 0px 4px"}}>
-                        {questions.require}
+                        {questions.detail.require}
                     </strong> 
                     for each answer.</em>
             </div>
@@ -21,7 +21,7 @@ const SentenceCompletion = ({questions}) => {
                 </em>
             </div>
             <div className="sentences-completion">
-                {questions.listOfQuestions.map((item,index) => {
+                {JSON.parse(questions.detail.listOfSentences).map((item,index) => {
                     return (
                         <div key={index}>
                             {item.content}

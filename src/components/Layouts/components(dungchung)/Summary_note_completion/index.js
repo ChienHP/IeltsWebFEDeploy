@@ -11,7 +11,7 @@ const SummaryNoteCompletion = ({questions, handleChange}) => {
             <div>
                 <em>Choose  
                         <strong style={{color:"#ff0000",margin:"0px 4px 0px 4px"}}>
-                            {questions.require}
+                            {questions.detail.require}
                         </strong> 
                      from the passage for each answer.
                 </em>
@@ -20,9 +20,9 @@ const SummaryNoteCompletion = ({questions, handleChange}) => {
             <div>
                 <em>Write your answers in boxes {questions.from}-{questions.to} on your answer sheet.</em>
             </div>
-
+            <h4>{questions.detail.title}</h4>
             <div className="content">
-                {questions.listOfQuestions.map((item,index) => {
+                {JSON.parse(questions.detail.sumary).map((item,index) => {
                     return (
                         <span key={index}>
                             {item}
@@ -31,7 +31,7 @@ const SummaryNoteCompletion = ({questions, handleChange}) => {
                         </span>
                     )
                 })}
-                <span>{questions.remaining}</span>
+                <span>{questions.detail.remaining}</span>
             </div>
         </div>
     )
