@@ -1,7 +1,18 @@
-import NumberWrapInline from "../NumberWrapInline"
+import NumberWrapInline from "../../../../components/Layouts/components(dungchung)/NumberWrapInline"
 import "./style.css"
-const MatchingEndings = ({questions}) => {
-    const alphabets = ['A','B','C','D','E','F']
+import { ALPHABETS } from "../../../../constants/common"
+import { useState } from "react"
+export const MatchingInformation = ({questions, handleChoose}) => {
+    const [answers, setAnswers] = useState([])
+    const handleChange = (answer, index) => {
+        const newAnswers = [...answers]
+        newAnswers[index] = answer
+        setAnswers(newAnswers)
+        handleChoose({
+            questionId: questions.id,
+            answers: newAnswers
+        })
+    }
     let startNumber = questions.from;
     return (
         <div>
@@ -9,7 +20,7 @@ const MatchingEndings = ({questions}) => {
             <em>Look at the following list of statements (Questions {questions.from}-{questions.to}) and the list of people below.</em>
             <em>Match each statement with the correct company.</em>
             <em>Write the correct letter 
-                <strong> {alphabets[0]}-{alphabets[JSON.parse(questions.detail.listOfEndings).length - 1]} </strong> 
+                <strong> {ALPHABETS[0]}-{ALPHABETS[JSON.parse(questions.detail.listOfObjects).length - 1]} </strong> 
                 in boxes 
                 <strong> {questions.from}-{questions.to} </strong>
                 on your answer sheet.
@@ -19,14 +30,14 @@ const MatchingEndings = ({questions}) => {
                 <thead>
                     <tr>
                         <td></td>
-                        <td>List of Endings</td>
+                        <td>List of Objects</td>
                     </tr>
                 </thead>
                 <tbody>
-                    {JSON.parse(questions.detail.listOfEndings).map((item, index) => {
+                    {JSON.parse(questions.detail.listOfObjects).map((item, index) => {
                         return (
                             <tr key={index}>
-                                <td><strong>{alphabets[index]}</strong></td>
+                                <td><strong>{ALPHABETS[index]}</strong></td>
                                 <td>{item}</td>
                             </tr>
                         )
@@ -38,20 +49,18 @@ const MatchingEndings = ({questions}) => {
                 return (
                     <div key={index}>
                         <NumberWrapInline number={startNumber++}></NumberWrapInline>
-                        <select className="iot-question">
+                        <select className="iot-question" value={answers[index] || ""} onChange={e=>handleChange(e.target.value, index)}>
                             <option></option>
-                            {JSON.parse(questions.detail.listOfEndings).map((item,index) => {
+                            {JSON.parse(questions.detail.listOfObjects).map((item,index) => {
                                 return (
-                                    <option key={index}>{alphabets[index]}</option>
+                                    <option key={index}>{ALPHABETS[index]}</option>
                                 )
                             })}
                         </select>
                         {item}
                     </div>
-
                 )
             })}
         </div>
     )
 }
-export default MatchingEndings;

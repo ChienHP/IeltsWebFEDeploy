@@ -1,6 +1,18 @@
-import NumberWrapInline from "../NumberWrapInline"
+import { useState } from "react"
+import NumberWrapInline from "../../../../components/Layouts/components(dungchung)/NumberWrapInline"
 import "./style.css"
-const MatchingHeadings = ({questions}) => {
+const MatchingHeadings = ({questions, handleChoose}) => {
+    const [answers, setAnswers] = useState([])
+    const handleChange = (answer, index) => {
+        const newAnswers = [...answers]
+        newAnswers[index] = answer
+        setAnswers(newAnswers)
+        handleChoose({
+            questionId: questions.id,
+            answers: newAnswers
+        })
+    }
+
     let startNumber = questions.from
     return (
         <div>
@@ -30,7 +42,7 @@ const MatchingHeadings = ({questions}) => {
                 return (
                     <div key={index}>
                         <NumberWrapInline number={startNumber++}></NumberWrapInline>
-                        <select className="iot-question">
+                        <select className="iot-question" value={answers[index] || ""} onChange={e=>handleChange(e.target.value, index)}>
                             <option></option>
                             {JSON.parse(questions.detail.listOfHeadings).map((item,index) => {
                                 return (

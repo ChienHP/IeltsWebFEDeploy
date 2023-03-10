@@ -1,7 +1,17 @@
 import { useState } from "react"
-import NumberWrapInline from "../NumberWrapInline"
+import NumberWrapInline from "../../../../components/Layouts/components(dungchung)/NumberWrapInline"
 import "./style.css"
 export const YesNoNotGiven = ({questions, handleChoose}) => {
+    const [answers, setAnswers] = useState([])
+    const handleChange = (answer, index) => {
+        const newAnswers = [...answers]
+        newAnswers[index] = answer
+        setAnswers(newAnswers)
+        handleChoose({
+            questionId: questions.id,
+            answers: newAnswers
+        })
+    }
     let startNumber = questions.from
     return (
         <div>
@@ -28,7 +38,7 @@ export const YesNoNotGiven = ({questions, handleChoose}) => {
                 return (
                     <div key={index}>
                         <NumberWrapInline number={startNumber}></NumberWrapInline>
-                        <select className="answers" onChange={(e) => handleChoose(questions.id, e, index)} id={startNumber++}>
+                        <select className="answers" onChange={(e) => handleChange(e.target.value, index)} id={startNumber++}>
                             <option></option>
                             <option>YES</option>
                             <option>NO</option>

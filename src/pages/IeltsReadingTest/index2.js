@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
-import ListSelection from '../../components/Layouts/components(dungchung)/ListSelection'
-import MatchingHeadings from '../../components/Layouts/components(dungchung)/MatchingHeadings'
-import MatchingParagraphInformation from '../../components/Layouts/components(dungchung)/MatchingEndings'
-import MultipleChoice from '../../components/Layouts/components(dungchung)/MultipleChoice'
-import SentenceCompletion from '../../components/Layouts/components(dungchung)/SentenceCompletion'
-import SummaryNoteCompletion from '../../components/Layouts/components(dungchung)/Summary_note_completion'
-import TrueFalseNotGiven from '../../components/Layouts/components(dungchung)/TrueFalseNotGiven'
+import ListSelection from './IeltsReadingQuestionType/ListSelection'
+import MatchingHeadings from './IeltsReadingQuestionType/MatchingHeadings'
+import MatchingParagraphInformation from './IeltsReadingQuestionType/MatchingEndings'
+import MultipleChoice from './IeltsReadingQuestionType/MultipleChoice'
+import SentenceCompletion from './IeltsReadingQuestionType/SentenceCompletion'
+import SummaryNoteCompletion from './IeltsReadingQuestionType/Summary_note_completion'
+import TrueFalseNotGiven from './IeltsReadingQuestionType/TrueFalseNotGiven'
 import YesNoQuestions from '../../components/Layouts/components(dungchung)/YES_NO_NOTGIVEN'
 import './style.css'
 
@@ -91,7 +91,7 @@ const question14_18 = {
     ]
 }
 
-// type: 5 MATCHING_PARAGRAPH_INFORMATION
+// type: 5 MATCHING_INFORMATION
 const question19_23 = {
     from: 19,
     to: 23,
@@ -108,7 +108,8 @@ const question19_23 = {
         "Some need more sleep and others seem to get by with less sleep.",
         "The quality of sleep can be measured by an individual’s sleep activity.",
         "Most people need to sleep the same number of hours."
-    ]
+    ],
+    answers: [B,C,A,D,A]
 }
 
 // type: 15 LIST_SELECTION
@@ -228,116 +229,6 @@ const readingPassage = {
     ]
 }
 
-
-const answers = [
-    {
-        questionNumber:1,
-        answer: 'NO',
-    },
-    {
-        questionNumber:2,
-        answer: 'YES',
-    },
-    {
-        questionNumber:3,
-        answer: 'NOT GIVEN',
-    },
-    {
-        questionNumber:4,
-        answer: 'NOT GIVEN',
-    },
-    {
-        questionNumber:5,
-        answer: 'YES',
-    },
-    {
-        questionNumber:6,
-        answer: 'spur',
-    },
-    {
-        questionNumber:7,
-        answer: 'two buds',
-    },
-    {
-        questionNumber:8,
-        answer: 'nest',
-    },
-    {
-        questionNumber:9,
-        answer: 'milk',
-    },
-    {
-        questionNumber:10,
-        answer: 'common but vulnerable',
-    },
-    {
-        questionNumber:11,
-        answer: 'urban and agricultural',
-    },
-    {
-        questionNumber:12,
-        answer: 'food',
-    },
-    {
-        questionNumber:13,
-        answer: ['permit, permission'],
-    },
-]
-
-const initUserAnswers = [{
-    questionNumber: 1,
-    answer: "",
-},
-{
-    questionNumber: 2,
-    answer: "",
-},
-{
-    questionNumber: 3,
-    answer: "",
-},
-{
-    questionNumber: 4,
-    answer: "",
-},
-{
-    questionNumber: 5,
-    answer: "",
-},
-{
-    questionNumber: 6,
-    answer: "",
-},
-{
-    questionNumber: 7,
-    answer: "",
-},
-{
-    questionNumber: 8,
-    answer: "",
-},
-{
-    questionNumber: 9,
-    answer: "",
-},
-{
-    questionNumber: 10,
-    answer: "",
-},
-{
-    questionNumber: 11,
-    answer: "",
-},
-{
-    questionNumber: 12,
-    answer: "",
-},
-{
-    questionNumber: 13,
-    answer: "",
-},
-]
-
 const formatTime = (time) => {
     const minute = Math.floor(time/60);
     const second = time - minute*60;
@@ -363,15 +254,7 @@ export const IeltsReadingTest = async () => {
         }
     }, [])
 
-    const [userAnswers, setUserAnswers] = useState(initUserAnswers)
-    const handleChange = (event) => {
-        userAnswers.map((item) => {
-            if (item.questionNumber === event.target.id) {
-                item.answer = event.target.value;
-            }
-        })
-        setUserAnswers(userAnswers)
-    }
+
 
     const subMit = () => {
         let grade = 0;

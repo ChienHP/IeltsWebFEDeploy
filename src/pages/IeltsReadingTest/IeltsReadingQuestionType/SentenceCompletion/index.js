@@ -1,6 +1,17 @@
-import NumberWrapInline from "../NumberWrapInline"
+import { useState } from "react"
+import NumberWrapInline from "../../../../components/Layouts/components(dungchung)/NumberWrapInline"
 import "./style.css"
-const SentenceCompletion = ({questions}) => {
+const SentenceCompletion = ({questions, handleChoose}) => {
+    const [answers, setAnswers] = useState([])
+    const handleChange = (answer, index) => {
+        const newAnswers = [...answers]
+        newAnswers[index] = answer
+        setAnswers(newAnswers)
+        handleChoose({
+            questionId: questions.id,
+            answers: newAnswers
+        })
+    } 
     let startNumber = questions.from
     return (
         <div>
@@ -26,7 +37,7 @@ const SentenceCompletion = ({questions}) => {
                         <div key={index}>
                             {item.content}
                             <NumberWrapInline number={startNumber++}></NumberWrapInline>
-                            <input className="answer" type="text"></input>
+                            <input className="answer" type="text" value={answers[index]} onChange={e => handleChange(e.target.value, index)}></input>
                             {item.remaining}
                         </div>
                     )

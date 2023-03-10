@@ -18,6 +18,7 @@ export const CreateQuestion = ({ testId, passageId }) => {
   const [listOfSentences, setListOfSentences] = useState("");
   const [listOfHeadings, setListOfHeadings] = useState("");
   const [listOfParagraphs, setListOfParagraphs] = useState("");
+  const [listOfObjects, setListOfObjects] = useState("")
   const [question, setQuestion] = useState("");
   const [listOfAnswers, setListOfAnswers] = useState("");
   const [listOfEndings, setListOfEndings] = useState("");
@@ -46,6 +47,7 @@ export const CreateQuestion = ({ testId, passageId }) => {
           listOfSentences,
           listOfHeadings,
           listOfParagraphs,
+          listOfObjects,
           question,
           listOfAnswers,
           listOfEndings,
@@ -107,16 +109,14 @@ export const CreateQuestion = ({ testId, passageId }) => {
                 <option value={ReadingQuestionType.MATCHING_HEADINGS}>
                   MATCHING_HEADINGS
                 </option>
+                <option value={ReadingQuestionType.MATCHING_INFORMATION}>
+                  MATCHING_INFORMATION
+                </option>
                 <option value={ReadingQuestionType.LIST_SELECTION}>
                   LIST_SELECTION
                 </option>
                 <option value={ReadingQuestionType.MULTIPLE_CHOICE}>
                   MULTIPLE_CHOICE
-                </option>
-                <option
-                  value={ReadingQuestionType.MATCHING_PARAGRAPH_INFORMATION}
-                >
-                  MATCHING_PARAGRAPH_INFORMATION
                 </option>
                 <option value={ReadingQuestionType.TRUE_FALSE_NOT_GIVEN}>
                   TRUE_FALSE_NOT_GIVEN
@@ -141,6 +141,8 @@ export const CreateQuestion = ({ testId, passageId }) => {
                 setListOfHeadings={setListOfHeadings}
                 listOfParagraphs={listOfParagraphs}
                 setListOfParagraphs={setListOfParagraphs}
+                listOfObjects={listOfObjects}
+                setListOfObjects={setListOfObjects}
                 question={question}
                 setQuestion={setQuestion}
                 listOfAnswers={listOfAnswers}

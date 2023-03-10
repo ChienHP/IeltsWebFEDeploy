@@ -1,7 +1,13 @@
 import { ALPHABETS } from "../../../../constants/common"
-import NumberWrapInline from "../NumberWrapInline"
+import NumberWrapInline from "../../../../components/Layouts/components(dungchung)/NumberWrapInline"
 
-const MultipleChoice = ({questions}) => {
+const MultipleChoice = ({questions,handleChoose}) => {
+    const handleChange = (answer) => {
+        handleChoose({
+            questionId: questions.id,
+            answers: [answer]
+        })
+    }
     return (
         <div>
             <h3>Question {questions.from}</h3>
@@ -12,8 +18,8 @@ const MultipleChoice = ({questions}) => {
                     return (
                         <li key={index}>
                             <span className="lq-number">{ALPHABETS[index]}</span>
-                            <input type="radio" style={{margin: "4px"}}></input>
-                            {item}
+                            <input type="radio" name={questions.id} style={{margin: "4px"}} onChange={() => handleChange(ALPHABETS[index])}></input>
+                            <label>{item}</label>
                         </li>
                     )
                 })}

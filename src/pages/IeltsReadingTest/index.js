@@ -3,14 +3,15 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { ReadingQuestionType } from "../../constants/readingQuestionType";
 import './style.css'
-import SummaryNoteCompletion from "../../components/Layouts/components(dungchung)/Summary_note_completion";
-import SentenceCompletion from "../../components/Layouts/components(dungchung)/SentenceCompletion";
-import { YesNoNotGiven } from "../../components/Layouts/components(dungchung)/YesNoNotGiven";
-import MatchingHeadings from "../../components/Layouts/components(dungchung)/MatchingHeadings";
-import ListSelection from "../../components/Layouts/components(dungchung)/ListSelection";
-import MultipleChoice from "../../components/Layouts/components(dungchung)/MultipleChoice";
-import MatchingEndings from "../../components/Layouts/components(dungchung)/MatchingEndings";
-import TrueFalseNotGiven from "../../components/Layouts/components(dungchung)/TrueFalseNotGiven";
+import SummaryNoteCompletion from "./IeltsReadingQuestionType/Summary_note_completion";
+import SentenceCompletion from "./IeltsReadingQuestionType/SentenceCompletion";
+import { YesNoNotGiven } from "./IeltsReadingQuestionType/YesNoNotGiven";
+import MatchingHeadings from "./IeltsReadingQuestionType/MatchingHeadings";
+import ListSelection from "./IeltsReadingQuestionType/ListSelection";
+import MultipleChoice from "./IeltsReadingQuestionType/MultipleChoice";
+import MatchingEndings from "./IeltsReadingQuestionType/MatchingEndings";
+import TrueFalseNotGiven from "./IeltsReadingQuestionType/TrueFalseNotGiven";
+import { MatchingInformation } from "./IeltsReadingQuestionType/MatchingInformation";
 
 export const IeltsReadingTest = () => {
   const { testId } = useParams("testId");
@@ -28,29 +29,35 @@ export const IeltsReadingTest = () => {
     //   answers: "" //[]
     // }
   ])
-  console.log(results)
 
-  const handleChoose = (questionId, e, index) => {
-    const newResults = results
-    let i = 0;
-    for (i=0; i<newResults.length; i++) {
-      if (newResults[i].questionId === questionId) {
-        let answers = newResults[i].answers
-        answers[index] = e.target.value
-        newResults[i].answers[index] = answers
+
+  const handleChoose = (result) => {
+      const newResults = [...results]
+      let i
+      for (i = 0; i<newResults.length; i++) {
+        if (result.questionId === newResults[i].questionId) {
+            newResults[i].answers = result.answers
+            setResults(newResults)
+            return
+        }
       }
-    }
-    if (i === newResults.length) {
-      let answers = []
-      answers[index] = e.target.value 
-      newResults.push({
-        questionId,
-        answers
-      })
-    }
-    setResults(newResults)
+      if (i === newResults.length) {
+        newResults.push(result)
+      }
+      setResults(newResults)
   }
 
+  const submit = async () => {
+    console.log(results)
+    try {
+      const res = await axios.post("http://localhost:3001/ielts-reading-question/get-point", {
+        results: results
+      })
+      alert("Your point: " + res.data.point)
+    } catch (error) {
+      console.log({error})
+    }
+  }
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -96,7 +103,9 @@ export const IeltsReadingTest = () => {
   }
   const handlePreviousPassage = () => {
     if (readingPassage.passageNumber <= 1) return
-    else setReadingPassage(readingPassages[readingPassage.passageNumber-1])
+    else {
+      setReadingPassage(readingPassages[readingPassage.passageNumber - 2])
+    }
   }
 
   return (
@@ -121,6 +130,8 @@ export const IeltsReadingTest = () => {
             return <SentenceCompletion key={index} questions={question} handleChoose={handleChoose}></SentenceCompletion>
           if (question.type === ReadingQuestionType.MATCHING_HEADINGS)
             return <MatchingHeadings key={index} questions={question} handleChoose={handleChoose}></MatchingHeadings>
+          if (question.type === ReadingQuestionType.MATCHING_INFORMATION)
+            return <MatchingInformation key={index} questions={question} handleChoose={handleChoose}></MatchingInformation>
           if (question.type === ReadingQuestionType.LIST_SELECTION)
             return <ListSelection key={index} questions={question} handleChoose={handleChoose}></ListSelection>
           if (question.type === ReadingQuestionType.MULTIPLE_CHOICE)
@@ -138,8 +149,8 @@ export const IeltsReadingTest = () => {
         </div>
       </div>
 
-      {/* <button onClick={subMit}>Submit</button>
-            <h2>{formatTime(countDown)}</h2> */}
+      <button onClick={submit}>Submit</button>
+        {/* <h2>{formatTime(countDown)}</h2>  */}
     </div>
   );
 };

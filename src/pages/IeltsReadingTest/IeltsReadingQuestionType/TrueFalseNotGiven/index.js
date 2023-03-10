@@ -1,6 +1,16 @@
-import NumberWrapInline from "../NumberWrapInline"
-
-const TrueFalseNotGiven = ({questions}) => {
+import NumberWrapInline from "../../../../components/Layouts/components(dungchung)/NumberWrapInline"
+import { useState } from "react"
+const TrueFalseNotGiven = ({questions, handleChoose}) => {
+    const [answers, setAnswers] = useState([])
+    const handleChange = (answer, index) => {
+        const newAnswers = [...answers]
+        newAnswers[index] = answer
+        setAnswers(newAnswers)
+        handleChoose({
+            questionId: questions.id,
+            answers: newAnswers
+        })
+    }
     let startNumber = questions.from
     return (
         <div>
@@ -27,7 +37,7 @@ const TrueFalseNotGiven = ({questions}) => {
                 return (
                     <div key={index}>
                         <NumberWrapInline number={startNumber++}></NumberWrapInline>
-                        <select className="iot-question">
+                        <select className="iot-question" value={answers[index] || ""} onChange={e=>handleChange(e.target.value, index)}>
                             <option></option>
                             <option>TRUE</option>
                             <option>FALSE</option>

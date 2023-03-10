@@ -18,6 +18,8 @@ export const CreateDetailQuestion = ({
   setListOfHeadings,
   listOfParagraphs,
   setListOfParagraphs,
+  listOfObjects,
+  setListOfObjects,
   question,
   setQuestion,
   listOfAnswers,
@@ -27,9 +29,12 @@ export const CreateDetailQuestion = ({
   listOfStatements,
   setListOfStatements,
   answers,
-  setAnswers
+  setAnswers,
 }) => {
-  if (questionType === ReadingQuestionType.YES_NO_NOT_GIVEN || questionType === ReadingQuestionType.TRUE_FALSE_NOT_GIVEN) {
+  if (
+    questionType === ReadingQuestionType.YES_NO_NOT_GIVEN ||
+    questionType === ReadingQuestionType.TRUE_FALSE_NOT_GIVEN
+  ) {
     return (
       <div>
         <h4>List of questions</h4>
@@ -38,8 +43,9 @@ export const CreateDetailQuestion = ({
           value={listOfQuestions}
           onChange={(e) => setListOfQuestions(e.target.value)}
         ></textarea>
+        <h4>List of answers</h4>
         <textarea
-          style={{ width: "100%"}}
+          style={{ width: "100%" }}
           value={answers}
           onChange={(e) => setAnswers(e.target.value)}
         ></textarea>
@@ -73,8 +79,9 @@ export const CreateDetailQuestion = ({
           value={remaining}
           onChange={(e) => setRemaining(e.target.value)}
         ></textarea>
+        <h4>List of answers</h4>
         <textarea
-          style={{ width: "100%"}}
+          style={{ width: "100%" }}
           value={answers}
           onChange={(e) => setAnswers(e.target.value)}
         ></textarea>
@@ -97,21 +104,22 @@ export const CreateDetailQuestion = ({
           value={listOfSentences}
           onChange={(e) => setListOfSentences(e.target.value)}
         ></textarea>
+        <h4>List of answers</h4>
         <textarea
-          style={{ width: "100%"}}
+          style={{ width: "100%" }}
           value={answers}
           onChange={(e) => setAnswers(e.target.value)}
         ></textarea>
       </div>
     );
   }
-  
+
   if (questionType === ReadingQuestionType.MATCHING_HEADINGS) {
     return (
       <div>
         <h4>List of headings</h4>
         <textarea
-          style={{ width: "100%",height: "200px" }}
+          style={{ width: "100%", height: "200px" }}
           value={listOfHeadings}
           onChange={(e) => setListOfHeadings(e.target.value)}
         ></textarea>
@@ -121,21 +129,50 @@ export const CreateDetailQuestion = ({
           value={listOfParagraphs}
           onChange={(e) => setListOfParagraphs(e.target.value)}
         ></textarea>
+        <h4>List of answers</h4>
         <textarea
-          style={{ width: "100%"}}
+          style={{ width: "100%" }}
           value={answers}
           onChange={(e) => setAnswers(e.target.value)}
         ></textarea>
       </div>
     );
   }
-  
-  if (questionType === ReadingQuestionType.LIST_SELECTION || questionType === ReadingQuestionType.MULTIPLE_CHOICE) {
+
+  if (questionType === ReadingQuestionType.MATCHING_INFORMATION) {
+    return (
+      <div>
+        <h4>List of Objects</h4>
+        <textarea
+          style={{ width: "100%", height: "200px" }}
+          value={listOfObjects}
+          onChange={(e) => setListOfObjects(e.target.value)}
+        ></textarea>
+        <h4>List of Statements</h4>
+        <textarea
+          style={{ width: "100%", height: "200px" }}
+          value={listOfStatements}
+          onChange={(e) => setListOfStatements(e.target.value)}
+        ></textarea>
+        <h4>List of answers</h4>
+        <textarea
+          style={{ width: "100%" }}
+          value={answers}
+          onChange={(e) => setAnswers(e.target.value)}
+        ></textarea>
+      </div>
+    );
+  }
+
+  if (
+    questionType === ReadingQuestionType.LIST_SELECTION ||
+    questionType === ReadingQuestionType.MULTIPLE_CHOICE
+  ) {
     return (
       <div>
         <h4>Question</h4>
         <textarea
-          style={{ width: "100%"}}
+          style={{ width: "100%" }}
           value={question}
           onChange={(e) => setQuestion(e.target.value)}
         ></textarea>
@@ -145,37 +182,13 @@ export const CreateDetailQuestion = ({
           value={listOfAnswers}
           onChange={(e) => setListOfAnswers(e.target.value)}
         ></textarea>
+        <h4>List of answers</h4>
         <textarea
-          style={{ width: "100%"}}
+          style={{ width: "100%" }}
           value={answers}
           onChange={(e) => setAnswers(e.target.value)}
         ></textarea>
       </div>
     );
   }
-  
-  if (questionType === ReadingQuestionType.MATCHING_PARAGRAPH_INFORMATION) {
-    return (
-      <div>
-        <h4>List of statements</h4>
-        <textarea
-          style={{ width: "100%", height: "200px"}}
-          value={listOfStatements}
-          onChange={(e) => setListOfStatements(e.target.value)}
-        ></textarea>
-        <h4>List of endings</h4>
-        <textarea
-          style={{ width: "100%", height: "200px" }}
-          value={listOfEndings}
-          onChange={(e) => setListOfEndings(e.target.value)}
-        ></textarea>
-        <textarea
-          style={{ width: "100%"}}
-          value={answers}
-          onChange={(e) => setAnswers(e.target.value)}
-        ></textarea>
-      </div>
-    );
-  }
-
 };

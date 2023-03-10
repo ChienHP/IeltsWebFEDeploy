@@ -1,6 +1,17 @@
-import NumberWrapInline from "../NumberWrapInline"
+import { useState } from "react"
+import NumberWrapInline from "../../../../components/Layouts/components(dungchung)/NumberWrapInline"
 import "./style.css"
-const SummaryNoteCompletion = ({questions, handleChange}) => {
+const SummaryNoteCompletion = ({questions, handleChoose}) => {
+    const [answers, setAnswers] = useState([])
+    const handleChange = (answer, index) => {
+        const newAnswers = [...answers]
+            newAnswers[index] = answer
+        setAnswers(newAnswers)
+        handleChoose({
+            questionId: questions.id,
+            answers: newAnswers
+        })
+    }
     let startNumber = questions.from
     return (
         <div>
@@ -27,7 +38,7 @@ const SummaryNoteCompletion = ({questions, handleChange}) => {
                         <span key={index}>
                             {item}
                             <NumberWrapInline number={startNumber}></NumberWrapInline>
-                            <input className="answer" type="text" onChange={handleChange} id={startNumber++}></input>
+                            <input className="answer" type="text" value={answers[index] || ""} onChange={e => handleChange(e.target.value, index)} id={startNumber++}></input>
                         </span>
                     )
                 })}
