@@ -8,7 +8,7 @@ import { IeltsReadingPassageDashboard } from "../pages/Dashboard/IeltsReadingPas
 
 const publicRoutes = [
   {path: "/", Component: Home },
-  {path: "/ielts_courses", Component: IELTSCourses},
+  {path: "/ielts-courses", Component: IELTSCourses},
   {path: "/ielts-reading-test-list", Component: IeltsReadingTestList},
   {path: "/ielts-reading-test/:testId", Component: IeltsReadingTest},
 ];

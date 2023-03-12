@@ -1,15 +1,15 @@
 import { Link } from "react-router-dom";
-
+import "./style.css";
 const NavBar = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-red sticky-top">
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">
           <img
             src="https://i2.wp.com/www.influentialenglish.com/wp-content/uploads/2020/07/ielts.png?resize=866%2C650&ssl=1"
             alt="Logo"
-            width="40"
-            height="30"
+            width="50"
+            height="40"
             className="d-inline-block align-text-top"
           ></img>
         </Link>
@@ -26,9 +26,9 @@ const NavBar = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
+            <li className="nav-item nav-item-white">
               <Link className="nav-link active" aria-current="page" to="/">
-                Home
+                <span className="nav-item-white">Home</span>
               </Link>
             </li>
             <li className="nav-item dropdown">
@@ -39,17 +39,17 @@ const NavBar = () => {
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                IELTS Courses
+                <span className="nav-item-white">IELTS Courses</span>
               </Link>
               <ul className="dropdown-menu">
                 <li>
                   <Link className="dropdown-item" to="/ielts-courses">
-                    IELTS Nguyễn Huyền
+                    IELTS Reading Course
                   </Link>
                 </li>
                 <li>
-                  <Link className="dropdown-item disabled" to="/">
-                    IELTS Fighter
+                  <Link className="dropdown-item" to="/ielts-courses">
+                    IELTS Listening Course
                   </Link>
                 </li>
               </ul>
@@ -62,16 +62,18 @@ const NavBar = () => {
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                IELTS Exam Library
+                <span className="nav-item-white">IELTS Exam Library</span>
               </Link>
               <ul className="dropdown-menu">
+                <li>
+                  <Link className="dropdown-item" to="/ielts-reading-test-list">
+                    IELTS Reading Test
+                  </Link>
+                </li>
                 <li>
                   <Link className="dropdown-item" to="/">
                     IELTS Listening Test
                   </Link>
-                </li>
-                <li>
-                  <Link className="dropdown-item" to="/ielts-reading-test-list">IELTS Reading Test</Link>
                 </li>
               </ul>
             </li>
@@ -83,7 +85,7 @@ const NavBar = () => {
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                IELTS Tips
+                <span className="nav-item-white">IELTS Tips</span>
               </Link>
               <ul className="dropdown-menu">
                 <li>
@@ -98,19 +100,7 @@ const NavBar = () => {
                 </li>
               </ul>
             </li>
-            
           </ul>
-          <form className="d-flex" role="search">
-            <input
-              className="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            ></input>
-            <button className="btn btn-outline-success" type="submit">
-              Search
-            </button>
-          </form>
         </div>
       </div>
     </nav>

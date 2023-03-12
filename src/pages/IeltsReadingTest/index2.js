@@ -237,22 +237,7 @@ const formatTime = (time) => {
 
 
 export const IeltsReadingTest = async () => {
-    const [countDown, setCountDown] = useState(1000)
-    useEffect(() => {
-        const clockInterval = setInterval(() => {
-            setCountDown(preState => {
-                if (preState === 0){
-                    clearInterval(clockInterval);
-                    subMit()
-                    return 0;
-                }
-                return preState - 1
-            });
-        }, 1000)
-        return () => {
-            clearInterval(clockInterval)
-        }
-    }, [])
+    
 
 
 

@@ -12,7 +12,7 @@ const MultipleChoice = ({questions,handleChoose}) => {
         <div>
             <h3>Question {questions.from}</h3>
             <NumberWrapInline number={questions.from}></NumberWrapInline>
-            <em>{questions.question}</em>
+            <em>{questions.detail.question}</em>
             <ul className="list-question">
                 {JSON.parse(questions.detail.listOfAnswers).map((item,index) => {
                     return (
