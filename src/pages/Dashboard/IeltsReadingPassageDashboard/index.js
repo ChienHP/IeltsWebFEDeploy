@@ -7,6 +7,7 @@ import { CreatePassageForm } from "./CreatePassageForm";
 import { ShowParagraph } from "./ShowParagraph";
 import { IeltsReadingQuestions } from "./IeltsReadingQuestions";
 import { CreateQuestion } from "./CreateQuestion";
+import './style.css'
 export const IeltsReadingPassageDashboard = () => {
   const { testId } = useParams("testId");
   const [passages, setPassages] = useState([]);
@@ -52,14 +53,14 @@ export const IeltsReadingPassageDashboard = () => {
 
   return (
     <div>
-      <h2>{test.name}</h2>
+      <h2 className="passage-test-name">{test.name}</h2>
       <button
         type="button"
         style={{ float: "right" }}
-        className="btn btn-primary btn-lg"
+        className="btn btn-success"
         onClick={handleShowCreate}
       >
-        Add New
+        Add New Passage
       </button>
 
       <div>
@@ -70,14 +71,15 @@ export const IeltsReadingPassageDashboard = () => {
                 onClick={() => {
                   handleOpen(index);
                 }}
+                className="button-show-paragraph"
               >
-                <h4>
+                <h5>
                   {item.passageNumber}: {item.title}
-                </h4>
+                </h5>
               </Button>
               <Collapse in={isOpen[index]}>
                 <div>
-                  <div className="reading-box">
+                  <div className="reading-box passage-reading-box">
                     <div className="split">
                             <ShowParagraph passageId={item.id}></ShowParagraph>
                     </div>

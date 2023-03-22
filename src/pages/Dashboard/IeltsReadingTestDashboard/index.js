@@ -96,23 +96,20 @@ const IeltsReadingTestDashboard = () => {
 
   return (
     <div>
-      <h2>Ielts Reading Test</h2>
+      <h2 className="mt-3">Ielts Reading Test</h2>
       <button
         type="button"
         style={{ float: "right" }}
-        className="btn btn-primary btn-lg"
+        className="btn btn-success"
         onClick={handleShowCreate}
       >
-        {" "}
-        Add New{" "}
+        Add New
       </button>
       <table className="table table-striped table-sm">
         <thead>
           <tr>
             <th scope="col">STT</th>
             <th scope="col">Name</th>
-            <th scope="col">Created At</th>
-            <th scope="col">Updated At</th>
             <th scope="col">Options</th>
           </tr>
         </thead>
@@ -122,13 +119,12 @@ const IeltsReadingTestDashboard = () => {
               <tr key={index}>
                 <td>{(page - 1) * limit + ++index}</td>
                 <td>{item.name}</td>
-                <td>{item.createdAt}</td>
-                <td>{item.updatedAt}</td>
                 <td>
                   <div>
                     <button
                       type="button"
                       className="btn btn-warning"
+                      style={{ "margin-right": "8px" }}
                       onClick={() => handleShowUpdate(item.id)}
                     >
                       Update
@@ -136,15 +132,18 @@ const IeltsReadingTestDashboard = () => {
                     <button
                       type="button"
                       className="btn btn-danger"
+                      style={{ "margin-right": "8px" }}
                       onClick={() => handleDelete(item.id)}
                     >
                       Delete
                     </button>
 
-                    <Link
-                      to={`/admin/${item.id}/ielts-reading-passage`}
-                    >
-                      <button type="button" className="btn btn-success">
+                    <Link to={`/admin/${item.id}/ielts-reading-passage`}>
+                      <button
+                        type="button"
+                        className="btn btn-primary"
+                        style={{ "margin-right": "8px" }}
+                      >
                         Detail
                       </button>
                     </Link>

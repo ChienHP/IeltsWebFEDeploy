@@ -18,7 +18,7 @@ export const CreateQuestion = ({ testId, passageId }) => {
   const [listOfSentences, setListOfSentences] = useState("");
   const [listOfHeadings, setListOfHeadings] = useState("");
   const [listOfParagraphs, setListOfParagraphs] = useState("");
-  const [listOfObjects, setListOfObjects] = useState("")
+  const [listOfObjects, setListOfObjects] = useState("");
   const [question, setQuestion] = useState("");
   const [listOfAnswers, setListOfAnswers] = useState("");
   const [listOfEndings, setListOfEndings] = useState("");
@@ -68,7 +68,15 @@ export const CreateQuestion = ({ testId, passageId }) => {
   };
   return (
     <>
-      <button onClick={handleShow}>Add new question</button>
+      <button
+        className="btn btn-success btn-add-new-question"
+        onClick={handleShow}
+        style={{
+          'margin':'12px 0px 0px 12px'
+        }}
+      >
+        Add new question
+      </button>
       <Modal show={isShow} onHide={handleShow}>
         <Modal.Header closeButton>
           <Modal.Title>Add new question</Modal.Title>

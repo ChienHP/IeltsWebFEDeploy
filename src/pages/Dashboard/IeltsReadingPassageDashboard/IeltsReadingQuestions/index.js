@@ -25,29 +25,42 @@ export const IeltsReadingQuestions = ({ passageId }) => {
     };
     fetchData(passageId);
   }, []);
- 
+
   const handleDeleteQuestion = async (questionId) => {
     try {
-        const res = await axios.delete(`http://localhost:3001/ielts-reading-question/${questionId}`)
-        alert(res.data)
+      const res = await axios.delete(
+        `http://localhost:3001/ielts-reading-question/${questionId}`
+      );
+      alert(res.data);
     } catch (error) {
-        console.log({error})
+      console.log({ error });
     }
-  }
+  };
   return (
-    <div>
+    <div className="questions-boundary">
       {questions.map((question, index) => {
         return (
-          <div key={index}>
-            <button onClick={() => handleOpen(index)}>
-              Questions {question.from} - {question.to}: {question.type}
+          <div key={index} className="question">
+            <button
+              className="btn btn-primary "
+              onClick={() => handleOpen(index)}
+            >
+              Questions {question.from} - {question.to}
             </button>
             <Collapse in={isOpen[index]}>
               <div>
                 <Question id={question.id}></Question>
               </div>
             </Collapse>
-            <button onClick={() => handleDeleteQuestion(question.id)}>Delete</button>
+            <button
+              className="btn btn-danger question-btn-delete"
+              onClick={() => handleDeleteQuestion(question.id)}
+              style={{
+                'margin':'0px 0px 0px 12px'
+              }}
+            >
+              x
+            </button>
           </div>
         );
       })}

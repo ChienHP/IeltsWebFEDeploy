@@ -4,6 +4,7 @@ import IELTSCourses from "../pages/IELTS_Courses";
 import IeltsReadingTestDashboard from "../pages/Dashboard/IeltsReadingTestDashboard";
 import { IeltsReadingTestList } from "../pages/IeltsReadingTestList";
 import { IeltsReadingPassageDashboard } from "../pages/Dashboard/IeltsReadingPassageDashboard";
+import Registration from "../pages/Registration";
 
 
 const publicRoutes = [
@@ -11,6 +12,8 @@ const publicRoutes = [
   {path: "/ielts-courses", Component: IELTSCourses},
   {path: "/ielts-reading-test-list", Component: IeltsReadingTestList},
   {path: "/ielts-reading-test/:testId", Component: IeltsReadingTest},
+  {path: "/registration", Component: Registration},
+
 ];
 
 const privateRoutes = [

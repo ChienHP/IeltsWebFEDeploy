@@ -36,8 +36,9 @@ export const ShowParagraph = ({ passageId }) => {
           console.log(paragraphs)
           setParagraphs(e.target.value);
         }}
+        className="show-paragraph-textarea"
       ></textarea>
-      <button style={{ float: "right" }} onClick={handleSave}>
+      <button className="btn btn-warning" style={{ float: "right" }} onClick={handleSave}>
         Save
       </button>
     </div>

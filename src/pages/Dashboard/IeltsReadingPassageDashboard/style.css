@@ -1,11 +1,52 @@
 .reading-box {
-    display: flex;
-  }
-  
-  .split {
-    height: 617px;
-    overflow-y: scroll;
-    flex-grow: 1;
-    width: 50%;
-  }
-  
+  display: flex;
+}
+
+.split {
+  height: fit-content;
+  overflow-y: scroll;
+  flex-grow: 1;
+  width: 50%;
+}
+
+.split::-webkit-scrollbar {
+  width: 8px; 
+  height: 8px; 
+  background-color: #f5f5f5; 
+}
+
+.passage-test-name {
+  margin-top: 8px;
+}
+
+.button-show-paragraph {
+  margin-top: 16px;
+}
+
+.passage-reading-box {
+  margin-top: 8px;
+  margin-left: 8px;
+}
+
+/*Style textarea and it's scrollbar */
+.show-paragraph-textarea {
+  border: 1px solid #ccc; 
+  border-radius: 10px;
+  padding: 10px; 
+
+}
+.show-paragraph-textarea::-webkit-scrollbar {
+  width: 8px; 
+  height: 8px; 
+  background-color: #f5f5f5; 
+}
+
+.questions-boundary {
+  margin-left: 12px
+}
+
+.question {
+  margin-top: 12px;
+}
+
+

@@ -50,10 +50,11 @@ export const IeltsReadingTest = () => {
     if (i === newResults.length) {
       newResults.push(result);
     }
+    console.log(newResults);
     setResults(newResults);
   };
 
-  const submit = async () => {
+  const submit = async (results) => {
     console.log(results);
     try {
       const res = await axios.post(
@@ -117,13 +118,14 @@ export const IeltsReadingTest = () => {
     }
   };
 
-  const [countDown, setCountDown] = useState(3600);
+  const [countDown, setCountDown] = useState(5);
   useEffect(() => {
     const clockInterval = setInterval(() => {
       setCountDown((preState) => {
         if (preState === 0) {
           clearInterval(clockInterval);
-          submit();
+          submit(results);
+          handleCloseResultModal();
           return 0;
         }
         return preState - 1;
@@ -142,7 +144,7 @@ export const IeltsReadingTest = () => {
   return (
     <div>
       <div className="reading-box">
-        <div className="split ">
+        <div className="reading-test-split ">
           <div className="reading-passage">
             <h1 className="primary-color">
               <strong>READING PASSAGE {readingPassage.passageNumber}</strong>
@@ -156,7 +158,7 @@ export const IeltsReadingTest = () => {
           </div>
         </div>
 
-        <div className="split">
+        <div className="reading-test-split">
           <div className="questions">
             {questions.map((question, index) => {
               if (question.type === ReadingQuestionType.YES_NO_NOT_GIVEN)
@@ -241,6 +243,13 @@ export const IeltsReadingTest = () => {
             <button className="button-control" onClick={handlePreviousPassage}>
               Previous
             </button>
+            <button
+              className="button-hide"
+              onClick={() => {
+                submit(results);
+                handleCloseResultModal();
+              }}
+            ></button>
           </div>
         </div>
       </div>
@@ -248,12 +257,11 @@ export const IeltsReadingTest = () => {
       <div className="footer">
         <div className="">
           <div>
-            <i class="fa-regular fa-clock"></i>
             <h2>{formatTime(countDown)}</h2>
           </div>
           <button
             onClick={() => {
-              submit();
+              submit(results);
               handleCloseResultModal();
             }}
           >
@@ -268,16 +276,30 @@ export const IeltsReadingTest = () => {
         animation={false}
       >
         <Modal.Header closeButton>
-          <Modal.Title><h2 className="primary-color">Your Score</h2></Modal.Title>
+          <Modal.Title>
+            <h2 className="primary-color">Your Score</h2>
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <h3 className="primary-color">Correct Answer: {point}/40</h3>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseResultModal}>
+          <Button
+            variant="secondary"
+            onClick={() => {
+              handleCloseResultModal();
+              window.location.reload();
+            }}
+          >
             Đóng
           </Button>
-          <Button variant="primary" onClick={handleCloseResultModal}>
+          <Button
+            variant="primary"
+            onClick={() => {
+              handleCloseResultModal();
+              window.location.reload();
+            }}
+          >
             Thi lại
           </Button>
         </Modal.Footer>

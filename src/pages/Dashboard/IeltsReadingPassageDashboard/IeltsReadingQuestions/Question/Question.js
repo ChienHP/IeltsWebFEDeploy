@@ -24,7 +24,7 @@ export const Question = ({ id }) => {
 
   return (
     <div>
-      <div>
+      <div className="question-input">
         <label>From</label>
         <input
           value={question.from}
@@ -33,6 +33,7 @@ export const Question = ({ id }) => {
             newQuestion.from = e.target.value;
             setQuestion(newQuestion);
           }}
+          readOnly={true}
         ></input>
       </div>
       <div>
@@ -44,6 +45,7 @@ export const Question = ({ id }) => {
             newQuestion.to = e.target.value;
             setQuestion(newQuestion);
           }}
+          readOnly={true}
         ></input>
       </div>
       <div>
@@ -58,6 +60,7 @@ export const Question = ({ id }) => {
             <textarea
               style={{ width: "100%", height: "200px" }}
               value={question.detail[title]}
+              readOnly={true}
             ></textarea>
           </div>
         );
