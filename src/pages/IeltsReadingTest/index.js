@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import { ReadingQuestionType } from "../../constants/readingQuestionType";
+import { ReadingQuestionType } from "../../shared/readingQuestionType";
 import "./style.css";
 import SummaryNoteCompletion from "./IeltsReadingQuestionType/Summary_note_completion";
 import SentenceCompletion from "./IeltsReadingQuestionType/SentenceCompletion";

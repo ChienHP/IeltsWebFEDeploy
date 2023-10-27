@@ -1,6 +1,6 @@
 import NumberWrapInline from "../../../../components/Layouts/components(dungchung)/NumberWrapInline"
 import "./style.css"
-import { ALPHABETS } from "../../../../constants/common"
+import { ALPHABETS } from "../../../../shared/constant"
 import { useState } from "react"
 export const MatchingInformation = ({questions, handleChoose}) => {
     const [answers, setAnswers] = useState([])

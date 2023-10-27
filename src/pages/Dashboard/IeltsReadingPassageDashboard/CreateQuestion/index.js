@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Modal } from "react-bootstrap";
 import { Button } from "react-bootstrap";
-import { ReadingQuestionType } from "../../../../constants/readingQuestionType";
+import { ReadingQuestionType } from "../../../../shared/readingQuestionType";
 import { CreateDetailQuestion } from "./CreateDetailQuestion";
 import axios from "axios";
 export const CreateQuestion = ({ testId, passageId }) => {

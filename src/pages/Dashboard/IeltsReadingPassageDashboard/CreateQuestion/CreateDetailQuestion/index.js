@@ -1,4 +1,4 @@
-import { ReadingQuestionType } from "../../../../../constants/readingQuestionType";
+import { ReadingQuestionType } from "../../../../../shared/readingQuestionType";
 
 export const CreateDetailQuestion = ({
   questionType,

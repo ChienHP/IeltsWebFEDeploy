@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ALPHABETS } from "../../../../constants/common";
+import { ALPHABETS } from "../../../../shared/constant";
 
 const ListSelection = ({ questions, handleChoose }) => {
   const [checkboxes, setCheckboxes] = useState();

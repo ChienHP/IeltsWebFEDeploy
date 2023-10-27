@@ -1,4 +1,4 @@
-import { ALPHABETS } from "../../../../constants/common"
+import { ALPHABETS } from "../../../../shared/constant"
 import NumberWrapInline from "../../../../components/Layouts/components(dungchung)/NumberWrapInline"
 
 const MultipleChoice = ({questions,handleChoose}) => {
