@@ -7,22 +7,28 @@ import { IeltsReadingPassageDashboard } from "../pages/Dashboard/IeltsReadingPas
 import Registration from "../pages/Registration";
 import IeltsListeningQuestions from "../pages/IeltsListeningQuestions";
 import {IeltsListeningTestDashboard} from "../pages/Dashboard/IeltsListeningTestDashboard";
-import IeltsListeningTest from "../pages/IeltsListeningTest";
+import IeltsListeningTestList from "../pages/IeltsListeningTest/IeltsListeningTestList/";
+import AddIeltsListeningTest from "../pages/IeltsListeningTest/AddIeltsListeningTest";
+import config from "../configs"
 
 const publicRoutes = [
-  {path: "/", Component: Home },
-  {path: "/ielts-courses", Component: IELTSCourses},
-  {path: "/ielts-reading-test-list", Component: IeltsReadingTestList},
-  {path: "/ielts-reading-test/:testId", Component: IeltsReadingTest},
-  {path: "/registration", Component: Registration},
-  {path: "/ielts-listening-questions", Component: IeltsListeningQuestions},
-  {path: "/ielts-listening-test", Component: IeltsListeningTest}
+  {path: config.routes.home, Component: Home },
+  {path: config.routes.ieltsCourses, Component: IELTSCourses},
+  {path: config.routes.ieltsReadingTestList, Component: IeltsReadingTestList},
+  {path: config.routes.ieltsReadingTest, Component: IeltsReadingTest},
+  {path: config.routes.registration, Component: Registration},
+
+  // ielts-listening-test
+  {path: config.routes.ieltsListeningTestList, Component: IeltsListeningTestList},
+  {path: config.routes.addIeltsListeningTest, Component: AddIeltsListeningTest},
+  {path: config.routes.detailIeltsListeningTest, Component: AddIeltsListeningTest},
+  {path: config.routes.ieltsListeningQuestions, Component: IeltsListeningQuestions},
 ];
 
 const privateRoutes = [
-  {path: "/admin/ielts-reading-test", Component: IeltsReadingTestDashboard},
-  {path: "/admin/:testId/ielts-reading-passage", Component: IeltsReadingPassageDashboard},
-  {path: "/admin/:testId/ielts-listening-test", Component: IeltsListeningTestDashboard}
+  {path: config.routes.ieltsReadingTestDashboard, Component: IeltsReadingTestDashboard},
+  {path: config.routes.ieltsReadingPassageDashboard, Component: IeltsReadingPassageDashboard},
+  {path: config.routes.ieltsListeningTestDashboard, Component: IeltsListeningTestDashboard}
 ];
 
 export { publicRoutes, privateRoutes };
