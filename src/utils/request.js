@@ -22,6 +22,8 @@ export const post = async (url, data, options = {}) => {
         const response = await request.post(url, data, options)
         return response.data
     } catch (error) {
-        throw error.response.data
+        if (Array.isArray(error.response.data.message)) {
+            throw error.response.data.message.join(", ")
+        } else throw error.response.data.message
     }
 }

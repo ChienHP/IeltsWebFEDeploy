@@ -1,12 +1,12 @@
-import { Editor } from "@tinymce/tinymce-react";
+import { Editor } from "../../../node_modules/@tinymce/tinymce-react/lib/cjs/main/ts/index";
 
-export const EditorWrap = (props) => {
+export const EditorWrap = ({value, onChange}) => {
   return (
     <Editor
       apiKey="3ybenkspg56q99vgv88170npov83hsmybghawpra6srms960"
-      value={props.value}
+      value={value}
       onEditorChange={(value, editor) => {
-        props.onChange(value);
+        onChange(value);
       }}
       init={{
         height: 500,

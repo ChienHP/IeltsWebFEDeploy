@@ -1,15 +1,17 @@
-import Home from "../pages/Home";
-import {IeltsReadingTest} from "../pages/IeltsReadingTest";
-import IELTSCourses from "../pages/IELTS_Courses";
-import IeltsReadingTestDashboard from "../pages/Dashboard/IeltsReadingTestDashboard";
-import { IeltsReadingTestList } from "../pages/IeltsReadingTestList";
+import config from "../configs";
+import { IeltsListeningTestDashboard } from "../pages/Dashboard/IeltsListeningTestDashboard";
 import { IeltsReadingPassageDashboard } from "../pages/Dashboard/IeltsReadingPassageDashboard";
-import Registration from "../pages/Registration";
+import IeltsReadingTestDashboard from "../pages/Dashboard/IeltsReadingTestDashboard";
+import Home from "../pages/Home";
+import IELTSCourses from "../pages/IELTS_Courses";
 import IeltsListeningQuestions from "../pages/IeltsListeningQuestions";
-import {IeltsListeningTestDashboard} from "../pages/Dashboard/IeltsListeningTestDashboard";
-import IeltsListeningTestList from "../pages/IeltsListeningTest/IeltsListeningTestList/";
 import AddIeltsListeningTest from "../pages/IeltsListeningTest/AddIeltsListeningTest";
-import config from "../configs"
+import IeltsListeningTestList from "../pages/IeltsListeningTest/IeltsListeningTestList";
+import { IeltsReadingTest } from "../pages/IeltsReadingTest";
+import { IeltsReadingTestList } from "../pages/IeltsReadingTestList";
+import Registration from "../pages/Registration";
+
+
 
 const publicRoutes = [
   {path: config.routes.home, Component: Home },
