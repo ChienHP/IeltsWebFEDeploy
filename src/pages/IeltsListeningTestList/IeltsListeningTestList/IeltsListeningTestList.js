@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
-import { getIeltsListeningTests } from "../../../apis/ielts-listening-test.api";
 import "./style.css";
 import { useQuery } from "@tanstack/react-query";
 import { useQueryString } from "../../../utils/utils";
 import { Link } from "react-router-dom";
+import { getIeltsTestList } from "../../../apis/ielts-listening-test.api";
+import { IELTS_TEST_TYPE } from "../../../shared/constant";
+import configs from "../../../configs";
 
 const IeltsListeningTestList = () => {
     const queryString = useQueryString();
@@ -11,25 +13,18 @@ const IeltsListeningTestList = () => {
     const limit = Number(queryString.limit) || 10;
 
     const { data, isLoading } = useQuery({
-        queryKey: ["ieltsListeningTests", page],
-        queryFn: () => getIeltsListeningTests(page, limit),
+        queryKey: ["getIeltsTestList", page],
+        queryFn: () => getIeltsTestList(page, limit, '', IELTS_TEST_TYPE.LISTENING),
     });
-
+    
     const ieltsListeningTests = data?.data?.data || [];
+    console.log("ieltsListeningTests", ieltsListeningTests)
     const totalPage = data?.data?.meta?.pagination.totalPages || 0;
 
     return (
         <div>
             <h1 className="text-lg">IeltsListeningTest</h1>
             <div className="container">
-                <div>
-                    <Link to="/ielts-listening-test/add-new-test">
-                        <button className="btn btn-primary">
-                            <span>Add new test</span>
-                        </button>
-                    </Link>
-                </div>
-
                 {isLoading && (
                     <div className="skeleton">
                         <div className="skeleton-header"></div>
@@ -48,6 +43,7 @@ const IeltsListeningTestList = () => {
                         <tr>
                             <th>ID</th>
                             <th>Name</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -55,6 +51,9 @@ const IeltsListeningTestList = () => {
                             <tr key={ieltsListeningTest.id}>
                                 <td>{ieltsListeningTest.id}</td>
                                 <td>{ieltsListeningTest.name}</td>
+                                <td>
+                                    {/* <Link to={}>Start</Link> */}
+                                </td>
                             </tr>
                         ))}
                     </tbody>
@@ -84,7 +83,7 @@ const IeltsListeningTestList = () => {
                                 >
                                     <Link
                                         className="page-link"
-                                        to={`/ielts-listening-test?page=${pageNumber}&limit=2`}
+                                        to={`${configs.routes.ieltsListeningTestList}?page=${pageNumber}&limit=2`}
                                     >
                                         {pageNumber}
                                     </Link>

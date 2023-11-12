@@ -1,4 +1,4 @@
-import { IELTS_LISTENING_QUESTION_TYPE } from "../../shared/constant";
+import { QUESTION_TYPE } from "../../shared/constant";
 import React, { useRef } from "react";
 import CreateIeltsListeningQuestions from "./CreateIeltsListeningQuestions/index.js";
 import { EditorWrap } from "../../components/Editor";
@@ -23,12 +23,12 @@ const IeltsListeningQuestions = () => {
     <div>
       <CreateIeltsListeningQuestions></CreateIeltsListeningQuestions>
 
-      {Object.values(IELTS_LISTENING_QUESTION_TYPE).map((item, index) => {
-        if (item === IELTS_LISTENING_QUESTION_TYPE.FILL_IN_THE_BLANKS)
+      {Object.values(QUESTION_TYPE).map((item, index) => {
+        if (item === QUESTION_TYPE.FILL_IN_THE_BLANKS)
           return (
             <div key={index}>
               <h3>{item}</h3>
-              <EditorWrap></EditorWrap>
+              {/* <EditorWrap></EditorWrap> */}
               {/* <div dangerouslySetInnerHTML={{ __html: content.replaceAll('{answer}', '') }}></div> */}
             </div>
           );

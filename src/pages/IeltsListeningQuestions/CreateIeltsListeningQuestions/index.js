@@ -1,5 +1,8 @@
-import React, { useRef, useState } from "react";
-import { IELTS_LISTENING_QUESTION_TYPE } from "../../../shared/constant";
+import React, { Fragment, useEffect, useRef, useState } from "react";
+import {
+    QUESTION_TYPE,
+    TYPE_OF_QUESTION_LABEL,
+} from "../../../shared/constant";
 import { EditorWrap } from "../../../components/Editor/index";
 import { createIeltsListeningQuestions } from "../../../apis/ielts-listening-test.api";
 import { toast } from "react-toastify";
@@ -10,17 +13,42 @@ const initialFormState = {
     from: 0,
     to: 0,
     content: "",
+    typeOfLabel: "",
     listOfOptions: [],
-    listOfKeys: "",
+    listOfKeys: [],
 };
 
 const CreateIeltsListeningQuestions = () => {
     const [formState, setFormState] = useState(initialFormState);
+    console.log("re-render");
+    useEffect(() => {
+        const numberOfQuestion = formState.to - formState.from + 1;
+        const newListOfKeys = formState.listOfKeys;
+        if (formState.from && formState.to) {
+            while (newListOfKeys.length !== numberOfQuestion) {
+                if (newListOfKeys.length < numberOfQuestion) {
+                    newListOfKeys.push("");
+                } else {
+                    newListOfKeys.pop();
+                }
+            }
+        } else if (formState.from) {
+            while (newListOfKeys.length !== 1) {
+                if (newListOfKeys.length < 1) {
+                    newListOfKeys.push("");
+                } else {
+                    newListOfKeys.pop();
+                }
+            }
+        }
 
-    console.log(formState)
-    
+        setFormState({
+            ...formState,
+            listOfKeys: newListOfKeys,
+        });
+    }, [formState.from, formState.to]);
+
     const handleChange = (field) => (e) => {
-        console.log(typeof initialFormState[field])
         if (typeof formState[field] === "number") {
             setFormState({
                 ...formState,
@@ -44,11 +72,15 @@ const CreateIeltsListeningQuestions = () => {
 
     const handleSave = async () => {
         try {
-            console.log(formState)
-            await createIeltsListeningQuestions({
-                ...formState,
-                listOfKeys: formState.listOfKeys.split(','),
-            });
+            console.log(formState);
+            if (formState.type === QUESTION_TYPE.MULTIPLE_CHOICE) {
+                delete formState.to;
+            }
+            else if (formState.type === QUESTION_TYPE.FILL_IN_THE_BLANKS) {
+                delete formState.listOfOptions;
+            }
+
+            await createIeltsListeningQuestions(formState);
             toast.success("Create successfully");
         } catch (error) {
             toast.error(error);
@@ -61,7 +93,7 @@ const CreateIeltsListeningQuestions = () => {
                 Part{" "}
                 <input
                     type="number"
-                    value={formState.partId ? formState.partId: ''}
+                    value={formState.partId ? formState.partId : ""}
                     onChange={handleChange("partId")}
                 ></input>
             </div>
@@ -74,19 +106,38 @@ const CreateIeltsListeningQuestions = () => {
                     onChange={handleChange("type")}
                 >
                     <option value="none">Select an Option</option>
-                    {Object.values(IELTS_LISTENING_QUESTION_TYPE).map(
-                        (type) => (
-                            <option key={type} value={type}>
-                                {type}
-                            </option>
-                        )
-                    )}
+                    {Object.values(QUESTION_TYPE).map((type) => (
+                        <option key={type} value={type}>
+                            {type}
+                        </option>
+                    ))}
                 </select>
             </div>
 
             <div>
-                Question <input type="number" id="fname" name="fname" value={formState.from ? formState.from : ""} onChange={handleChange("from")}></input>{" "}
-                to <input type="number" id="fname" name="fname" value={formState.to ? formState.to : ""} onChange={handleChange('to')}></input>
+                Question{" "}
+                <input
+                    type="number"
+                    id="fname"
+                    name="fname"
+                    value={formState.from ? formState.from : ""}
+                    onChange={handleChange("from")}
+                ></input>{" "}
+                {formState.type !== QUESTION_TYPE.MULTIPLE_CHOICE && (
+                    <Fragment>
+                        to{" "}
+                        <input
+                            type="number"
+                            id="fname"
+                            name="fname"
+                            value={formState.to ? formState.to : ""}
+                            onChange={handleChange("to")}
+                            disabled={
+                                formState.type === QUESTION_TYPE.MULTIPLE_CHOICE
+                            }
+                        ></input>
+                    </Fragment>
+                )}
             </div>
 
             <EditorWrap
@@ -94,9 +145,114 @@ const CreateIeltsListeningQuestions = () => {
                 onChange={handleEditorChange}
             ></EditorWrap>
 
+            {(formState.type === QUESTION_TYPE.MULTIPLE_CHOICE ||
+                formState.type === QUESTION_TYPE.MATCHING) && (
+                <div>
+                    <label htmlFor="typeOfLabel"> Type of label: </label>
+                    <select
+                        name="typeOfLabel"
+                        value={formState.typeOfLabel}
+                        onChange={handleChange("typeOfLabel")}
+                    >
+                        <option value="none">Select an Option</option>
+                        {Object.values(TYPE_OF_QUESTION_LABEL).map(
+                            (e, index) => (
+                                <option key={index} value={e.labelName}>
+                                    {e.labelName}
+                                </option>
+                            )
+                        )}
+                    </select>
+                </div>
+            )}
+
+            {(formState.type === QUESTION_TYPE.MULTIPLE_CHOICE ||
+                formState.type === QUESTION_TYPE.MATCHING) && (
+                <div>
+                    <div>List of options</div>
+                    <ul>
+                        {formState.listOfOptions.map((value, index) => (
+                            <li key={index}>
+                                <label htmlFor="fname">
+                                    {
+                                        Object.values(
+                                            TYPE_OF_QUESTION_LABEL
+                                        ).find((e) => {
+                                            return (
+                                                e.labelName ===
+                                                formState.typeOfLabel
+                                            );
+                                        })?.value[index]
+                                    }
+                                </label>
+                                <input
+                                    type="text"
+                                    value={formState.listOfOptions[index]}
+                                    onChange={(e) => {
+                                        formState.listOfOptions[index] =
+                                            e.target.value;
+                                        setFormState({
+                                            ...formState,
+                                            listOfOptions:
+                                                formState.listOfOptions,
+                                        });
+                                    }}
+                                ></input>
+                                <button
+                                    onClick={() => {
+                                        const newListOfOptions =
+                                            formState.listOfOptions;
+                                        newListOfOptions.splice(index, 1);
+                                        setFormState({
+                                            ...formState,
+                                            listOfOptions: newListOfOptions,
+                                        });
+                                    }}
+                                >
+                                    Remove
+                                </button>
+                            </li>
+                        ))}
+                        <button
+                            onClick={() => {
+                                const newListOfOptions =
+                                    formState.listOfOptions;
+                                newListOfOptions.push("");
+                                setFormState({
+                                    ...formState,
+                                    listOfOptions: newListOfOptions,
+                                });
+                            }}
+                        >
+                            More option
+                        </button>
+                    </ul>
+                </div>
+            )}
+
             <div>
-                List of keys <input type="text" value={formState.listOfKeys} onChange={handleChange('listOfKeys')}></input>
+                List of keys
+                <ul>
+                    {formState.listOfKeys.map((value, index) => (
+                        <li key={index}>
+                            Question {formState.from + index}:
+                            <input
+                                type="text"
+                                value={value}
+                                onChange={(e) => {
+                                    formState.listOfKeys[index] =
+                                        e.target.value;
+                                    setFormState({
+                                        ...formState,
+                                        listOfKeys: formState.listOfKeys,
+                                    });
+                                }}
+                            ></input>
+                        </li>
+                    ))}
+                </ul>
             </div>
+
             <button onClick={handleSave}>Save</button>
         </div>
     );

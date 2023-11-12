@@ -9,6 +9,7 @@ const routes = {
 
     // ielts-listening-test
     ieltsListeningTestList: "/ielts-listening-test-list",
+    ieltsListeningTest: "/ielts-listening-test/:testId",
     addIeltsListeningTest: "/ielts-listening-test/add-new-test",
     detailIeltsListeningTest: "/ielts-listening-test/:id",
     

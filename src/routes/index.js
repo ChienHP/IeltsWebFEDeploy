@@ -1,12 +1,13 @@
-import config from "../configs";
+import configs from "../configs";
 import { IeltsListeningTestDashboard } from "../pages/Dashboard/IeltsListeningTestDashboard";
 import { IeltsReadingPassageDashboard } from "../pages/Dashboard/IeltsReadingPassageDashboard";
 import IeltsReadingTestDashboard from "../pages/Dashboard/IeltsReadingTestDashboard";
 import Home from "../pages/Home";
 import IELTSCourses from "../pages/IELTS_Courses";
 import IeltsListeningQuestions from "../pages/IeltsListeningQuestions";
-import AddIeltsListeningTest from "../pages/IeltsListeningTest/AddIeltsListeningTest";
-import IeltsListeningTestList from "../pages/IeltsListeningTest/IeltsListeningTestList";
+import IeltsListeningTest from "../pages/IeltsListeningTest";
+import AddIeltsListeningTest from "../pages/IeltsListeningTestList/AddIeltsListeningTest";
+import IeltsListeningTestList from "../pages/IeltsListeningTestList/IeltsListeningTestList";
 import { IeltsReadingTest } from "../pages/IeltsReadingTest";
 import { IeltsReadingTestList } from "../pages/IeltsReadingTestList";
 import Registration from "../pages/Registration";
@@ -14,23 +15,25 @@ import Registration from "../pages/Registration";
 
 
 const publicRoutes = [
-  {path: config.routes.home, Component: Home },
-  {path: config.routes.ieltsCourses, Component: IELTSCourses},
-  {path: config.routes.ieltsReadingTestList, Component: IeltsReadingTestList},
-  {path: config.routes.ieltsReadingTest, Component: IeltsReadingTest},
-  {path: config.routes.registration, Component: Registration},
+  {path: configs.routes.home, Component: Home },
+  {path: configs.routes.ieltsCourses, Component: IELTSCourses},
+  {path: configs.routes.ieltsReadingTestList, Component: IeltsReadingTestList},
+  {path: configs.routes.ieltsReadingTest, Component: IeltsReadingTest},
+  {path: configs.routes.registration, Component: Registration},
 
   // ielts-listening-test
-  {path: config.routes.ieltsListeningTestList, Component: IeltsListeningTestList},
-  {path: config.routes.addIeltsListeningTest, Component: AddIeltsListeningTest},
-  {path: config.routes.detailIeltsListeningTest, Component: AddIeltsListeningTest},
-  {path: config.routes.ieltsListeningQuestions, Component: IeltsListeningQuestions},
+  {path: configs.routes.ieltsListeningTestList, Component: IeltsListeningTestList},
+  {path: configs.routes.ieltsListeningTest, Component: IeltsListeningTest},
+
+  {path: configs.routes.addIeltsListeningTest, Component: AddIeltsListeningTest},
+  {path: configs.routes.detailIeltsListeningTest, Component: AddIeltsListeningTest},
+  {path: configs.routes.ieltsListeningQuestions, Component: IeltsListeningQuestions},
 ];
 
 const privateRoutes = [
-  {path: config.routes.ieltsReadingTestDashboard, Component: IeltsReadingTestDashboard},
-  {path: config.routes.ieltsReadingPassageDashboard, Component: IeltsReadingPassageDashboard},
-  {path: config.routes.ieltsListeningTestDashboard, Component: IeltsListeningTestDashboard}
+  {path: configs.routes.ieltsReadingTestDashboard, Component: IeltsReadingTestDashboard},
+  {path: configs.routes.ieltsReadingPassageDashboard, Component: IeltsReadingPassageDashboard},
+  {path: configs.routes.ieltsListeningTestDashboard, Component: IeltsListeningTestDashboard}
 ];
 
 export { publicRoutes, privateRoutes };
