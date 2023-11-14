@@ -24,6 +24,11 @@ const CreateIeltsListeningQuestions = () => {
     useEffect(() => {
         const numberOfQuestion = formState.to - formState.from + 1;
         const newListOfKeys = formState.listOfKeys;
+
+        if (numberOfQuestion < 0) {
+            return;
+        }
+
         if (formState.from && formState.to) {
             while (newListOfKeys.length !== numberOfQuestion) {
                 if (newListOfKeys.length < numberOfQuestion) {

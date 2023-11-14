@@ -36,3 +36,7 @@ export const createIeltsListeningQuestions = (body) => {
 export const ieltsListeningQuestionList = (testId) => {
     return get(`ielts-listening-test/ielts-listening-questions/${testId}`)
 }
+
+export const getScore = (body) => {
+    return post(`ielts-test/get-score`, body)
+}
