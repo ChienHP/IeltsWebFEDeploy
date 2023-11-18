@@ -1,3 +1,4 @@
+import IeltsTestLayout from "../components/Layouts/IeltsTestLayout";
 import configs from "../configs";
 import { IeltsListeningTestDashboard } from "../pages/Dashboard/IeltsListeningTestDashboard";
 import { IeltsReadingPassageDashboard } from "../pages/Dashboard/IeltsReadingPassageDashboard";
@@ -23,7 +24,7 @@ const publicRoutes = [
 
   // ielts-listening-test
   {path: configs.routes.ieltsListeningTestList, Component: IeltsListeningTestList},
-  {path: configs.routes.ieltsListeningTest, Component: IeltsListeningTest},
+  {path: configs.routes.ieltsListeningTest, Component: IeltsListeningTest, Layout: IeltsTestLayout},
 
   {path: configs.routes.addIeltsListeningTest, Component: AddIeltsListeningTest},
   {path: configs.routes.detailIeltsListeningTest, Component: AddIeltsListeningTest},

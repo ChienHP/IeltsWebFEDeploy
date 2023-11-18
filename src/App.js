@@ -3,7 +3,7 @@ import { publicRoutes, privateRoutes } from "./routes";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import DefaultLayouts from "./components/Layouts/DefaultLayouts";
 import DashboardLayout from "./components/Layouts/DashboardLayout";
-import {Fragment } from "react";
+import { Fragment } from "react";
 
 function App() {
   return (
