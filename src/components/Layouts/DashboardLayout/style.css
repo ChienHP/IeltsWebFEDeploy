@@ -1,0 +1,14 @@
+.container {
+    display: flex;
+}
+
+.sidebar {
+    flex: 0 0 25%; /* Chia nửa đầu tiên chiếm 25% chiều rộng của container */
+    background-color: #f0f0f0; /* Màu nền của sidebar */
+    padding: 20px; /* Gắn padding cho đẹp mắt */
+}
+
+.content {
+    flex: 1; /* Chia nửa thứ hai chiếm phần còn lại của container */
+    padding: 20px; /* Gắn padding cho đẹp mắt */
+}

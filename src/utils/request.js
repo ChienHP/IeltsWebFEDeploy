@@ -27,3 +27,23 @@ export const post = async (url, data, options = {}) => {
         } else throw error.response.data.message
     }
 }
+
+export const put = async (url, data, options = {}) => {
+    try {
+        const response = await request.put(url, data, options)
+        return response.data
+    } catch (error) {
+        if (Array.isArray(error.response.data.message)) {
+            throw error.response.data.message.join(", ")
+        } else throw error.response.data.message
+    }
+}
+
+export const deleteReq = async (url, options = {}) => {
+    try {
+        const response = await request.delete(url, options)
+        return response.data
+    } catch (error) {
+        throw error.response.data
+    }
+}

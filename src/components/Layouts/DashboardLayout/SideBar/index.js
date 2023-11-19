@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import configs from "../../../../configs";
 
 const SideBar = () => {
   return (
@@ -34,7 +35,7 @@ const SideBar = () => {
             
           </li>
           <li className="nav-item">
-            <Link className="nav-link active" aria-current="page" to="/admin/ielts-reading-test">
+            <Link className="nav-link active" aria-current="page" to={configs.routes.ieltsListeningTestDashboard}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"

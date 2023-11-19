@@ -14,9 +14,10 @@ const routes = {
     detailIeltsListeningTest: "/ielts-listening-test/:id",
     
     // Private routes
+    ieltsListeningTestDashboard: "/admin/ielts-listening-test",
+    adminIeltsListeningPart: "/admin/test/:testId/ielts-listening-parts",
     ieltsReadingTestDashboard: "/admin/ielts-reading-test",
     ieltsReadingPassageDashboard: "/admin/:testId/ielts-reading-passage",
-    ieltsListeningTestDashboard: "/admin/:testId/ielts-listening-test",
 }
 
 export default routes;

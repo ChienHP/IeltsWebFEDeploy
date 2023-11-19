@@ -7,7 +7,7 @@ const DashboardLayout = ({ children }) => {
 
       <div className="container-fluid">
         <div className="row">
-          <div className="col-md-5 col-lg-3">
+          <div className="col-md-5 col-lg-3 sidebar">
             <SideBar></SideBar>
           </div>
           <main className="col-md-7 ms-sm-auto col-lg-9 px-md-4">

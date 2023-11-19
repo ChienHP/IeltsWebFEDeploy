@@ -1,6 +1,6 @@
 import { IELTS_TEST_TYPE } from "../shared/constant"
 import http from "../utils/http"
-import { get, post } from "../utils/request"
+import { deleteReq, get, post, put } from "../utils/request"
 
 export const getIeltsTestList = (page, limit, name, type) => {
     return http.get(`ielts-test/list`, {
@@ -17,17 +17,25 @@ export const getIeltsTestPartList = (testId) => {
     return get(`/ielts-test-part/list/${testId}`)
 }
 
-export const createIeltsListeningTest = (body) => {
-    return post(`ielts-listening-test/create`, body)
+export const createIeltsTest = (body) => {
+    return post(`/ielts-test/create`, body)
+}
+
+export const updateIeltsTest = (body) => {
+    return put(`/ielts-test/update`, body)
+}
+
+export const getIeltsTestDetail = (id) => {
+    return get(`/ielts-test/${id}`)
+}
+
+export const deleteIeltsTest = (id) => {
+    return deleteReq(`/ielts-test/${id}`)
 }
 
 export const getIeltsListeningTest = (id) => {
     return get(`ielts-listening-test/get-detail/${id}`)
 }    
-
-export const getIeltsListeningPartList = (id) => {
-    return get(`ielts-listening-test/ielts-listening-parts/${id}`)
-}
 
 export const createIeltsListeningQuestions = (body) => {
     return post(`/question-group/create`, body)
