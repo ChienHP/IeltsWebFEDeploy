@@ -2,6 +2,7 @@ import IeltsTestLayout from "../components/Layouts/IeltsTestLayout";
 import SingleFileUploader from "../components/SingleFileUploader";
 import configs from "../configs";
 import AdminIeltsListeningPart from "../pages/Admin-IeltsListeningPart";
+import AdminIeltsReadingPart from "../pages/Admin-IeltsReadingPart";
 import { IeltsReadingPassageDashboard } from "../pages/Dashboard/IeltsReadingPassageDashboard";
 import IeltsReadingTestDashboard from "../pages/Dashboard/IeltsReadingTestDashboard";
 import Home from "../pages/Home";
@@ -34,6 +35,7 @@ const publicRoutes = [
 const privateRoutes = [
   {path: configs.routes.ieltsListeningTestDashboard, Component: IeltsListeningTestDashboard},
   {path: configs.routes.adminIeltsListeningPart, Component: AdminIeltsListeningPart},
+  {path: configs.routes.adminIeltsReadingPart, Component: AdminIeltsReadingPart},
   {path: configs.routes.ieltsReadingTestDashboard, Component: IeltsReadingTestDashboard},
   {path: configs.routes.ieltsReadingPassageDashboard, Component: IeltsReadingPassageDashboard},
 ];

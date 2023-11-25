@@ -16,11 +16,11 @@ const initialFormState = {
     typeOfLabel: "",
     listOfOptions: [],
     listOfKeys: [],
+    listOfQuestions: [],
 };
 
 const CreateIeltsListeningQuestions = () => {
     const [formState, setFormState] = useState(initialFormState);
-    console.log("re-render");
     useEffect(() => {
         const numberOfQuestion = formState.to - formState.from + 1;
         const newListOfKeys = formState.listOfKeys;
@@ -43,6 +43,30 @@ const CreateIeltsListeningQuestions = () => {
                     newListOfKeys.push("");
                 } else {
                     newListOfKeys.pop();
+                }
+            }
+        }
+
+        const newListOfQuestions = formState.listOfQuestions;
+        
+        if (numberOfQuestion < 0) {
+            return;
+        }
+
+        if (formState.from && formState.to) {
+            while (newListOfQuestions.length !== numberOfQuestion) {
+                if (newListOfQuestions.length < numberOfQuestion) {
+                    newListOfQuestions.push("");
+                } else {
+                    newListOfQuestions.pop();
+                }
+            }
+        } else if (formState.from) {
+            while (newListOfQuestions.length !== 1) {
+                if (newListOfQuestions.length < 1) {
+                    newListOfQuestions.push("");
+                } else {
+                    newListOfQuestions.pop();
                 }
             }
         }
@@ -77,15 +101,35 @@ const CreateIeltsListeningQuestions = () => {
 
     const handleSave = async () => {
         try {
-            console.log(formState);
+            const request = {}
+            request.partId = formState.partId;
+            request.type = formState.type;
+            request.from = formState.from;
+            request.to = formState.to;
+            request.content = formState.content;
+            request.listOfKeys = formState.listOfKeys;
+
             if (formState.type === QUESTION_TYPE.MULTIPLE_CHOICE) {
                 delete formState.to;
-            }
-            else if (formState.type === QUESTION_TYPE.FILL_IN_THE_BLANKS) {
-                delete formState.listOfOptions;
+            } 
+
+            if ([QUESTION_TYPE.MULTIPLE_CHOICE, QUESTION_TYPE.MATCHING].includes(
+                formState.type
+            )) {
+                request.typOfLabel = formState.typOfLabel;
             }
 
-            await createIeltsListeningQuestions(formState);
+            if ([QUESTION_TYPE.MULTIPLE_CHOICE, QUESTION_TYPE.MATCHING].includes(
+                formState.type
+            )) {
+                request.listOfOptions = formState.listOfOptions;
+            }
+
+            if ([QUESTION_TYPE.TRUE_FALSE_NOT_GIVEN, QUESTION_TYPE.MATCHING].includes(formState.type)) {
+                request.listOfQuestions = formState.listOfQuestions;
+            }
+            
+            await createIeltsListeningQuestions(request);
             toast.success("Create successfully");
         } catch (error) {
             toast.error(error);
@@ -150,8 +194,9 @@ const CreateIeltsListeningQuestions = () => {
                 onChange={handleEditorChange}
             ></EditorWrap>
 
-            {(formState.type === QUESTION_TYPE.MULTIPLE_CHOICE ||
-                formState.type === QUESTION_TYPE.MATCHING) && (
+            {[QUESTION_TYPE.MULTIPLE_CHOICE, QUESTION_TYPE.MATCHING].includes(
+                formState.type
+            ) && (
                 <div>
                     <label htmlFor="typeOfLabel"> Type of label: </label>
                     <select
@@ -171,8 +216,9 @@ const CreateIeltsListeningQuestions = () => {
                 </div>
             )}
 
-            {(formState.type === QUESTION_TYPE.MULTIPLE_CHOICE ||
-                formState.type === QUESTION_TYPE.MATCHING) && (
+            {[QUESTION_TYPE.MULTIPLE_CHOICE, QUESTION_TYPE.MATCHING].includes(
+                formState.type
+            ) && (
                 <div>
                     <div>List of options</div>
                     <ul>
@@ -231,6 +277,32 @@ const CreateIeltsListeningQuestions = () => {
                         >
                             More option
                         </button>
+                    </ul>
+                </div>
+            )}
+
+            {[QUESTION_TYPE.TRUE_FALSE_NOT_GIVEN, QUESTION_TYPE.MATCHING].includes(formState.type) && (
+                <div>
+                    List of questions
+                    <ul>
+                        {formState.listOfQuestions.map((value, index) => (
+                            <li key={index}>
+                                Question {formState.from + index}:
+                                <input
+                                    type="text"
+                                    value={value}
+                                    onChange={(e) => {
+                                        formState.listOfQuestions[index] =
+                                            e.target.value;
+                                        setFormState({
+                                            ...formState,
+                                            listOfQuestions:
+                                                formState.listOfQuestions,
+                                        });
+                                    }}
+                                ></input>
+                            </li>
+                        ))}
                     </ul>
                 </div>
             )}

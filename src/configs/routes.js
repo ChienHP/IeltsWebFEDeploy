@@ -19,6 +19,7 @@ const routes = {
     // Private routes
     ieltsListeningTestDashboard: "/admin/ielts-listening-test",
     adminIeltsListeningPart: "/admin/test/:testId/ielts-listening-parts",
+    adminIeltsReadingPart: "/admin/test/:testId/ielts-reading-parts",
     ieltsReadingTestDashboard: "/admin/ielts-reading-test",
     ieltsReadingPassageDashboard: "/admin/:testId/ielts-reading-passage",
 }
