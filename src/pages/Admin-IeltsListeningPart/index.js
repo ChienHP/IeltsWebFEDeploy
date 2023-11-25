@@ -6,6 +6,7 @@ import {
     getIeltsTestPartList,
 } from "../../apis/ielts-listening-test.api";
 import { toast } from "react-toastify";
+import CreateListeningIeltsPartForm from "./CreateListeningIeltsPartForm";
 
 export const AdminIeltsListeningPart = () => {
     const { testId } = useParams();
@@ -39,6 +40,7 @@ export const AdminIeltsListeningPart = () => {
     return (
         <div>
             <h3>{test?.name}</h3>
+            <CreateListeningIeltsPartForm mode='create' testId={ieltsListeningPart?.testId}></CreateListeningIeltsPartForm>
             <Nav justify variant="tabs" defaultActiveKey="">
                 {/* <Nav.Item>
                     <Nav.Link href="ho/me">Active</Nav.Link>
@@ -58,7 +60,7 @@ export const AdminIeltsListeningPart = () => {
                     ieltsListeningParts.map((item, index) => {
                         return (
                             <Nav.Item key={index}>
-                                <Nav.Link eventKey={index}>
+                                <Nav.Link eventKey={index} onClick={() => setIeltsListeningPart(item)}>
                                     Part number {item.partNumber}
                                 </Nav.Link>
                             </Nav.Item>
@@ -72,9 +74,8 @@ export const AdminIeltsListeningPart = () => {
             
             {ieltsListeningPart && (
                 <div>
-                Audio
                 <audio controls>
-                    <source src={ieltsListeningPart.audioSrc}></source>
+                    <source src={ieltsListeningPart?.partDetail?.audioSrc}></source>
                 </audio>
             </div>
             )}

@@ -1,4 +1,5 @@
 import IeltsTestLayout from "../components/Layouts/IeltsTestLayout";
+import SingleFileUploader from "../components/SingleFileUploader";
 import configs from "../configs";
 import AdminIeltsListeningPart from "../pages/Admin-IeltsListeningPart";
 import { IeltsReadingPassageDashboard } from "../pages/Dashboard/IeltsReadingPassageDashboard";
@@ -22,9 +23,12 @@ const publicRoutes = [
   {path: configs.routes.registration, Component: Registration},
 
   // ielts-listening-test
-  {path: configs.routes.ieltsListeningTest, Component: IeltsListeningTest, Layout: IeltsTestLayout},
+  {path: configs.routes.ieltsListeningTest, Component: IeltsListeningTest, Layout: null},
 
   {path: configs.routes.ieltsListeningQuestions, Component: IeltsListeningQuestions},
+
+  
+  {path: configs.routes.singleFileUploader, Component: SingleFileUploader}
 ];
 
 const privateRoutes = [

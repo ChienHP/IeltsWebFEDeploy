@@ -13,6 +13,9 @@ const routes = {
     addIeltsListeningTest: "/ielts-listening-test/add-new-test",
     detailIeltsListeningTest: "/ielts-listening-test/:id",
     
+    // SingleFileUploader
+    singleFileUploader: "/single-file-uploader",
+    
     // Private routes
     ieltsListeningTestDashboard: "/admin/ielts-listening-test",
     adminIeltsListeningPart: "/admin/test/:testId/ielts-listening-parts",

@@ -1,0 +1,52 @@
+.ielts-listening-question-palette {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.ielts-listening-palette-section.current {
+    border: 1px solid lightpink;
+    pointer-events: none;
+}
+
+.ielts-listening-palette-section {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    border: 1px solid lightgray;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    flex: 1;
+    white-space: nowrap;
+}
+
+.ielts-listening-question-control-buttons {
+    position: absolute;
+    top: -40px;
+    left: 10px;
+    z-index: 9999;
+}
+
+#ielts-listening-next-question-button:disabled, #ielts-listening-previous-question-button:disabled {
+    background-color: darkgray;
+}
+
+#ielts-listening-next-question-button, #ielts-listening-previous-question-button {
+    background-color: rgb(33, 33, 33);
+    color: white;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.ielts-listening-submit-button {
+    position: absolute;
+    top: -40px;
+    right: 10px;
+    background-color: green;
+    font-weight: bold;
+    padding: 10px;
+    height: fit-content;
+}

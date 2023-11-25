@@ -1,10 +1,16 @@
 import { useParams } from "react-router-dom";
 import "./style.css";
 import { useEffect, useState } from "react";
-import { getIeltsTestPartList, getScore } from "../../apis/ielts-listening-test.api";
+import {
+    getIeltsTestPartList,
+    getScore,
+} from "../../apis/ielts-listening-test.api";
 import { toast } from "react-toastify";
 import IeltsListeningPart from "./IeltsListeningPart";
 import CountdownTimer from "../../components/CountdownTimer";
+import Header from "./Header/header";
+import BottomPanel from "../../components/Layouts/components(dungchung)/bottom-panel";
+import IeltsListeningPaletteSection from "../../components/Layouts/components(dungchung)/ielts-palette-section";
 
 const IeltsListeningTest = () => {
     const { testId } = useParams();
@@ -12,6 +18,8 @@ const IeltsListeningTest = () => {
     const [ieltsTestPart, setIeltsTestPart] = useState({});
     let [userAnswers, setUserAnswers] = useState([]);
     
+    console.log("userAnswers", userAnswers);
+
     const handleAnswerChange = (questionId, answer) => {
         const newUserAnswers = [...userAnswers];
         const questionIndex = newUserAnswers.findIndex((question) => {
@@ -19,26 +27,26 @@ const IeltsListeningTest = () => {
         });
         newUserAnswers[questionIndex].answer = answer;
         setUserAnswers(newUserAnswers);
-    }
+    };
 
     const getUserAnswer = (questionId) => {
         const questionIndex = userAnswers.findIndex((question) => {
             return question.questionId === questionId;
         });
         return userAnswers[questionIndex].answer;
-    }
+    };
 
     const handleSubmitAnswers = async () => {
         try {
             const data = await getScore({
                 testId,
-                userAnswers
+                userAnswers,
             });
             toast.success(`Your score is ${data.data.score}`);
         } catch (error) {
             toast.error(error);
         }
-    }
+    };
 
     useEffect(() => {
         (async (testId) => {
@@ -48,13 +56,16 @@ const IeltsListeningTest = () => {
                 setIeltsTestPart(response.data[0]);
 
                 for (const item of response.data) {
-                    userAnswers = [...userAnswers, ...(item.questionKeys.map((questionKey) => {
-                        return {
-                            questionId: questionKey.id,
-                            questionNumber: questionKey.questionNumber,
-                            answer: ""
-                        }
-                    }))]
+                    userAnswers = [
+                        ...userAnswers,
+                        ...item.questionKeys.map((questionKey) => {
+                            return {
+                                questionId: questionKey.id,
+                                questionNumber: questionKey.questionNumber,
+                                answer: "",
+                            };
+                        }),
+                    ];
                 }
                 setUserAnswers(userAnswers);
             } catch (error) {
@@ -64,41 +75,35 @@ const IeltsListeningTest = () => {
     }, []);
 
     const handleTimeExpired = () => {
-        toast.success('Timeout'); 
-      };
+        toast.success("Timeout");
+    };
 
     return (
         <div>
-            <h3>IeltsListeningTest</h3>
-            {Object.values(ieltsTestPart).length !== 0 && (
-                <IeltsListeningPart
-                    ieltsTestPart={ieltsTestPart}
-                    getUserAnswer={getUserAnswer}
-                    handleAnswerChange={handleAnswerChange}
-                ></IeltsListeningPart>
-            )}
+            <div className="ielts-listening-test-container no-ads">
+                <div className="ielts-listening-site-header">
+                    <Header></Header>
+                </div>
 
-            {ieltsTestPartList.map((item, index) => {
-                return (
-                    <div key={index} onClick={() => {
-                        setIeltsTestPart(item);
-                    }}>
-                        Part {item.partNumber + " "}
-                        {item.questionKeys.map((questionKey, index) => {
-                            return (
-                                <span key={index}>
-                                    {questionKey.questionNumber}{" "}
-                                </span>
-                            );
-                        })}
-                    </div>
-                );
-            })}
+                <div className="ielts-listening-page-content question-only">
+                    {Object.values(ieltsTestPart).length !== 0 && (
+                        <IeltsListeningPart
+                            ieltsTestPart={ieltsTestPart}
+                            getUserAnswer={getUserAnswer}
+                            handleAnswerChange={handleAnswerChange}
+                        ></IeltsListeningPart>
+                    )}
+                </div>
 
-            <h3>
-                <CountdownTimer initialTime={5} onTimeExpired={handleTimeExpired}></CountdownTimer>
-            </h3>
-            <button onClick={handleSubmitAnswers}>Submit</button>
+                <div className="ielts-listening-bottom-panel">
+                    <BottomPanel
+                        IeltsListeningPaletteSections={[
+                            <IeltsListeningPaletteSection></IeltsListeningPaletteSection>,
+                            <IeltsListeningPaletteSection></IeltsListeningPaletteSection>,
+                        ]}
+                    ></BottomPanel>
+                </div>
+            </div>
         </div>
     );
 };

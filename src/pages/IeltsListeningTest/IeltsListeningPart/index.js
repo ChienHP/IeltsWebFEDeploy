@@ -1,13 +1,13 @@
 import { EditorWrap } from "../../../components/Editor";
 import { QUESTION_TYPE } from "../../../shared/constant";
 import ReactDOMServer from "react-dom/server";
+import "./style.css";
 
 const IeltsListeningPart = ({
     ieltsTestPart,
     getUserAnswer,
     handleAnswerChange,
 }) => {
-
     for (const questionGroup of ieltsTestPart.questionGroups) {
         if (questionGroup.type === QUESTION_TYPE.FILL_IN_THE_BLANKS) {
             const inputElements = questionGroup.keys.map(
@@ -41,7 +41,29 @@ const IeltsListeningPart = ({
 
     return (
         <div>
-            <h3>Part {ieltsTestPart.partNumber}</h3>
+            <div className="ielts-listening-part-announcement-container">
+                <div
+                    id="ielts-listening-part-announcement-1"
+                    className="ielts-listening-part-announcement current"
+                >
+                    <strong>Part 1:</strong>
+                    <audio
+                        controls
+                        id="ielts-listening-test-audio-1"
+                        className="ielts-listening-test-audio"
+                    >
+                        <source
+                            src="https://engnovate.com/wp-content/uploads/2023/08/cambridge-ielts-18-academic-listening-1-audio-1.mp3"
+                            type="audio/mpeg"
+                        />
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+            </div>
+
+            <div className="test-content ielts-listening-question-container no-ads">
+                
+            </div>
             {ieltsTestPart.questionGroups.map((questionGroup, index) => {
                 return (
                     <div key={index}>

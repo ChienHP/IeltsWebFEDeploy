@@ -3,11 +3,11 @@
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    background-color: #aa261b;
     font-size: 14px;
     font-weight: 700;
     text-align: center;
     line-height: 30px;
     color: #fff;
     margin: 4px;
+    background-color: #aa261b;
 }

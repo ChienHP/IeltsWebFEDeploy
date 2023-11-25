@@ -1,11 +1,41 @@
-.take-test__bottom-palette {
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 1001;
-    transition: all 0.5s ease-out;
-    background: #fff;
-    box-shadow: 0px 4px 50px 0px rgba(41,69,99,0.08);
+.ielts-listening-test-container {
+    width: 100%;
+    height: 100vh;
+    overflow: visible;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    background-color: green;
 }
 
+.ielts-listening-site-header {
+    width: 100%;
+    padding: 5px 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    justify-content: center;
+    background-color: red;
+}
+
+.ielts-listening-page-content.question-only {
+    grid-template-columns: 100%;
+}
+
+.ielts-listening-page-content {
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 50% 10px auto;
+    grid-template-rows: auto 1fr;
+}
+
+
+.ielts-listening-bottom-panel {
+    position: relative;
+    padding: 5px 10px;
+    /* background-color: white; */
+    background-color: blue;
+}
+
+.ielts-listening-bottom-panel {
+    background-color: white;
+}

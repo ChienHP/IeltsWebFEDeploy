@@ -17,6 +17,10 @@ export const getIeltsTestPartList = (testId) => {
     return get(`/ielts-test-part/list/${testId}`)
 }
 
+export const createIeltsListeningPart = (body) => {
+    return post(`/create-ielts-listening-part`, body)
+}
+
 export const createIeltsTest = (body) => {
     return post(`/ielts-test/create`, body)
 }
