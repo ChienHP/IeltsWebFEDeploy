@@ -12,6 +12,7 @@ import IeltsListeningTest from "../pages/IeltsListeningTest";
 import IeltsListeningTestDashboard from "../pages/IeltsListeningTestDashboard";
 import { IeltsReadingTest } from "../pages/IeltsReadingTest";
 import { IeltsReadingTestList } from "../pages/IeltsReadingTestList";
+import IeltsTestList from "../pages/IeltsTestList";
 import Registration from "../pages/Registration";
 
 
@@ -22,6 +23,10 @@ const publicRoutes = [
   {path: configs.routes.ieltsReadingTestList, Component: IeltsReadingTestList},
   {path: configs.routes.ieltsReadingTest, Component: IeltsReadingTest},
   {path: configs.routes.registration, Component: Registration},
+
+
+  {path: configs.routes.ieltsTestList, Component: IeltsTestList},
+  
 
   // ielts-listening-test
   {path: configs.routes.ieltsListeningTest, Component: IeltsListeningTest, Layout: null},
