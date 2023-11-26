@@ -2,16 +2,16 @@ import { IELTS_TEST_TYPE } from "../shared/constant"
 import http from "../utils/http"
 import { deleteReq, get, post, put } from "../utils/request"
 
-export const getIeltsTestList = (page, limit, name, type) => {
-    return http.get(`ielts-test/list`, {
-        params: {
-            page,
-            limit,
-            name,
-            type
-        }
-    })
-}
+// export const getIeltsTestList = (page, limit, name, type) => {
+//     return http.get(`ielts-test/list`, {
+//         params: {
+//             page,
+//             limit,
+//             name,
+//             type
+//         }
+//     })
+// }
 
 export const getIeltsTestPartList = (testId) => {
     return get(`/ielts-test-part/list/${testId}`)
