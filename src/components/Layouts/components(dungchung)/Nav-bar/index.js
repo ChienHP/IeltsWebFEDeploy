@@ -19,7 +19,7 @@ const NavBar = () => {
                         </div>
                     </div>
                 </div>
-                <div className="flex items-center justify-end flex-1">
+                <div className="flex items-center justify-end flex-2">
                     <a href="#" className="bg-red-600 text-white px-3 py-2 rounded-md text-sm font-medium">InterGreat Study Abroad</a>
                     <div className="ml-4 flex items-center md:ml-6">
                         <button className="bg-red-800 p-1 rounded-full text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-blue-800 focus:ring-white">

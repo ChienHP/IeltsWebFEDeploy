@@ -30,7 +30,6 @@ const publicRoutes = [
 
   // ielts-listening-test
   {path: configs.routes.ieltsListeningTest, Component: IeltsListeningTest, Layout: null},
-
   {path: configs.routes.ieltsListeningQuestions, Component: IeltsListeningQuestions},
 
   
