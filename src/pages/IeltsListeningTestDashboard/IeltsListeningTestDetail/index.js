@@ -48,8 +48,8 @@ const IeltsListeningTestDetail = ({mode, ieltslListeningTest = undefined}) => {
     };
 
     return (
-        <div>
-            <button onClick={() => setShow(true)}>{mode == 'create' ? 'Add new test' : 'Update test'}</button>
+        <>
+            <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full" onClick={() => setShow(true)}>{mode == 'create' ? 'Add new test' : 'Update test'}</button>
             <Modal show={show} onHide={() => setShow(false)}>
                 <Modal.Header closeButton>
                     <Modal.Title>{mode == 'create' ? 'Add new test' : 'Update test'}</Modal.Title>
@@ -80,7 +80,7 @@ const IeltsListeningTestDetail = ({mode, ieltslListeningTest = undefined}) => {
                     </Button>
                 </Modal.Footer>
             </Modal>
-        </div>
+        </>
     );
 };
 
