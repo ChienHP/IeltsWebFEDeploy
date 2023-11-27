@@ -13,7 +13,6 @@ import { getIeltsTestList } from "../../../apis/ielts-test.api";
 import { Button } from "@material-tailwind/react";
 
 const IeltsListeningTestList = () => {
-    const queryString = useQueryString();
     const [totalPage, setTotalPage] = useState(0);
     const [page, setPage] = useState(1);
     const limit = 10;
