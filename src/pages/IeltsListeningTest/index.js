@@ -17,8 +17,6 @@ const IeltsListeningTest = () => {
     const [ieltsTestPartList, setIeltsTestPartList] = useState([]);
     const [ieltsTestPart, setIeltsTestPart] = useState({});
     let [userAnswers, setUserAnswers] = useState([]);
-    
-    console.log("userAnswers", userAnswers);
 
     const handleAnswerChange = (questionId, answer) => {
         const newUserAnswers = [...userAnswers];
@@ -82,10 +80,10 @@ const IeltsListeningTest = () => {
         <div>
             <div className="ielts-listening-test-container no-ads">
                 <div className="ielts-listening-site-header">
-                    <Header></Header>
+                    {/* <Header></Header> */}
                 </div>
 
-                <div className="ielts-listening-page-content question-only">
+                <div className="ielts-listening-page-content question-only overflow-auto">
                     {Object.values(ieltsTestPart).length !== 0 && (
                         <IeltsListeningPart
                             ieltsTestPart={ieltsTestPart}
@@ -97,10 +95,23 @@ const IeltsListeningTest = () => {
 
                 <div className="ielts-listening-bottom-panel">
                     <BottomPanel
-                        IeltsListeningPaletteSections={[
-                            <IeltsListeningPaletteSection></IeltsListeningPaletteSection>,
-                            <IeltsListeningPaletteSection></IeltsListeningPaletteSection>,
-                        ]}
+                        IeltsListeningPaletteSections={ieltsTestPartList.map(
+                            (item, index) => (
+                                <div className="outline" onClick={() => {
+                                    console.log("item", item);
+                                    setIeltsTestPart(item);
+                                }}>
+                                    <IeltsListeningPaletteSection
+                                        key={index}
+                                        partNumber={item.partNumber}
+                                        questionNumbers={item.questionKeys.map(
+                                            (questionKey) =>
+                                                questionKey.questionNumber
+                                        )}
+                                    ></IeltsListeningPaletteSection>
+                                </div>
+                            )
+                        )}
                     ></BottomPanel>
                 </div>
             </div>

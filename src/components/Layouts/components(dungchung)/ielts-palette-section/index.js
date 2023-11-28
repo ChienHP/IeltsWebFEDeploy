@@ -1,21 +1,20 @@
 import NumberWrapInline from "../NumberWrapInline";
 
-const IeltsListeningPaletteSection = () => {
+const IeltsListeningPaletteSection = ({ partNumber, questionNumbers }) => {
     return (
-        <div>
+        <>
             <strong className="ielts-listening-palette-section-part">
-                Part 1:
+                Part {partNumber}:
             </strong>
-            <NumberWrapInline number={1} />
-            <NumberWrapInline number={1} />
-            <NumberWrapInline number={1} />
-            <NumberWrapInline number={1} />
-            <NumberWrapInline number={1} />
-            <NumberWrapInline number={1} />
-            <NumberWrapInline number={1} />
-            <NumberWrapInline number={1} />
-            <NumberWrapInline number={1} />
-        </div>
+            <>
+                {questionNumbers.map((questionNumber, index) => 
+                    <NumberWrapInline
+                        key={index}
+                        number={questionNumber}
+                    ></NumberWrapInline>
+                )}
+            </>
+        </>
     );
 };
 

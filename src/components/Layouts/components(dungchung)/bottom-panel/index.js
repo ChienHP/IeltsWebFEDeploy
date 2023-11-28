@@ -4,10 +4,10 @@ import "./style.css";
 const BottomPanel = ({IeltsListeningPaletteSections}) => {
     return (
         <div>
-            <div className="ielts-listening-question-palette">
+            <div className="ielts-listening-question-palette" onClick={() => console.log(1234)}>
                     {IeltsListeningPaletteSections?.map((item, index) => {
                         return (
-                            <div key={index} className="ielts-listening-palette-section current">
+                            <div key={index} className="ielts-listening-palette-section current" onClick={() => console.log(123)}>
                                 {item}
                             </div>
                         );

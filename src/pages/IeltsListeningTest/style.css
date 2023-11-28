@@ -4,7 +4,6 @@
     overflow: visible;
     display: grid;
     grid-template-rows: auto 1fr auto;
-    background-color: green;
 }
 
 .ielts-listening-site-header {

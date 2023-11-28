@@ -2,16 +2,14 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { getIeltsTestList } from "../../apis/ielts-test.api";
 import { useQueryString } from "../../utils/utils";
+import { Link } from "react-router-dom";
+import configs from "../../configs";
 
 const IeltsTestList = () => {
     const [tests, setTests] = useState([]);
     const { type } = useQueryString();
 
-    console.log("type", type);
-    console.log("tests", tests);
-
     useEffect(() => {
-        console.log("useEffect");
         (async () => {
             try {
                 let res = null;
@@ -73,37 +71,38 @@ const IeltsTestList = () => {
                         {tests.length > 0 &&
                             tests.map((item, index) => {
                                 return (
-                                    <div
-                                        key={index}
-                                        className="bg-white rounded-lg p-4 flex flex-col items-center shadow"
-                                    >
-                                        <img
-                                            alt="IELTS Mock Test 2023 book cover"
-                                            className="h-32"
-                                            height="100"
-                                            src="https://ielts.s3.ap-southeast-2.amazonaws.com/IELTS_Mock_Test_book_cover.jpg1700973810336"
-                                            width="120"
-                                        />
-                                        <h3 className="mt-4 text-lg font-semibold text-gray-700 text-center">
-                                            {item.name}
-                                        </h3>
-                                        {/* <p className="text-sm text-gray-500">January</p> */}
-                                        {/* <p className="mt-2 text-sm text-gray-600 text text-center">
+                                    <Link key={index} to={configs.routes.ieltsListeningTest.replace(":testId", item.id)}>
+                                        <div
+                                            className="bg-white rounded-lg p-4 flex flex-col items-center shadow"
+                                        >
+                                            <img
+                                                alt="IELTS Mock Test 2023 book cover"
+                                                className="h-32"
+                                                height="100"
+                                                src="https://ielts.s3.ap-southeast-2.amazonaws.com/IELTS_Mock_Test_book_cover.jpg1700973810336"
+                                                width="120"
+                                            />
+                                            <h3 className="mt-4 text-lg font-semibold text-gray-700 text-center">
+                                                {item.name}
+                                            </h3>
+                                            {/* <p className="text-sm text-gray-500">January</p> */}
+                                            {/* <p className="mt-2 text-sm text-gray-600 text text-center">
                                 
                             </p> */}
-                                        <p className="text-sm text-gray-500">
-                                            51 tests taken
-                                        </p>
-                                        <div className="mt-4 w-full bg-gray-200 rounded-full h-2.5">
-                                            <div
-                                                className="bg-blue-600 h-2.5 rounded-full"
-                                                style={{ width: "0%;" }}
-                                            ></div>
+                                            <p className="text-sm text-gray-500">
+                                                51 tests taken
+                                            </p>
+                                            <div className="mt-4 w-full bg-gray-200 rounded-full h-2.5">
+                                                <div
+                                                    className="bg-blue-600 h-2.5 rounded-full"
+                                                    // style={{ width: "0%;" }}
+                                                ></div>
+                                            </div>
+                                            <span className="text-sm font-semibold text-blue-600">
+                                                0.0%
+                                            </span>
                                         </div>
-                                        <span className="text-sm font-semibold text-blue-600">
-                                            0.0%
-                                        </span>
-                                    </div>
+                                    </Link>
                                 );
                             })}
                     </div>
