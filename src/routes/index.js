@@ -14,6 +14,7 @@ import { IeltsReadingTest } from "../pages/IeltsReadingTest";
 import { IeltsReadingTestList } from "../pages/IeltsReadingTestList";
 import IeltsTestList from "../pages/IeltsTestList";
 import Registration from "../pages/Registration";
+import {IeltsReadingDetail} from "../pages/IeltsReadingTest/IeltsReadingDetail/IeltsReadingDetail";
 
 
 
@@ -34,7 +35,11 @@ const publicRoutes = [
   {path: configs.routes.ieltsListeningQuestions, Component: IeltsListeningQuestions},
 
   
-  {path: configs.routes.singleFileUploader, Component: SingleFileUploader}
+  {path: configs.routes.singleFileUploader, Component: SingleFileUploader},
+
+
+    // ielts-reading-test
+  {path: configs.routes.detailIeltsReadingTest, Component: IeltsReadingDetail},
 ];
 
 const privateRoutes = [

@@ -14,6 +14,11 @@ const routes = {
     addIeltsListeningTest: "/ielts-listening-test/add-new-test",
     detailIeltsListeningTest: "/ielts-listening-test/:id",
 
+
+    // ielts-listening-test
+    detailIeltsReadingTest: "/ielts-reading-test-detail/:id",
+
+
     // SingleFileUploader
     singleFileUploader: "/single-file-uploader",
 
