@@ -3,7 +3,6 @@ const routes = {
     home: "/",
     ieltsCourses: "/ielts-courses",
     ieltsReadingTestList: "/ielts-reading-test-list",
-    ieltsReadingTest: "/ielts-reading-test/:testId",
     registration: "/registration",
     ieltsListeningQuestions: "/ielts-listening-questions",
 
@@ -15,8 +14,8 @@ const routes = {
     detailIeltsListeningTest: "/ielts-listening-test/:id",
 
 
-    // ielts-listening-test
-    detailIeltsReadingTest: "/ielts-reading-test-detail/:id",
+    // ielts-reading-test
+    ieltsReadingTest: "/ielts-reading-test/:testId",
 
 
     // SingleFileUploader

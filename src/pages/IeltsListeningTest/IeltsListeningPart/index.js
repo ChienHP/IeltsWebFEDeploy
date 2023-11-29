@@ -50,27 +50,6 @@ const IeltsListeningPart = ({
 
     return (
         <div>
-            <div className="ielts-listening-part-announcement-container">
-                <div
-                    id="ielts-listening-part-announcement-1"
-                    className="ielts-listening-part-announcement current"
-                >
-                    <strong className="text-red-800 text-3xl">
-                        Part {ieltsTestPart.partNumber}:
-                    </strong>
-                    <audio
-                        controls
-                        id="ielts-listening-test-audio-1"
-                        className="ielts-listening-test-audio"
-                    >
-                        <source
-                            src={ieltsTestPart.partDetail?.audioSrc}
-                            type="audio/mpeg"
-                        />
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-            </div>
             <div className="test-content ielts-listening-question-container no-ads ">
                 {ieltsTestPart.questionGroups.map((questionGroup, index) => {
                     return (

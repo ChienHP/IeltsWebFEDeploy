@@ -110,3 +110,69 @@
     color: #aa261b;
     border: 2px solid #aa261b;
 }
+
+
+/* Reading */
+.split-horizontal {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+.split-vertical {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.gutter {
+    flex-shrink: 0;
+    flex-grow: 0;
+    background: rgb(128, 128, 128);
+}
+.gutter-horizontal {
+    width: 100%;
+    height: auto !important;
+    cursor: col-resize;
+    border-radius: 999px;
+}
+.gutter-vertical {
+    cursor: row-resize;
+}
+.gutter:hover {
+    background: rgb(128, 128, 128);
+}
+.gutter-dragging:hover {
+    background: rgb(128, 128, 128);
+}
+
+.pane {
+    flex-shrink: 1;
+    flex-grow: 1;
+    position: relative;
+}
+.pane-dragging {
+    overflow: hidden;
+}
+
+/* total width */
+body::-webkit-scrollbar {
+    background-color: #fff;
+    width: 16px;
+}
+
+/* background of the scrollbar except button or resizer */
+body::-webkit-scrollbar-track {
+    background-color: #fff;
+}
+
+/* scrollbar itself */
+body::-webkit-scrollbar-thumb {
+    background-color: #babac0;
+    border-radius: 16px;
+    border: 4px solid #fff;
+}
+
+/* set button(top and bottom of the scrollbar) */
+body::-webkit-scrollbar-button {
+    display:none;
+}
