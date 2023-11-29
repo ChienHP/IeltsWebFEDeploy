@@ -24,7 +24,7 @@ const IeltsListeningPart = ({
                     //     }}
                     // ></input>
                     <span>
-                        <div key={index} style={{display: 'inline-block'}}>
+                        <div key={index} style={{ display: "inline-block" }}>
                             _____
                             <NumberWrapInline
                                 number={questionKey.questionNumber}
@@ -55,14 +55,16 @@ const IeltsListeningPart = ({
                     id="ielts-listening-part-announcement-1"
                     className="ielts-listening-part-announcement current"
                 >
-                    <strong className="text-red-800 text-3xl">Part 1:</strong>
+                    <strong className="text-red-800 text-3xl">
+                        Part {ieltsTestPart.partNumber}:
+                    </strong>
                     <audio
                         controls
                         id="ielts-listening-test-audio-1"
                         className="ielts-listening-test-audio"
                     >
                         <source
-                            src="https://engnovate.com/wp-content/uploads/2023/08/cambridge-ielts-18-academic-listening-1-audio-1.mp3"
+                            src={ieltsTestPart.partDetail?.audioSrc}
                             type="audio/mpeg"
                         />
                         Your browser does not support the audio element.
@@ -124,7 +126,8 @@ const IeltsListeningPart = ({
                                     )}
                                 </div>
                             )) || (
-                                <div className="m-3"
+                                <div
+                                    className="m-3"
                                     dangerouslySetInnerHTML={{
                                         __html: questionGroup.content,
                                     }}
@@ -137,8 +140,14 @@ const IeltsListeningPart = ({
                                     {questionGroup.options.map(
                                         (option, index) => {
                                             return (
-                                                <div key={index} className="test-panel__answer-item">
-                                                    <label htmlFor={index} className="answer-option">
+                                                <div
+                                                    key={index}
+                                                    className="test-panel__answer-item"
+                                                >
+                                                    <label
+                                                        htmlFor={index}
+                                                        className="answer-option"
+                                                    >
                                                         {option.label}
                                                     </label>
                                                     <input
@@ -168,6 +177,86 @@ const IeltsListeningPart = ({
                                                     <label htmlFor={index}>
                                                         {option.content}
                                                     </label>
+                                                </div>
+                                            );
+                                        }
+                                    )}
+                                </div>
+                            )}
+
+                            {questionGroup.type === QUESTION_TYPE.MATCHING && (
+                                <div>
+                                    <table
+                                        key={index}
+                                        className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                                    >
+                                        <tbody>
+                                            {questionGroup.options.map(
+                                                (option, index) => {
+                                                    return (
+                                                        <tr
+                                                            key={index}
+                                                            className="bg-white border-b border-gray-700 text-gray-700 hover:text-red-800"
+                                                        >
+                                                            <td className="px-4 py-2 font-bold">
+                                                                {option.label}
+                                                            </td>
+                                                            <td className="px-6 py-4">
+                                                                {option.content}
+                                                            </td>
+                                                        </tr>
+                                                    );
+                                                }
+                                            )}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            )}
+
+                            {questionGroup.type === QUESTION_TYPE.MATCHING && (
+                                <div>
+                                    {questionGroup.keys.map(
+                                        (questionKey, index) => {
+                                            return (
+                                                <div key={index}>
+                                                    <NumberWrapInline
+                                                        number={
+                                                            questionKey.questionNumber
+                                                        }
+                                                    ></NumberWrapInline>
+                                                    <select
+                                                        className="iot-option outline-red-800"
+                                                        value={getUserAnswer(
+                                                            questionKey.id
+                                                        )}
+                                                        onChange={(event) => {
+                                                            handleAnswerChange(
+                                                                questionKey.id,
+                                                                event.target
+                                                                    .value
+                                                            );
+                                                        }}
+                                                    >
+                                                        <option value="">{`Choose your answer`}</option>
+                                                        {questionGroup.options.map(
+                                                            (option, index) => {
+                                                                return (
+                                                                    <option
+                                                                        key={
+                                                                            index
+                                                                        }
+                                                                        value={
+                                                                            option.label
+                                                                        }
+                                                                    >
+                                                                        {
+                                                                            option.label
+                                                                        }
+                                                                    </option>
+                                                                );
+                                                            }
+                                                        )}
+                                                    </select>
                                                 </div>
                                             );
                                         }

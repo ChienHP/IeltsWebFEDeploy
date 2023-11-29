@@ -8,14 +8,20 @@ import {
 import { toast } from "react-toastify";
 import IeltsListeningPart from "./IeltsListeningPart";
 import CountdownTimer from "../../components/CountdownTimer";
-import Header from "./Header/header";
-import BottomPanel from "../../components/Layouts/components(dungchung)/bottom-panel";
 import IeltsListeningPaletteSection from "../../components/Layouts/components(dungchung)/ielts-palette-section";
+import { Header } from "./Header/header";
+import { Button } from "react-bootstrap";
 
 const IeltsListeningTest = () => {
     const { testId } = useParams();
     const [ieltsTestPartList, setIeltsTestPartList] = useState([]);
     const [ieltsTestPart, setIeltsTestPart] = useState({});
+
+    const currentPartIndex = ieltsTestPartList.findIndex((item) => {
+        // @ts-ignore
+        return item.partNumber === ieltsTestPart.partNumber;
+    });
+
     let [userAnswers, setUserAnswers] = useState([]);
 
     const handleAnswerChange = (questionId, answer) => {
@@ -72,15 +78,14 @@ const IeltsListeningTest = () => {
         })(testId);
     }, []);
 
-    const handleTimeExpired = () => {
-        toast.success("Timeout");
-    };
+
 
     return (
         <div>
             <div className="ielts-listening-test-container no-ads">
                 <div className="ielts-listening-site-header">
-                    {/* <Header></Header> */}
+                    <Header handleSubmitAnswers={handleSubmitAnswers}>
+                    </Header>
                 </div>
 
                 <div className="ielts-listening-page-content question-only overflow-auto">
@@ -93,26 +98,52 @@ const IeltsListeningTest = () => {
                     )}
                 </div>
 
+                <div className="test-panel__nav">
+                    <div
+                        className="test-panel__nav-buttons"
+                        id="js-btn-wrap"
+                        data-part-show="0"
+                    >
+                        {" "}
+                        <button
+                            className="test-panel__nav-btn -prev -disabled"
+                            id="js-btn-previous"
+                            onClick={() => setIeltsTestPart(currentPartIndex > 0 ? ieltsTestPartList[currentPartIndex - 1] : ieltsTestPartList[currentPartIndex])}
+                        >
+                            <span className="ioticon-prev-icon">{"<"}</span>{" "}
+                        </button>{" "}
+                        <button
+                            className="test-panel__nav-btn -next"
+                            id="js-btn-next"
+                            onClick={() => setIeltsTestPart(currentPartIndex < ieltsTestPartList.length - 1 ? ieltsTestPartList[currentPartIndex + 1] : ieltsTestPartList[currentPartIndex])}
+                        >
+                            <span className="ioticon-next-icon">{">"}</span>{" "}
+                        </button>
+                    </div>
+                </div>
+
                 <div className="ielts-listening-bottom-panel">
-                    <BottomPanel
-                        IeltsListeningPaletteSections={ieltsTestPartList.map(
-                            (item, index) => (
-                                <div className="outline" onClick={() => {
-                                    console.log("item", item);
+                    <div className="ielts-listening-question-palette">
+                        {ieltsTestPartList.map((item, index) => (
+                            <button
+                                // @ts-ignore
+                                className={`ielts-listening-palette-section ${ieltsTestPart.partNumber == item.partNumber ? 'current' : ""}`}
+                                key={index}
+                                onClick={() => {
                                     setIeltsTestPart(item);
-                                }}>
-                                    <IeltsListeningPaletteSection
-                                        key={index}
-                                        partNumber={item.partNumber}
-                                        questionNumbers={item.questionKeys.map(
-                                            (questionKey) =>
-                                                questionKey.questionNumber
-                                        )}
-                                    ></IeltsListeningPaletteSection>
-                                </div>
-                            )
-                        )}
-                    ></BottomPanel>
+                                }}
+                            >
+                                <IeltsListeningPaletteSection
+                                    key={index}
+                                    partNumber={item.partNumber}
+                                    questionNumbers={item.questionKeys.map(
+                                        (questionKey) =>
+                                            questionKey.questionNumber
+                                    )}
+                                ></IeltsListeningPaletteSection>
+                            </button>
+                        ))}
+                    </div>
                 </div>
             </div>
         </div>

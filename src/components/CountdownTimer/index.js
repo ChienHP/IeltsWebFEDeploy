@@ -26,7 +26,7 @@ const CountdownTimer = ({ initialTime, onTimeExpired }) => {
 
   return (
     <div>
-      <p>Time Remaining: {`${minutes}:${seconds < 10 ? '0' : ''}${seconds}`}</p>
+      <p className='text-xl font-bold text-red-800'>Time Remaining: {`${minutes}:${seconds < 10 ? '0' : ''}${seconds}`}</p>
     </div>
   );
 };

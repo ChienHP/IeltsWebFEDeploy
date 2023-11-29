@@ -71,3 +71,26 @@ input[type="radio"]:checked {
     color: #294563;
     border-radius: 50%;
 }
+
+.iot-option {
+    display: inline-block;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='utf-8'%3F%3E%3C!-- Generator: Adobe Illustrator 24.2.3, SVG Export Plug-In . SVG Version: 6.00 Build 0) --%3E%3Csvg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' width='12px' height='4px' viewBox='0 0 17.5 9.5' style='enable-background:new 0 0 17.5 9.5;' xml:space='preserve'%3E%3Cstyle type='text/css'%3E .st0%7Bfill-rule:evenodd;clip-rule:evenodd;%7D%0A%3C/style%3E%3Cg id='Arrow_x2F_Chevrons'%3E%3Cpath fill='%23294563' id='Vector__x28_Stroke_x29_' class='st0' d='M0.2,0.2c0.3-0.3,0.8-0.3,1.1,0l7.5,7.5l7.5-7.5c0.3-0.3,0.8-0.3,1.1,0 s0.3,0.8,0,1.1l-8,8C9,9.6,8.5,9.6,8.2,9.3l-8-8C-0.1,1-0.1,0.5,0.2,0.2z'/%3E%3C/g%3E%3C/svg%3E%0A") right 10px center no-repeat;
+    width: 100px;
+    height: 32px;
+    padding: 0px 10px;
+    padding-right: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+    font-size: 14px;
+    color: #282828;
+    border-radius: 100px;
+    border: 1px solid var(--primary-primary-100,#BDC5CF);
+    -webkit-transition: border-color ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s;
+    transition: border-color ease-in-out .15s;
+}
