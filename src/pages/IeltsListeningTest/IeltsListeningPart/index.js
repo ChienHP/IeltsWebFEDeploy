@@ -163,7 +163,7 @@ const IeltsListeningPart = ({
                                 </div>
                             )}
 
-                            {questionGroup.type === QUESTION_TYPE.MATCHING && (
+                            {[QUESTION_TYPE.MATCHING].includes(questionGroup.type) && (
                                 <div>
                                     <table
                                         key={index}
@@ -192,7 +192,7 @@ const IeltsListeningPart = ({
                                 </div>
                             )}
 
-                            {questionGroup.type === QUESTION_TYPE.MATCHING && (
+                            {[QUESTION_TYPE.MATCHING, QUESTION_TYPE.TRUE_FALSE_NOT_GIVEN].includes(questionGroup.type) && (
                                 <div>
                                     {questionGroup.keys.map(
                                         (questionKey, index) => {
@@ -217,7 +217,16 @@ const IeltsListeningPart = ({
                                                         }}
                                                     >
                                                         <option value="">{`Choose your answer`}</option>
-                                                        {questionGroup.options.map(
+                                                        {([QUESTION_TYPE.TRUE_FALSE_NOT_GIVEN].includes(questionGroup.type) && (
+                                                            ['TRUE', 'FALSE', 'NOT GIVEN'].map((option, index) => (
+                                                                <option
+                                                                    key={index}
+                                                                    value={option}
+                                                                >
+                                                                    {option}
+                                                                </option>
+                                                            ))
+                                                        )) || questionGroup.options.map(
                                                             (option, index) => {
                                                                 return (
                                                                     <option
@@ -242,6 +251,8 @@ const IeltsListeningPart = ({
                                     )}
                                 </div>
                             )}
+
+                            
                         </div>
                     );
                 })}
