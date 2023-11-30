@@ -11,6 +11,7 @@ import IeltsListeningQuestions from "../pages/IeltsListeningQuestions";
 import IeltsListeningTest from "../pages/IeltsListeningTest";
 import IeltsListeningTestDashboard from "../pages/IeltsListeningTestDashboard";
 import IeltsTestList from "../pages/IeltsTestList";
+import IeltsWritingTest from "../pages/IeltsWritingTest";
 import Registration from "../pages/Registration";
 
 
@@ -27,11 +28,15 @@ const publicRoutes = [
   // ielts-listening-test
   {path: configs.routes.ieltsListeningTest, Component: IeltsListeningTest, Layout: null},
   {path: configs.routes.ieltsListeningQuestions, Component: IeltsListeningQuestions},
-  {path: configs.routes.singleFileUploader, Component: SingleFileUploader},
 
 
-    // ielts-reading-test
+  // ielts-reading-test
   {path: configs.routes.ieltsReadingTest, Component: IeltsListeningTest, Layout: null},
+
+  // ielts-writing-test
+  {path: configs.routes.ieltsWritingTest, Component: IeltsWritingTest, Layout: null},
+
+  {path: configs.routes.singleFileUploader, Component: SingleFileUploader},
 ];
 
 const privateRoutes = [

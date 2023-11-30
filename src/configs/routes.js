@@ -17,6 +17,9 @@ const routes = {
     // ielts-reading-test
     ieltsReadingTest: "/ielts-reading-test/:testId",
 
+    // ielts-writing-test
+    ieltsWritingTest: "/ielts-writing-test/:testId",
+
 
     // SingleFileUploader
     singleFileUploader: "/single-file-uploader",
