@@ -1,4 +1,4 @@
-.test-panel__nav {
+.test-panel__nav.test-panel__nav_for_writing{
     position: fixed;
     text-align: center;
     margin: 0;

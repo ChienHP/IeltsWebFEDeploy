@@ -28,7 +28,7 @@ const IeltsWritingTest = () => {
     const getUserAnswer = (partId) => {
         return userAnswers.find((item) => {
             return item.partId === partId;
-        }).answer;
+        })?.answer;
     };
 
     const handleSubmitAnswers = async () => {
@@ -114,7 +114,7 @@ const IeltsWritingTest = () => {
                     </Split>
                 </div>
 
-                <div className="test-panel__nav">
+                <div className="test-panel__nav test-panel__nav_for_writing">
                     <div
                         className="test-panel__nav-buttons"
                         id="js-btn-wrap"

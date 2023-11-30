@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useParams } from "react-router-dom";
 import "./style.css";
 import { useEffect, useState } from "react";
@@ -18,7 +19,7 @@ const IeltsListeningTest = () => {
     const [test, setTest] = useState({});
     const [ieltsTestPartList, setIeltsTestPartList] = useState([]);
     const [ieltsTestPart, setIeltsTestPart] = useState({});
-
+    
     const currentPartIndex = ieltsTestPartList.findIndex((item) => {
         // @ts-ignore
         return item.partNumber === ieltsTestPart.partNumber;
