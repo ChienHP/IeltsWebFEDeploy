@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
     MDBContainer,
     MDBTabs,
@@ -13,6 +13,8 @@ import {
 } from "mdb-react-ui-kit";
 import { login, register } from "../../apis/user.api";
 import { toast } from "react-toastify";
+import { AuthContext } from "./authContext";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const initialFormState = {
     fullName: "",
@@ -20,6 +22,9 @@ const initialFormState = {
     password: "",
 };
 function Login() {
+    const {setToken} = useContext(AuthContext);
+    const navigate = useNavigate();
+
     const [justifyActive, setJustifyActive] = useState("tab1");
 
     const handleJustifyClick = (value) => {
@@ -34,7 +39,6 @@ function Login() {
     const [formState, setFormState] = useState(initialFormState);
 
     const handleChange = (field) => (e) => {
-        console.log(e.target.value);
         setFormState({
             ...formState,
             [field]: e.target.value,
@@ -43,12 +47,15 @@ function Login() {
 
     const handleLogin = async () => {
         try {
-            await login({
+            const res = await login({
                 email: formState.email,
                 password: formState.password,
                 rememberMe: 'true',
             });
             toast.success("Login successfully");
+            localStorage.setItem("token", res.data.accessToken);
+            setToken(res.data.accessToken);
+            navigate('/ielts-test-list');
         } catch (error) {
             toast.error(error);
         }
@@ -142,6 +149,7 @@ function Login() {
                     </div>
 
                     <MDBInput
+                        key="email"
                         wrapperClass="mb-4"
                         label="Email address"
                         id="form1"
@@ -150,6 +158,7 @@ function Login() {
                         onChange={handleChange("email")}
                     />
                     <MDBInput
+                        key={"password"}
                         wrapperClass="mb-4"
                         label="Password"
                         id="form2"
@@ -223,6 +232,7 @@ function Login() {
                     </div>
 
                     <MDBInput
+                    key={"fullName"}
                         wrapperClass="mb-4"
                         label="Username"
                         id="form1"
@@ -231,6 +241,7 @@ function Login() {
                         onChange={handleChange("fullName")}
                     />
                     <MDBInput
+                    key={"email"}
                         wrapperClass="mb-4"
                         label="Email"
                         id="form1"
@@ -239,6 +250,7 @@ function Login() {
                         onChange={handleChange("email")}
                     />
                     <MDBInput
+                    key={"password"}
                         wrapperClass="mb-4"
                         label="Password"
                         id="form1"

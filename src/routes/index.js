@@ -11,7 +11,6 @@ import IeltsListeningTest from "../pages/IeltsListeningTest";
 import IeltsListeningTestDashboard from "../pages/IeltsListeningTestDashboard";
 import IeltsTestList from "../pages/IeltsTestList";
 import IeltsWritingTest from "../pages/IeltsWritingTest";
-import Registration from "../pages/Registration";
 import Login from "../pages/login";
 
 
@@ -27,7 +26,7 @@ const publicRoutes = [
   {path: configs.routes.login, Component: Login},
 
   // ielts-listening-test
-  {path: configs.routes.ieltsListeningTest, Component: IeltsListeningTest, Layout: null},
+  {path: configs.routes.ieltsListeningTest, Component: IeltsListeningTest, Layout: null, role: ['user']},
   {path: configs.routes.ieltsListeningQuestions, Component: IeltsListeningQuestions},
 
 
