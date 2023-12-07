@@ -1,6 +1,5 @@
 
 import { isExpired, decodeToken } from "react-jwt";
-import { useNavigate } from "react-router-dom";
 
 const { createContext, useState, useEffect } = require("react");
 
@@ -15,6 +14,7 @@ export const AuthProvider = ({ children }) => {
         const token = localStorage.getItem("token");
         if (!token) {
             setUser(null);
+            return
         }
 
         const user = decodeToken(token);

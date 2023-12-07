@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import configs from "../../../../configs";
+import { IELTS_TEST_TYPE } from "../../../../shared/constant";
 
 const SideBar = () => {
     return (
@@ -11,64 +12,77 @@ const SideBar = () => {
             <div className="h-full px-3 pb-4 overflow-y-auto">
                 <ul className="space-y-2 font-medium">
                     <li>
-                        <a
-                            href="#"
-                            className="flex items-center p-2 text-gray-300 rounded-lg hover:text-white group"
+                        <Link
+                            to={`${configs.routes.ieltsTestDashboard}?type=${IELTS_TEST_TYPE.READING}`}
                         >
-                            <svg
-                                className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                                aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="currentColor"
-                                viewBox="0 0 18 18"
+                            <div
+                                href="#"
+                                className="flex items-center p-2 text-gray-300 rounded-lg hover:text-white group"
                             >
-                                <path d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z" />
-                            </svg>
-                            <span className="flex-1 ms-3 whitespace-nowrap">
-                                Ielts Reading Test
-                            </span>
-                        </a>
+                                <svg
+                                    className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                                    aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="currentColor"
+                                    viewBox="0 0 18 18"
+                                >
+                                    <path d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z" />
+                                </svg>
+                                <span className="flex-1 ms-3 whitespace-nowrap">
+                                    Ielts Reading Test
+                                </span>
+                            </div>
+                        </Link>
                     </li>
                     <li>
-                        <a
-                            href="#"
-                            className="flex items-center p-2 text-gray-300 rounded-lg hover:text-white group"
+                        <Link
+                            to={`${configs.routes.ieltsTestDashboard}?type=${IELTS_TEST_TYPE.LISTENING}`}
                         >
-                            <svg
-                                className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                                aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="currentColor"
-                                viewBox="0 0 18 18"
+                            <div
+                                href="#"
+                                className="flex items-center p-2 text-gray-300 rounded-lg hover:text-white group"
                             >
-                                <path d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z" />
-                            </svg>
-                            <span className="flex-1 ms-3 whitespace-nowrap">
-                                Ielts Listening Test
-                            </span>
-                        </a>
+                                <svg
+                                    className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                                    aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="currentColor"
+                                    viewBox="0 0 18 18"
+                                >
+                                    <path d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z" />
+                                </svg>
+                                <span className="flex-1 ms-3 whitespace-nowrap">
+                                    Ielts Listening Test
+                                </span>
+                            </div>
+                        </Link>
                     </li>
                     <li>
-                        <a
-                            href="#"
-                            className="flex items-center p-2 text-gray-300 rounded-lg hover:text-white group"
+                        <Link
+                            to={`${configs.routes.ieltsTestDashboard}?type=${IELTS_TEST_TYPE.SPEAKING}`}
                         >
-                            <svg
-                                className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                                aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="currentColor"
-                                viewBox="0 0 18 18"
+                            <div
+                                href="#"
+                                className="flex items-center p-2 text-gray-300 rounded-lg hover:text-white group"
                             >
-                                <path d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z" />
-                            </svg>
-                            <span className="flex-1 ms-3 whitespace-nowrap">
-                                Ielts Speaking Test
-                            </span>
-                        </a>
+                                <svg
+                                    className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                                    aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="currentColor"
+                                    viewBox="0 0 18 18"
+                                >
+                                    <path d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z" />
+                                </svg>
+                                <span className="flex-1 ms-3 whitespace-nowrap">
+                                    Ielts Speaking Test
+                                </span>
+                            </div>
+                        </Link>
                     </li>
                     <li>
-                        <a
+                        <Link to={`${configs.routes.ieltsTestDashboard}?type=${IELTS_TEST_TYPE.WRITING}`}>
+                        <div
                             href="#"
                             className="flex items-center p-2 text-gray-300 rounded-lg hover:text-white group"
                         >
@@ -84,7 +98,8 @@ const SideBar = () => {
                             <span className="flex-1 ms-3 whitespace-nowrap">
                                 Ielts Writing Test
                             </span>
-                        </a>
+                        </div>
+                        </Link>
                     </li>
                     <li>
                         <a

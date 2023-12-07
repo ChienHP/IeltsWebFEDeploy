@@ -8,7 +8,7 @@ import { IELTS_TEST_TYPE } from "../../../shared/constant";
 const initialFormState = {
     name: "",
 };
-const IeltsListeningTestDetail = ({mode, ieltslListeningTest = undefined}) => {
+const IeltsListeningTestDetail = ({mode, type, ieltslListeningTest = undefined}) => {
     const [show, setShow] = useState(false);
     const [formState, setFormState] = useState(initialFormState);
 
@@ -31,7 +31,7 @@ const IeltsListeningTestDetail = ({mode, ieltslListeningTest = undefined}) => {
             if (mode == 'create') {
                 await createIeltsTest({
                     ...formState,
-                    type: IELTS_TEST_TYPE.LISTENING
+                    type
                 });
                 toast.success("Create successfully");
                 setFormState(initialFormState);
@@ -43,7 +43,7 @@ const IeltsListeningTestDetail = ({mode, ieltslListeningTest = undefined}) => {
             }
             window.location.href = window.location.href
         } catch (error) {
-            toast.error(error.message);
+            toast.error(error);
         }
     };
 

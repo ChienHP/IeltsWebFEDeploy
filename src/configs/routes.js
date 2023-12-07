@@ -10,12 +10,12 @@ const routes = {
     // Login
     login: "/login",
     
+
     // ielts-listening-test
     ieltsListeningTestList: "/ielts-listening-test-list",
     ieltsListeningTest: "/ielts-listening-test/:testId",
     addIeltsListeningTest: "/ielts-listening-test/add-new-test",
     detailIeltsListeningTest: "/ielts-listening-test/:id",
-
 
     // ielts-reading-test
     ieltsReadingTest: "/ielts-reading-test/:testId",
@@ -23,15 +23,18 @@ const routes = {
     // ielts-writing-test
     ieltsWritingTest: "/ielts-writing-test/:testId",
 
+    reviewAnswers: "/ielts-test/:testId/review-answers",
+
 
     // SingleFileUploader
     singleFileUploader: "/single-file-uploader",
 
     // Private routes
-    ieltsListeningTestDashboard: "/admin/ielts-listening-test",
+    ieltsTestDashboard: "/admin/ielts-test-list",
     adminIeltsListeningPart: "/admin/test/:testId/ielts-listening-parts",
     adminIeltsReadingPart: "/admin/test/:testId/ielts-reading-parts",
-    ieltsReadingTestDashboard: "/admin/ielts-reading-test",
+    adminIeltsWritingPart: "/admin/test/:testId/ielts-writing-parts",
+    ieltsReadingTestDashboard: "/admin/ielts-reading-test-list",
     ieltsReadingPassageDashboard: "/admin/:testId/ielts-reading-passage",
 };
 

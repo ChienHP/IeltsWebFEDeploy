@@ -4,8 +4,9 @@ const request = axios.create({
     baseURL: process.env.REACT_APP_WEB_URL,
     timeout: 10000,
     headers: {
-        'Content-Type': 'application/json;charset=utf-8'
-    }
+        'Content-Type': 'application/json;charset=utf-8',
+        'Authorization': 'Bearer ' + localStorage.getItem('token') || '',
+    },
 })
 
 export const get = async (url, options = {}) => {

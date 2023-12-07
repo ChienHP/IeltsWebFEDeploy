@@ -40,7 +40,7 @@ export const AdminIeltsListeningPart = () => {
     return (
         <div>
             <h3>{test?.name}</h3>
-            <CreateListeningIeltsPartForm mode='create' testId={ieltsListeningPart?.testId}></CreateListeningIeltsPartForm>
+            <CreateListeningIeltsPartForm mode='create' testId={test?.id}></CreateListeningIeltsPartForm>
             <Nav justify variant="tabs" defaultActiveKey="">
                 {/* <Nav.Item>
                     <Nav.Link href="ho/me">Active</Nav.Link>

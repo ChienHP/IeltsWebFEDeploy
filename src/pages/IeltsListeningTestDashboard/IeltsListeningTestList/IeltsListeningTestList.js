@@ -10,7 +10,6 @@ import AddIeltsListeningTest from "../IeltsListeningTestDetail";
 import IeltsListeningTestDetail from "../IeltsListeningTestDetail";
 import { toast } from "react-toastify";
 import { getIeltsTestList } from "../../../apis/ielts-test.api";
-import { Button } from "@material-tailwind/react";
 
 const IeltsListeningTestList = () => {
     const [totalPage, setTotalPage] = useState(0);
@@ -18,7 +17,8 @@ const IeltsListeningTestList = () => {
     const limit = 10;
     const [totalItems, setTotalItems] = useState(0);
     const [ieltsListeningTests, setIeltsListeningTests] = useState([]);
-    
+    const { type } = useQueryString();
+
     useEffect(() => {
         (async () => {
             try {
@@ -26,7 +26,7 @@ const IeltsListeningTestList = () => {
                     page,
                     limit,
                     null,
-                    IELTS_TEST_TYPE.LISTENING
+                    type
                 );
                 setTotalPage(res.meta.pagination.totalPages);
                 setTotalItems(res.meta.pagination.totalItems);
@@ -35,14 +35,14 @@ const IeltsListeningTestList = () => {
                 toast.error(error);
             }
         })();
-    }, [page, limit]);
+    }, [page, limit, type]);
 
     return (
         <div>
             <h1 className="">Ielts Listening Test List</h1>
             <div className="container">
                 <div className="text-right">
-                    <IeltsListeningTestDetail mode="create"></IeltsListeningTestDetail>
+                    <IeltsListeningTestDetail mode="create" type={type}></IeltsListeningTestDetail>
                 </div>
 
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -73,10 +73,14 @@ const IeltsListeningTestList = () => {
                                 </td>
                                 <td className="px-6 py-4 text-right">
                                     <Link
-                                        to={configs.routes.adminIeltsListeningPart.replace(
+                                        to={(type == IELTS_TEST_TYPE.LISTENING && configs.routes.adminIeltsListeningPart.replace(
                                             ":testId",
                                             ieltsListeningTest.id
-                                        )}
+                                        )) || (type == IELTS_TEST_TYPE.WRITING && configs.routes.adminIeltsWritingPart.replace(
+                                            ":testId",
+                                            ieltsListeningTest.id
+                                        ))
+                                    }
                                     >
                                         <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
                                             Detail

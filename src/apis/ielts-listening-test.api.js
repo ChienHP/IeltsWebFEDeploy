@@ -1,5 +1,3 @@
-import { IELTS_TEST_TYPE } from "../shared/constant"
-import http from "../utils/http"
 import { deleteReq, get, post, put } from "../utils/request"
 
 // export const getIeltsTestList = (page, limit, name, type) => {

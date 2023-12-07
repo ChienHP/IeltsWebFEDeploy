@@ -1,11 +1,9 @@
-// @ts-nocheck
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "./style.css";
 import { useEffect, useState } from "react";
 import {
     getIeltsTestDetail,
     getIeltsTestPartList,
-    getScore,
 } from "../../apis/ielts-listening-test.api";
 import { toast } from "react-toastify";
 import IeltsListeningPart from "./IeltsListeningPart";
@@ -13,12 +11,15 @@ import IeltsListeningPaletteSection from "../../components/Layouts/components(du
 import { Header } from "./Header/header";
 import { IELTS_TEST_TYPE } from "../../shared/constant";
 import Split from "react-split-it";
+import { submitIeltsListeningAndReadingAnswers } from "../../apis/ielts-test.api";
+import configs from "../../configs";
 
 const IeltsListeningTest = () => {
     const { testId } = useParams();
     const [test, setTest] = useState({});
     const [ieltsTestPartList, setIeltsTestPartList] = useState([]);
     const [ieltsTestPart, setIeltsTestPart] = useState({});
+    const navigate = useNavigate();
     
     const currentPartIndex = ieltsTestPartList.findIndex((item) => {
         // @ts-ignore
@@ -45,11 +46,11 @@ const IeltsListeningTest = () => {
 
     const handleSubmitAnswers = async () => {
         try {
-            const data = await getScore({
+            const data = await submitIeltsListeningAndReadingAnswers({
                 testId,
                 userAnswers,
             });
-            toast.success(`Your score is ${data.data.score}`);
+            navigate(configs.routes.reviewAnswers.replace(":testId", testId));
         } catch (error) {
             toast.error(error);
         }

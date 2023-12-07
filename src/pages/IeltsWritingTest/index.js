@@ -89,21 +89,16 @@ const IeltsWritingTest = () => {
                                 Part{" "}
                                 {
                                     // @ts-ignore
-                                    ieltsTestPart.partNumber + ": "
+                                    ieltsTestPart?.partNumber || "" + ": "
                                 }
                             </p>
-                            <div>
-                                <span>
-                                    {
-                                        // @ts-ignore
-                                        ieltsTestPart.partDetail?.content
-                                    }
-                                </span>
-                            </div>
+                            <div dangerouslySetInnerHTML={{
+                                __html: ieltsTestPart?.partDetail?.content
+                            }}></div>
                         </div>
 
                         <div className="overflow-auto">
-                            <EditorWrap value={getUserAnswer(ieltsTestPart.id)} onChange={(value) => {
+                            <EditorWrap value={getUserAnswer(ieltsTestPart?.id)} onChange={(value) => {
                                 const newAnswer = [...userAnswers];
                                 const partIndex = newAnswer.findIndex((item) => {
                                     return item.partId === ieltsTestPart.id;
@@ -162,7 +157,7 @@ const IeltsWritingTest = () => {
                                 // @ts-ignore
                                 className={`ielts-listening-palette-section ${
                                     // @ts-ignore
-                                    ieltsTestPart.partNumber == item.partNumber
+                                    ieltsTestPart?.partNumber == item.partNumber
                                         ? "current"
                                         : ""
                                 }`}
@@ -173,7 +168,7 @@ const IeltsWritingTest = () => {
                             >
                                 <IeltsListeningPaletteSection
                                     key={index}
-                                    partNumber={item.partNumber}
+                                    partNumber={item?.partNumber}
                                     questionNumbers={[]}
                                 ></IeltsListeningPaletteSection>
                             </button>
