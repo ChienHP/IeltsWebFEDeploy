@@ -12,8 +12,8 @@ export const ReviewAnswersListening = ({ testResult }) => {
                 </div>
                 <span className="fs-2 fw-bold ml-4">Answer Keys</span>
                 <span className="fs-2 fw-bold ml-4">{`(Number of correct answers: `}</span>
-                <span className="fs-2 fw-bold ml-4 text-green-500">{testResult.numberOfCorrectAnswers}</span>
-                <span className="fs-2 fw-bold">{`/${testResult.totalQuestions}`}</span>
+                <span className="fs-2 fw-bold ml-4 text-green-500">{testResult?.numberOfCorrectAnswers}</span>
+                <span className="fs-2 fw-bold">{`/${testResult?.totalQuestions}`}</span>
                 <span className="fs-2 fw-bold">{`)`}</span>
             </div>
             <div className="mt-4" style={{ display: "flex", flexWrap: "wrap" }}>

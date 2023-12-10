@@ -1,5 +1,4 @@
-// @ts-nocheck
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "./style.css";
 import { useEffect, useState } from "react";
 import {
@@ -12,12 +11,15 @@ import Split from "react-split-it";
 import { Header } from "../IeltsListeningTest/Header/header";
 import { EditorWrap } from "../../components/Editor";
 import { getIeltsWritingPartList } from "../../apis/ielts-writing-test.api";
+import { submitIeltsWritingAnswers } from "../../apis/ielts-test.api";
+import configs from "../../configs";
 
 const IeltsWritingTest = () => {
+    const navigate = useNavigate();
     const { testId } = useParams();
     const [test, setTest] = useState({});
     const [ieltsTestPartList, setIeltsTestPartList] = useState([]);
-    const [ieltsTestPart, setIeltsTestPart] = useState({});
+    const [ieltsTestPart, setIeltsTestPart] = useState(null);
     const currentPartIndex = ieltsTestPartList.findIndex((item) => {
         // @ts-ignore
         return item.partNumber === ieltsTestPart.partNumber;
@@ -33,11 +35,8 @@ const IeltsWritingTest = () => {
 
     const handleSubmitAnswers = async () => {
         try {
-            const data = await getScore({
-                testId,
-                userAnswers,
-            });
-            toast.success(`Your score is ${data.data.score}`);
+            await submitIeltsWritingAnswers({userAnswers});
+            navigate(configs.routes.reviewAnswers.replace(":testId", testId));
         } catch (error) {
             toast.error(error);
         }
@@ -79,7 +78,7 @@ const IeltsWritingTest = () => {
         <div>
             <div className="ielts-listening-test-container no-ads">
                 <div className="ielts-listening-site-header">
-                    <Header></Header>
+                    <Header handleSubmitAnswers={handleSubmitAnswers}></Header>
                 </div>
 
                 <div className="ielts-listening-page-content question-only overflow-auto bg-orange-50	">

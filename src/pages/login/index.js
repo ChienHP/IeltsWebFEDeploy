@@ -15,14 +15,17 @@ import { login, register } from "../../apis/user.api";
 import { toast } from "react-toastify";
 import { AuthContext } from "./authContext";
 import { Navigate, useNavigate } from "react-router-dom";
+import { Role } from "../../shared/constant";
 
 const initialFormState = {
     fullName: "",
     email: "",
     password: "",
+    roles: [''],
 };
+
 function Login() {
-    const {setToken} = useContext(AuthContext);
+    const { setToken } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const [justifyActive, setJustifyActive] = useState("tab1");
@@ -43,19 +46,19 @@ function Login() {
             ...formState,
             [field]: e.target.value,
         });
-    }
+    };
 
     const handleLogin = async () => {
         try {
             const res = await login({
                 email: formState.email,
                 password: formState.password,
-                rememberMe: 'true',
+                rememberMe: "true",
             });
             toast.success("Login successfully");
             localStorage.setItem("token", res.data.accessToken);
             setToken(res.data.accessToken);
-            navigate('/ielts-test-list');
+            navigate("/ielts-test-list");
         } catch (error) {
             toast.error(error);
         }
@@ -67,6 +70,7 @@ function Login() {
                 fullName: formState.fullName,
                 email: formState.email,
                 password: formState.password,
+                roles: formState.roles
             });
             toast.success("Register successfully");
         } catch (error) {
@@ -177,7 +181,9 @@ function Login() {
                         <a href="!#">Forgot password?</a>
                     </div>
 
-                    <MDBBtn className="mb-4 w-100" onClick={handleLogin}>Sign in</MDBBtn>
+                    <MDBBtn className="mb-4 w-100" onClick={handleLogin}>
+                        Sign in
+                    </MDBBtn>
                     <p className="text-center">
                         Not a member? <a href="#!">Register</a>
                     </p>
@@ -231,8 +237,53 @@ function Login() {
                         <p className="text-center mt-3">or:</p>
                     </div>
 
+                    <div className="d-flex justify-content-center mb-4">
+                        <div className="form-check">
+                            <input
+                                className="form-check-input"
+                                type="radio"
+                                name="flexRadioDefault"
+                                id="flexRadioDefault1"
+                                checked={formState.roles[0] == Role.User}
+                                onChange={(e) => {
+                                    setFormState({
+                                        ...formState,
+                                        roles: [Role.User],
+                                    });
+                                }}
+                            ></input>
+                            <label
+                                className="form-check-label"
+                                htmlFor="flexRadioDefault1"
+                            >
+                               User Account 
+                            </label>
+                        </div>
+                        <div className="form-check ml-8">
+                            <input
+                                className="form-check-input"
+                                type="radio"
+                                name="flexRadioDefault"
+                                id="flexRadioDefault2"
+                                checked={formState.roles[0] == Role.Examiner}
+                                onChange={(e) => {
+                                    setFormState({
+                                        ...formState,
+                                        roles: [Role.Examiner],
+                                    });
+                                }}
+                            ></input>
+                            <label
+                                className="form-check-label"
+                                htmlFor="flexRadioDefault2"
+                            >
+                                Examiner Account
+                            </label>
+                        </div>
+                    </div>
+
                     <MDBInput
-                    key={"fullName"}
+                        key={"fullName"}
                         wrapperClass="mb-4"
                         label="Username"
                         id="form1"
@@ -241,7 +292,7 @@ function Login() {
                         onChange={handleChange("fullName")}
                     />
                     <MDBInput
-                    key={"email"}
+                        key={"email"}
                         wrapperClass="mb-4"
                         label="Email"
                         id="form1"
@@ -250,7 +301,7 @@ function Login() {
                         onChange={handleChange("email")}
                     />
                     <MDBInput
-                    key={"password"}
+                        key={"password"}
                         wrapperClass="mb-4"
                         label="Password"
                         id="form1"
@@ -259,15 +310,9 @@ function Login() {
                         onChange={handleChange("password")}
                     />
 
-                    <div className="d-flex justify-content-center mb-4">
-                        <MDBCheckbox
-                            name="flexCheck"
-                            id="flexCheckDefault"
-                            label="I have read and agree to the terms"
-                        />
-                    </div>
-
-                    <MDBBtn className="mb-4 w-100" onClick={handleRegister}>Sign up</MDBBtn>
+                    <MDBBtn className="mb-4 w-100" onClick={handleRegister}>
+                        Sign up
+                    </MDBBtn>
                 </MDBTabsPane>
             </MDBTabsContent>
         </MDBContainer>

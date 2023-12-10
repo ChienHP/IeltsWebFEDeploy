@@ -4,6 +4,9 @@ import { useEffect, useState } from "react";
 import { getIeltsTestDetail } from "../../apis/ielts-listening-test.api";
 import { toast } from "react-toastify";
 import { getLatestTestResult } from "../../apis/ielts-test.api";
+import { IELTS_TEST_TYPE } from "../../shared/constant";
+import { ReviewAnswersWriting } from "./ReviewAnswerWriting";
+import "./styles.css"
 
 export const ReviewAnswers = () => {
     const { testId } = useParams();
@@ -39,13 +42,24 @@ export const ReviewAnswers = () => {
                 {test?.name}
             </div>
             <div className="fs-3 fw-bold ml-16 mt-8">
-                Your band score is
-                <span className="ml-2 text-red-800">{testResult?.bandScore}</span>
+                {testResult?.bandScore && (
+                    <div>
+                        Your band score is
+                        <span className="ml-2 text-red-800 fs-2">
+                            {testResult?.bandScore}
+                        </span>
+                    </div>
+                )}
             </div>
-            
-            <ReviewAnswersListening
-                testResult={testResult}
-            ></ReviewAnswersListening>
+            {(test?.type == IELTS_TEST_TYPE.LISTENING && (
+                <ReviewAnswersListening
+                    testResult={testResult}
+                ></ReviewAnswersListening>
+            )) || (test?.type == IELTS_TEST_TYPE.WRITING && (
+                <ReviewAnswersWriting
+                    testResult={testResult}
+                ></ReviewAnswersWriting>
+            ))}
         </div>
     );
 };
