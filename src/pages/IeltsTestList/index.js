@@ -4,6 +4,7 @@ import { getIeltsTestList } from "../../apis/ielts-test.api";
 import { useQueryString } from "../../utils/utils";
 import { Link } from "react-router-dom";
 import configs from "../../configs";
+import { IELTS_TEST_TYPE } from "../../shared/constant";
 
 const IeltsTestList = () => {
     const [tests, setTests] = useState([]);
@@ -71,7 +72,12 @@ const IeltsTestList = () => {
                         {tests.length > 0 &&
                             tests.map((item, index) => {
                                 return (
-                                    <Link key={index} to={configs.routes.ieltsListeningTest.replace(":testId", item.id)}>
+                                    <Link key={index} to={
+                                        (item.type === IELTS_TEST_TYPE.LISTENING && configs.routes.ieltsListeningTest.replace(":testId", item.id))
+                                        || (item.type === IELTS_TEST_TYPE.READING && configs.routes.ieltsReadingTest.replace(":testId", item.id))
+                                        || (item.type === IELTS_TEST_TYPE.WRITING && configs.routes.ieltsWritingTest.replace(":testId", item.id))
+                                        // || (item.type === IELTS_TEST_TYPE.SPEAKING && configs.routes.ieltsSpeakingTest.replace(":testId", item.id))
+                                        }>
                                         <div
                                             className="bg-white rounded-lg p-4 flex flex-col items-center shadow"
                                         >

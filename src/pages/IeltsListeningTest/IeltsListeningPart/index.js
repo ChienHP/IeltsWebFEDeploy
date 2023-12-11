@@ -24,7 +24,7 @@ const IeltsListeningPart = ({
                     //     }}
                     // ></input>
                     <span>
-                        <div key={index} style={{display: 'inline-block'}}>
+                        <div key={index} style={{ display: "inline-block" }}>
                             _____
                             <NumberWrapInline
                                 number={questionKey.questionNumber}
@@ -50,25 +50,6 @@ const IeltsListeningPart = ({
 
     return (
         <div>
-            <div className="ielts-listening-part-announcement-container">
-                <div
-                    id="ielts-listening-part-announcement-1"
-                    className="ielts-listening-part-announcement current"
-                >
-                    <strong className="text-red-800 text-3xl">Part 1:</strong>
-                    <audio
-                        controls
-                        id="ielts-listening-test-audio-1"
-                        className="ielts-listening-test-audio"
-                    >
-                        <source
-                            src="https://engnovate.com/wp-content/uploads/2023/08/cambridge-ielts-18-academic-listening-1-audio-1.mp3"
-                            type="audio/mpeg"
-                        />
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-            </div>
             <div className="test-content ielts-listening-question-container no-ads ">
                 {ieltsTestPart.questionGroups.map((questionGroup, index) => {
                     return (
@@ -124,7 +105,8 @@ const IeltsListeningPart = ({
                                     )}
                                 </div>
                             )) || (
-                                <div className="m-3"
+                                <div
+                                    className="m-3"
                                     dangerouslySetInnerHTML={{
                                         __html: questionGroup.content,
                                     }}
@@ -137,8 +119,14 @@ const IeltsListeningPart = ({
                                     {questionGroup.options.map(
                                         (option, index) => {
                                             return (
-                                                <div key={index} className="test-panel__answer-item">
-                                                    <label htmlFor={index} className="answer-option">
+                                                <div
+                                                    key={index}
+                                                    className="test-panel__answer-item"
+                                                >
+                                                    <label
+                                                        htmlFor={index}
+                                                        className="answer-option"
+                                                    >
                                                         {option.label}
                                                     </label>
                                                     <input
@@ -174,6 +162,97 @@ const IeltsListeningPart = ({
                                     )}
                                 </div>
                             )}
+
+                            {[QUESTION_TYPE.MATCHING].includes(questionGroup.type) && (
+                                <div>
+                                    <table
+                                        key={index}
+                                        className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                                    >
+                                        <tbody>
+                                            {questionGroup.options.map(
+                                                (option, index) => {
+                                                    return (
+                                                        <tr
+                                                            key={index}
+                                                            className="bg-white border-b border-gray-700 text-gray-700 hover:text-red-800"
+                                                        >
+                                                            <td className="px-4 py-2 font-bold">
+                                                                {option.label}
+                                                            </td>
+                                                            <td className="px-6 py-4">
+                                                                {option.content}
+                                                            </td>
+                                                        </tr>
+                                                    );
+                                                }
+                                            )}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            )}
+
+                            {[QUESTION_TYPE.MATCHING, QUESTION_TYPE.TRUE_FALSE_NOT_GIVEN].includes(questionGroup.type) && (
+                                <div>
+                                    {questionGroup.keys.map(
+                                        (questionKey, index) => {
+                                            return (
+                                                <div key={index}>
+                                                    <NumberWrapInline
+                                                        number={
+                                                            questionKey.questionNumber
+                                                        }
+                                                    ></NumberWrapInline>
+                                                    <select
+                                                        className="iot-option outline-red-800"
+                                                        value={getUserAnswer(
+                                                            questionKey.id
+                                                        )}
+                                                        onChange={(event) => {
+                                                            handleAnswerChange(
+                                                                questionKey.id,
+                                                                event.target
+                                                                    .value
+                                                            );
+                                                        }}
+                                                    >
+                                                        <option value="">{`Choose your answer`}</option>
+                                                        {([QUESTION_TYPE.TRUE_FALSE_NOT_GIVEN].includes(questionGroup.type) && (
+                                                            ['TRUE', 'FALSE', 'NOT GIVEN'].map((option, index) => (
+                                                                <option
+                                                                    key={index}
+                                                                    value={option}
+                                                                >
+                                                                    {option}
+                                                                </option>
+                                                            ))
+                                                        )) || questionGroup.options.map(
+                                                            (option, index) => {
+                                                                return (
+                                                                    <option
+                                                                        key={
+                                                                            index
+                                                                        }
+                                                                        value={
+                                                                            option.label
+                                                                        }
+                                                                    >
+                                                                        {
+                                                                            option.label
+                                                                        }
+                                                                    </option>
+                                                                );
+                                                            }
+                                                        )}
+                                                    </select>
+                                                </div>
+                                            );
+                                        }
+                                    )}
+                                </div>
+                            )}
+
+                            
                         </div>
                     );
                 })}

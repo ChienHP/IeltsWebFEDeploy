@@ -3,11 +3,13 @@ const routes = {
     home: "/",
     ieltsCourses: "/ielts-courses",
     ieltsReadingTestList: "/ielts-reading-test-list",
-    ieltsReadingTest: "/ielts-reading-test/:testId",
-    registration: "/registration",
     ieltsListeningQuestions: "/ielts-listening-questions",
 
     ieltsTestList: "/ielts-test-list",
+
+    // Login
+    login: "/login",
+
     // ielts-listening-test
     ieltsListeningTestList: "/ielts-listening-test-list",
     ieltsListeningTest: "/ielts-listening-test/:testId",
@@ -17,6 +19,14 @@ const routes = {
 
     // test speaking
     testSpeaking: "/test-speaking",
+
+
+    // ielts-reading-test
+    ieltsReadingTest: "/ielts-reading-test/:testId",
+
+    // ielts-writing-test
+    ieltsWritingTest: "/ielts-writing-test/:testId",
+
 
     // SingleFileUploader
     singleFileUploader: "/single-file-uploader",

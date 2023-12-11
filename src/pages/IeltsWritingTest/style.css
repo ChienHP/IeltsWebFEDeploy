@@ -1,0 +1,13 @@
+.test-panel__nav.test-panel__nav_for_writing{
+    position: fixed;
+    text-align: center;
+    margin: 0;
+    right: 3rem;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.55s cubic-bezier(0.32,-0.08,0.42,1.22);
+    z-index: 9;
+    bottom: 3rem;
+}
