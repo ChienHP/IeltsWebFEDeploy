@@ -152,7 +152,7 @@ const IeltsListeningTest = () => {
                         // @ts-ignore
                         test.type == IELTS_TEST_TYPE.READING && (
                             <Split className="flex h-full w-full flex-1 ">
-                                <div className="bg-orange-100 px-4 py-2 overflow-auto">
+                                <div className="bg-orange-100 px-4 py-2 overflow-auto h-[72vh] my-scroll-bar">
                                     <p className="text-red-800 text-3xl font-bold">
                                         Part{" "}
                                         {
@@ -178,7 +178,7 @@ const IeltsListeningTest = () => {
                                     </div>
                                 </div>
 
-                                <div className="overflow-auto">
+                                <div className="overflow-auto h-[72vh]">
                                     {Object.values(ieltsTestPart).length !==
                                         0 && (
                                         <IeltsListeningPart

@@ -25,4 +25,21 @@
     transform: rotate(360deg);
   }
 } */
+/* total width */
+
+::-webkit-scrollbar {
+  background-color: #ffedd5;
+  width: 8px;
+}
+
+/* background of the scrollbar except button or resizer */
+::-webkit-scrollbar-track {
+  background-color: white;
+}
+
+/* scrollbar itself */
+::-webkit-scrollbar-thumb {
+  background-color: #aa261b;
+  border-radius: 16px;
+}
 

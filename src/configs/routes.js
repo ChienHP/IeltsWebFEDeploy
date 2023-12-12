@@ -16,16 +16,14 @@ const routes = {
     addIeltsListeningTest: "/ielts-listening-test/add-new-test",
     detailIeltsListeningTest: "/ielts-listening-test/:id",
 
-
-    // test speaking
-    testSpeaking: "/test-speaking",
-
-
     // ielts-reading-test
     ieltsReadingTest: "/ielts-reading-test/:testId",
 
     // ielts-writing-test
     ieltsWritingTest: "/ielts-writing-test/:testId",
+
+    // ielts-speaking-test
+    ieltsSpeakingTest: "/ielts-speaking-test/:testId",
 
     reviewAnswers: "/ielts-test/review-answers/:testResultId",
     testResultList: "/test-result-list",

@@ -1,5 +1,5 @@
 import { Pencil } from "react-bootstrap-icons";
-import { Button } from "../../components/Button";
+import { MyButton } from "../../components/Button";
 import {
     evaluateWritingPartAnswer,
     requestToGetEvaluatedByExaminer,
@@ -61,12 +61,12 @@ export const ReviewAnswersWriting = ({ testResult }) => {
                 {user?.roles.includes(Role.User) && (
                     <div className="d-flex">
                         <div className="ml-">
-                            <Button>Evaluate with AI</Button>
+                            <MyButton>Evaluate with AI</MyButton>
                         </div>
                         <div className="ml-4">
-                            <Button onClick={() => handleRequestToEvaluate()}>
+                            <MyButton onClick={() => handleRequestToEvaluate()}>
                                 Request to evaluate
-                            </Button>
+                            </MyButton>
                         </div>
                     </div>
                 )}
@@ -170,13 +170,13 @@ export const ReviewAnswersWriting = ({ testResult }) => {
                                                 justifyContent: "right",
                                             }}
                                         >
-                                            <Button
+                                            <MyButton
                                                 onClick={() =>
                                                     handleEvaluate(item?.partId)
                                                 }
                                             >
                                                 Save
-                                            </Button>
+                                            </MyButton>
                                         </div>
                                     )}
                                 </div>

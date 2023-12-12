@@ -76,7 +76,7 @@ const IeltsTestList = () => {
                                         (item.type === IELTS_TEST_TYPE.LISTENING && configs.routes.ieltsListeningTest.replace(":testId", item.id))
                                         || (item.type === IELTS_TEST_TYPE.READING && configs.routes.ieltsReadingTest.replace(":testId", item.id))
                                         || (item.type === IELTS_TEST_TYPE.WRITING && configs.routes.ieltsWritingTest.replace(":testId", item.id))
-                                        // || (item.type === IELTS_TEST_TYPE.SPEAKING && configs.routes.ieltsSpeakingTest.replace(":testId", item.id))
+                                        || (item.type === IELTS_TEST_TYPE.SPEAKING && configs.routes.ieltsSpeakingTest.replace(":testId", item.id))
                                         }>
                                         <div
                                             className="bg-white rounded-lg p-4 flex flex-col items-center shadow"
