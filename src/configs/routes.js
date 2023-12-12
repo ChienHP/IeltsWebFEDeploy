@@ -9,13 +9,17 @@ const routes = {
 
     // Login
     login: "/login",
-    
 
     // ielts-listening-test
     ieltsListeningTestList: "/ielts-listening-test-list",
     ieltsListeningTest: "/ielts-listening-test/:testId",
     addIeltsListeningTest: "/ielts-listening-test/add-new-test",
     detailIeltsListeningTest: "/ielts-listening-test/:id",
+
+
+    // test speaking
+    testSpeaking: "/test-speaking",
+
 
     // ielts-reading-test
     ieltsReadingTest: "/ielts-reading-test/:testId",

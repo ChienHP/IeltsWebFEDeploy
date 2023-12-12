@@ -26,13 +26,15 @@ const publicRoutes = [
 
 
   {path: configs.routes.ieltsTestList, Component: IeltsTestList},
-  
+
   // Login
   {path: configs.routes.login, Component: Login},
 
   // ielts-listening-test
   {path: configs.routes.ieltsListeningTest, Component: IeltsListeningTest, Layout: null, role: ['user']},
   {path: configs.routes.ieltsListeningQuestions, Component: IeltsListeningQuestions},
+
+    {path: configs.routes.testSpeaking, Component: SpeakingDetailWrapper},
 
   // ielts-reading-test
   {path: configs.routes.ieltsReadingTest, Component: IeltsListeningTest, Layout: null},
