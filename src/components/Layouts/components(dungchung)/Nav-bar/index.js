@@ -3,6 +3,7 @@ import "./style.css";
 import configs from "../../../../configs";
 import { AuthContext } from "../../../../pages/login/authContext";
 import { useContext } from "react";
+import { Role } from "../../../../shared/constant";
 const NavBar = () => {
     const { user, signOut } = useContext(AuthContext);
     return (
@@ -35,8 +36,13 @@ const NavBar = () => {
                                     <Link
                                         className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                                         to={
+                                            (user?.roles.includes(
+                                                Role.Examiner
+                                            ) &&
+                                                configs.routes.testResultList +
+                                                    "?type=Writing") ||
                                             configs.routes.ieltsTestList +
-                                            "?type=Writing"
+                                                "?type=Writing"
                                         }
                                     >
                                         IELTS Writing Test
@@ -136,10 +142,20 @@ const NavBar = () => {
                                     </a>
                                 </div>
                             </div>
-                            {user && (
-                                <button className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded" onClick={signOut}>
+                            {(user && (
+                                <button
+                                    className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
+                                    onClick={signOut}
+                                >
                                     Logout
                                 </button>
+                            )) || (
+                                <Link
+                                    className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
+                                    to={configs.routes.login}
+                                >
+                                    Login
+                                </Link>
                             )}
                         </div>
                     </div>

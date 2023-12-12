@@ -23,9 +23,9 @@ const routes = {
     // ielts-writing-test
     ieltsWritingTest: "/ielts-writing-test/:testId",
 
-    reviewAnswers: "/ielts-test/:testId/review-answers",
-
-
+    reviewAnswers: "/ielts-test/review-answers/:testResultId",
+    testResultList: "/test-result-list",
+    
     // SingleFileUploader
     singleFileUploader: "/single-file-uploader",
 

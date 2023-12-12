@@ -35,8 +35,8 @@ const IeltsWritingTest = () => {
 
     const handleSubmitAnswers = async () => {
         try {
-            await submitIeltsWritingAnswers({userAnswers});
-            navigate(configs.routes.reviewAnswers.replace(":testId", testId));
+            const res = await submitIeltsWritingAnswers({userAnswers});
+            navigate(configs.routes.reviewAnswers.replace(":testResultId", res.data.id));
         } catch (error) {
             toast.error(error);
         }

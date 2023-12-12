@@ -46,11 +46,11 @@ const IeltsListeningTest = () => {
 
     const handleSubmitAnswers = async () => {
         try {
-            const data = await submitIeltsListeningAndReadingAnswers({
+            const res = await submitIeltsListeningAndReadingAnswers({
                 testId,
                 userAnswers,
             });
-            navigate(configs.routes.reviewAnswers.replace(":testId", testId));
+            navigate(configs.routes.reviewAnswers.replace(":testResultId", res.data.id));
         } catch (error) {
             toast.error(error);
         }

@@ -3,32 +3,20 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getIeltsTestDetail } from "../../apis/ielts-listening-test.api";
 import { toast } from "react-toastify";
-import { getLatestTestResult } from "../../apis/ielts-test.api";
+import { getLatestTestResult, getTestResultById } from "../../apis/ielts-test.api";
 import { IELTS_TEST_TYPE } from "../../shared/constant";
 import { ReviewAnswersWriting } from "./ReviewAnswerWriting";
 import "./styles.css"
 
 export const ReviewAnswers = () => {
-    const { testId } = useParams();
+    const { testResultId } = useParams();
     const [test, setTest] = useState(null);
     const [testResult, setTestResult] = useState(null);
-
+    
     useEffect(() => {
         (async () => {
             try {
-                const res = await getIeltsTestDetail(testId);
-                setTest(res.data);
-            } catch (error) {
-                toast.error(error);
-            }
-        })();
-    }, []);
-
-    useEffect(() => {
-        (async () => {
-            try {
-                const res = await getLatestTestResult(testId);
-                console.log("res", res);
+                const res = await getTestResultById(testResultId);
                 setTestResult(res.data);
             } catch (error) {
                 toast.error(error);
@@ -36,13 +24,24 @@ export const ReviewAnswers = () => {
         })();
     }, []);
 
+    useEffect(() => {
+        (async () => {
+            try {
+                const res = await getIeltsTestDetail(testResult.testId);
+                setTest(res.data);
+            } catch (error) {
+                toast.error(error);
+            }
+        })();
+    }, [testResult]);
+
     return (
         <div>
             <div className="fs-2 fw-bold ml-16 mt-10 text-red-800">
                 {test?.name}
             </div>
             <div className="fs-3 fw-bold ml-16 mt-8">
-                {testResult?.bandScore && (
+                {testResult?.bandScore != null && (
                     <div>
                         Your band score is
                         <span className="ml-2 text-red-800 fs-2">

@@ -60,3 +60,8 @@ export const Role = {
     SupperAdmin: "supperadmin",
     Examiner: "examiner",
 };
+
+export const TETS_RESULT_STATUS = {
+    PENDING_TO_EVALUATE: 'Pending to evaluate',
+    EVALUATED: 'Evaluated'
+}

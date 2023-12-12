@@ -14,7 +14,9 @@ import IeltsListeningTestDashboard from "../pages/IeltsListeningTestDashboard";
 import IeltsTestList from "../pages/IeltsTestList";
 import IeltsWritingTest from "../pages/IeltsWritingTest";
 import { ReviewAnswers } from "../pages/ReviewAnswers/ReviewAnswers";
+import TestResultList from "../pages/TestResultList";
 import Login from "../pages/login";
+import { Role } from "../shared/constant";
 
 
 
@@ -31,7 +33,6 @@ const publicRoutes = [
   // ielts-listening-test
   {path: configs.routes.ieltsListeningTest, Component: IeltsListeningTest, Layout: null, role: ['user']},
   {path: configs.routes.ieltsListeningQuestions, Component: IeltsListeningQuestions},
-  {path: configs.routes.reviewAnswers, Component: ReviewAnswers, Layout: DefaultLayouts, role: ['user']},
 
   // ielts-reading-test
   {path: configs.routes.ieltsReadingTest, Component: IeltsListeningTest, Layout: null},
@@ -39,6 +40,8 @@ const publicRoutes = [
   // ielts-writing-test
   {path: configs.routes.ieltsWritingTest, Component: IeltsWritingTest, Layout: null},
 
+  {path: configs.routes.reviewAnswers, Component: ReviewAnswers, Layout: DefaultLayouts, role: [Role.User, Role.Examiner]},
+  {path: configs.routes.testResultList, Component: TestResultList},
   {path: configs.routes.singleFileUploader, Component: SingleFileUploader},
 ];
 

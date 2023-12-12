@@ -28,3 +28,22 @@ export const requestToGetEvaluatedByExaminer = (testResultId) => {
         testResultId,
     });
 };
+
+export const getTestResultById = (testResultId) => {
+    return get(`/ielts-test/test-result/${testResultId}`);
+}
+
+export const evaluateWritingPartAnswer = (body) => {
+    return post(`/ielts-test/evaluate-writing-part-answer`, body);
+}
+
+export const getTestResultList = ({page, limit, type, status}) => {
+    return get(`/ielts-test/test-result-list`, {
+        params: {
+            page,
+            limit,
+            type,
+            status,
+        },
+    });
+}
