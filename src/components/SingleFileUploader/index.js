@@ -29,8 +29,6 @@ const SingleFileUploader = (setUrl) => {
                 );
                 toast.success("Upload successfully");
                 setUrl(res.data.data.url)
-                console.log(1)
-                console.log(2)
 
             } catch (error) {
                 toast.error(error);

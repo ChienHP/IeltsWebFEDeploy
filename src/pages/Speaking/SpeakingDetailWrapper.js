@@ -1,30 +1,22 @@
-import Dictaphone from "./Dictaphone";
-import { Button } from "react-bootstrap";
-import PreparSpeaking from "./PreparSpeaking";
 import { useState } from "react";
 import DetailPartSpeaking from "./DetailPartSpeaking";
+import PrepareSpeaking from "./PrepareSpeaking";
 
 const SpeakingDetailWrapper = () => {
     const [isStarted, setIsStarted] = useState(false);
-    const dataMock = [
-        {
-            part: "1",
-            contentPart: " INTRODUCTION AND INTERVIEW",
-            question: ["Question 1", "Question 2", "Question 3"],
-        },
-        {
-            part: "2",
-            question: ["Question 1", "Question 2", "Question 3", "Question 4"],
-        },
-    ];
     return (
         <div>
-            <div className="w-full h-full flex justify-content-center mt-[100px] px-[300px]">
-                <div className="w-[1000px] h-[480px] bg-[#f3f3f3] rounded-md">
+            <div className="w-full h-full flex justify-content-center mt-[50px] px-[200px]">
+                <div className="w-[1200px] h-[500px] bg-[#f3f3f3] border-double border-4 border-red-800 rounded-3xl flex justify-content-center overflow-hidden"
+                style={{
+                    background: '#FBEEEE',
+                    boxShadow: "#422800 4px 4px 0 0",
+                }}
+                >
                     {isStarted ? (
-                        <DetailPartSpeaking dataMock={dataMock[0]} />
+                        <DetailPartSpeaking />
                     ) : (
-                        <PreparSpeaking setIsStarted={setIsStarted} />
+                        <PrepareSpeaking setIsStarted={setIsStarted} />
                     )}
                 </div>
             </div>

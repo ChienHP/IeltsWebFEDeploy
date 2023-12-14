@@ -47,3 +47,7 @@ export const getTestResultList = ({page, limit, type, status}) => {
         },
     });
 }
+
+export const createTestResult = (body) => {
+    return post(`/ielts-test/create-test-result`, body);
+}
