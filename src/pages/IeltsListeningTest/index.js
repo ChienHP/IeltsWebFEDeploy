@@ -152,7 +152,9 @@ const IeltsListeningTest = () => {
                         // @ts-ignore
                         test.type == IELTS_TEST_TYPE.READING && (
                             <Split className="flex h-full w-full flex-1 ">
-                                <div className="bg-orange-100 px-4 py-2 overflow-auto h-[72vh] my-scroll-bar">
+                                <div className="px-4 py-2 overflow-auto h-[72vh] my-scroll-bar" style={{
+                                    backgroundColor: '#f5f5f5'
+                                }}>
                                     <p className="text-red-800 text-3xl font-bold">
                                         Part{" "}
                                         {
@@ -203,7 +205,7 @@ const IeltsListeningTest = () => {
                     >
                         {" "}
                         <button
-                            className="test-panel__nav-btn -prev -disabled"
+                            className="my-button-74"
                             id="js-btn-previous"
                             onClick={() =>
                                 setIeltsTestPart(
@@ -218,7 +220,7 @@ const IeltsListeningTest = () => {
                             <span className="ioticon-prev-icon">{"<"}</span>{" "}
                         </button>{" "}
                         <button
-                            className="test-panel__nav-btn -next"
+                            className="my-button-74"
                             id="js-btn-next"
                             onClick={() =>
                                 setIeltsTestPart(

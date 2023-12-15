@@ -35,7 +35,7 @@
 }
 
 .ielts-listening-bottom-panel {
-    background-color: white;
+    background-color: #fbeee0;
 }
 
 .ielts-listening-question-palette {
@@ -63,7 +63,10 @@
     flex: 1;
     white-space: nowrap;
 }
-
+.ielts-listening-palette-section:active {
+    box-shadow: #422800 2px 2px 0 0;
+    transform: translate(2px, 2px);
+}
 
 
 .test-panel__nav {

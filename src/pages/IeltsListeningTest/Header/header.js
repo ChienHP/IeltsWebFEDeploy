@@ -11,7 +11,7 @@ export const Header = ({ handleSubmitAnswers }) => {
     };
     return (
         <div className="d-flex justify-content-between align-items-center border-bottom border-danger border-bottom p-2">
-            <Button className="btn-secondary d-flex">Back</Button>
+            <button className="my-button-74">Back</button>
             <div className="d-flex">
                 <i className="fa-sharp fa-regular fa-clock fa-2xl pt-3 pr-2"></i>
                 <span className="pt-1">
@@ -31,7 +31,7 @@ export const Header = ({ handleSubmitAnswers }) => {
             {/* <SubmitModal show={showSubmitModal} onHide={() => setShowSubmitModal(false)}></SubmitModal> */}
 
             <SubmitModal handleSubmitAnswers={handleSubmitAnswers}>
-                <button className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">
+                <button className="my-button-74">
                     Submit
                 </button>
             </SubmitModal>
