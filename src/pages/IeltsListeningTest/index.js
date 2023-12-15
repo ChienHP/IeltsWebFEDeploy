@@ -18,7 +18,7 @@ const IeltsListeningTest = () => {
     const { testId } = useParams();
     const [test, setTest] = useState({});
     const [ieltsTestPartList, setIeltsTestPartList] = useState([]);
-    const [ieltsTestPart, setIeltsTestPart] = useState({});
+    const [ieltsTestPart, setIeltsTestPart] = useState(null);
     const navigate = useNavigate();
     
     const currentPartIndex = ieltsTestPartList.findIndex((item) => {
@@ -100,7 +100,9 @@ const IeltsListeningTest = () => {
                     <Header handleSubmitAnswers={handleSubmitAnswers}></Header>
                 </div>
 
-                <div className="ielts-listening-page-content question-only overflow-auto bg-orange-50	">
+                <div className="ielts-listening-page-content question-only overflow-auto" style={{
+                    backgroundColor: '#f5f5f5'
+                }}>
                     {
                         // @ts-ignore
                         test.type == IELTS_TEST_TYPE.LISTENING && (
@@ -113,8 +115,7 @@ const IeltsListeningTest = () => {
                                         <strong className="text-red-800 text-3xl">
                                             Part{" "}
                                             {
-                                                // @ts-ignore
-                                                ieltsTestPart.partNumber
+                                                ieltsTestPart?.partNumber
                                             }
                                             :
                                         </strong>
@@ -122,11 +123,11 @@ const IeltsListeningTest = () => {
                                             controls
                                             id="ielts-listening-test-audio-1"
                                             className="ielts-listening-test-audio"
+                                            key={ieltsTestPart?.partDetail?.audioSrc}
                                         >
                                             <source
                                                 src={
-                                                    // @ts-ignore
-                                                    ieltsTestPart.partDetail
+                                                    ieltsTestPart?.partDetail
                                                         ?.audioSrc
                                                 }
                                                 type="audio/mpeg"
@@ -137,7 +138,7 @@ const IeltsListeningTest = () => {
                                     </div>
                                 </div>
 
-                                {Object.values(ieltsTestPart).length !== 0 && (
+                                {Object.values(ieltsTestPart ?? {}).length !== 0 && (
                                     <IeltsListeningPart
                                         ieltsTestPart={ieltsTestPart}
                                         getUserAnswer={getUserAnswer}
@@ -159,29 +160,29 @@ const IeltsListeningTest = () => {
                                         Part{" "}
                                         {
                                             // @ts-ignore
-                                            ieltsTestPart.partNumber + ": "
+                                            ieltsTestPart?.partNumber + ": "
                                         }
                                     </p>
                                     <p className="text-red-800 text-3xl font-bold text-center">
                                         Part{" "}
                                         {
                                             // @ts-ignore
-                                            ieltsTestPart.partDetail?.title
+                                            ieltsTestPart?.partDetail?.title
                                         }
                                     </p>
                                     <div>
                                         <span>
                                             {
                                                 // @ts-ignore
-                                                ieltsTestPart.partDetail
+                                                ieltsTestPart?.partDetail
                                                     ?.paragraphs
                                             }
                                         </span>
                                     </div>
                                 </div>
 
-                                <div className="overflow-auto h-[72vh]">
-                                    {Object.values(ieltsTestPart).length !==
+                                <div className="overflow-auto h-[72vh] bg-white">
+                                    {Object.values(ieltsTestPart || {}).length !==
                                         0 && (
                                         <IeltsListeningPart
                                             ieltsTestPart={ieltsTestPart}

@@ -81,9 +81,9 @@ const IeltsWritingTest = () => {
                     <Header handleSubmitAnswers={handleSubmitAnswers}></Header>
                 </div>
 
-                <div className="ielts-listening-page-content question-only overflow-auto bg-orange-50	">
+                <div className="ielts-listening-page-content question-only bg-orange-50	">
                     <Split className="flex h-full w-full flex-1 ">
-                        <div className="bg-orange-100 px-4 py-2 overflow-auto">
+                        <div className="bg-orange-100 px-4 py-2 h-[82vh] overflow-auto">
                             <p className="text-red-800 text-3xl font-bold">
                                 Part{" "}
                                 {

@@ -1,14 +1,16 @@
 import Dictaphone from "./Dictaphone";
 import { useEffect, useState } from "react";
 import { getIeltsSpeakingPartList, submitIeltsSpeakingAnswer } from "../../apis/ielts-speaking-test.api";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { createTestResult } from "../../apis/ielts-test.api";
 import { EndModal } from "./EndModal";
+import configs from "../../configs";
 
 const DetailPartSpeaking = () => {
     const [isStarted, setIsStarted] = useState(false);
+    const navigate = useNavigate();
     const { testId } = useParams();
     const [parts, setParts] = useState([]);
     const [currentPart, setCurrentPart] = useState(null);
@@ -38,6 +40,10 @@ const DetailPartSpeaking = () => {
         }
     }
     
+    const onClickReviewAnswers = () => {
+        navigate(configs.routes.reviewAnswers.replace(":testResultId", testResultId));
+    }
+
     useEffect(() => {
         (async () => {
             try {
@@ -188,7 +194,7 @@ const DetailPartSpeaking = () => {
                 </button>
             </div>
 
-            <EndModal show={showEndModal} setShow={setShowEndModal}></EndModal>
+            <EndModal show={showEndModal} setShow={setShowEndModal} onClickReviewAnswers={onClickReviewAnswers}></EndModal>
         </div>
     );
 };

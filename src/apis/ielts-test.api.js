@@ -37,6 +37,10 @@ export const evaluateWritingPartAnswer = (body) => {
     return post(`/ielts-test/evaluate-writing-part-answer`, body);
 }
 
+export const evaluateSpeakingTestAnswer = (body) => {
+    return post(`/ielts-test/evaluate-speaking-test-answer`, body);
+}
+
 export const getTestResultList = ({page, limit, type, status}) => {
     return get(`/ielts-test/test-result-list`, {
         params: {

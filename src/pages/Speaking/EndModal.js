@@ -5,7 +5,7 @@ import Modal from "react-bootstrap/Modal";
 import { Link } from "react-router-dom";
 import configs from "../../configs";
 
-export const EndModal = ({ show, setShow }) => {
+export const EndModal = ({ show, setShow, onClickReviewAnswers }) => {
     return (
         <Modal
             show={show}
@@ -56,7 +56,7 @@ export const EndModal = ({ show, setShow }) => {
                 >
                     <button
                         className="my-button-74"
-                        onClick={() => setShow(false)}
+                        onClick={() => onClickReviewAnswers()}
                     >
                         Review My Answers
                     </button>

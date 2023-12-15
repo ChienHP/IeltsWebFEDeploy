@@ -3,16 +3,20 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getIeltsTestDetail } from "../../apis/ielts-listening-test.api";
 import { toast } from "react-toastify";
-import { getLatestTestResult, getTestResultById } from "../../apis/ielts-test.api";
+import {
+    getLatestTestResult,
+    getTestResultById,
+} from "../../apis/ielts-test.api";
 import { IELTS_TEST_TYPE } from "../../shared/constant";
 import { ReviewAnswersWriting } from "./ReviewAnswerWriting";
-import "./styles.css"
+import "./styles.css";
+import { ReviewAnswersSpeaking } from "./ReviewAnswerSpeaking";
 
 export const ReviewAnswers = () => {
     const { testResultId } = useParams();
     const [test, setTest] = useState(null);
     const [testResult, setTestResult] = useState(null);
-    
+
     useEffect(() => {
         (async () => {
             try {
@@ -54,11 +58,17 @@ export const ReviewAnswers = () => {
                 <ReviewAnswersListening
                     testResult={testResult}
                 ></ReviewAnswersListening>
-            )) || (test?.type == IELTS_TEST_TYPE.WRITING && (
-                <ReviewAnswersWriting
-                    testResult={testResult}
-                ></ReviewAnswersWriting>
-            ))}
+            )) ||
+                (test?.type == IELTS_TEST_TYPE.WRITING && (
+                    <ReviewAnswersWriting
+                        testResult={testResult}
+                    ></ReviewAnswersWriting>
+                )) ||
+                (test?.type == IELTS_TEST_TYPE.SPEAKING && (
+                    <ReviewAnswersSpeaking
+                        testResult={testResult}
+                    ></ReviewAnswersSpeaking>
+                ))}
         </div>
     );
 };

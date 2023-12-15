@@ -16,7 +16,7 @@ const NavBar = () => {
                             <div className="hidden md:block">
                                 <div className="ml-10 flex items-baseline space-x-4">
                                     <Link
-                                        className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                                        className="text-white hover:bg-red-700 px-3 py-2 rounded-md text-sm fw-bold"
                                         to={
                                             configs.routes.ieltsTestList +
                                             "?type=Reading"
@@ -25,7 +25,7 @@ const NavBar = () => {
                                         IELTS Reading Test
                                     </Link>
                                     <Link
-                                        className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                                        className="text-white hover:bg-red-700 px-3 py-2 rounded-md text-sm fw-bold"
                                         to={
                                             configs.routes.ieltsTestList +
                                             "?type=Listening"
@@ -34,7 +34,7 @@ const NavBar = () => {
                                         IELTS Listening Test
                                     </Link>
                                     <Link
-                                        className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                                        className="text-white hover:bg-red-700 px-3 py-2 rounded-md text-sm fw-bold"
                                         to={
                                             (user?.roles.includes(
                                                 Role.Examiner
@@ -48,7 +48,7 @@ const NavBar = () => {
                                         IELTS Writing Test
                                     </Link>
                                     <Link
-                                        className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                                        className="text-white hover:bg-red-700 px-3 py-2 rounded-md text-sm fw-bold"
                                         to={
                                             configs.routes.ieltsTestList +
                                             "?type=Speaking"
