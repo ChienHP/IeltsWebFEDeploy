@@ -54,7 +54,7 @@ export const ReviewAnswers = () => {
                     </div>
                 )}
             </div>
-            {(test?.type == IELTS_TEST_TYPE.LISTENING && (
+            {([IELTS_TEST_TYPE.LISTENING, IELTS_TEST_TYPE.READING].includes(test?.type)  && (
                 <ReviewAnswersListening
                     testResult={testResult}
                 ></ReviewAnswersListening>

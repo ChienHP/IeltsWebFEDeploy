@@ -94,7 +94,6 @@ const CreateListeningIeltsPartForm = ({
                         AudioSrc
                         <SingleFileUploader
                             setUrl={(url) => {
-                                console.log("url", url);
                                 setFormState({
                                     ...formState,
                                     audioSrc: url,

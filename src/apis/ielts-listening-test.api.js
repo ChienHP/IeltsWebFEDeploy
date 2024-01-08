@@ -16,7 +16,7 @@ export const getIeltsTestPartList = (testId) => {
 }
 
 export const createIeltsListeningPart = (body) => {
-    return post(`/create-ielts-listening-part`, body)
+    return post(`ielts-test-part/create-ielts-listening-part`, body)
 }
 
 export const createIeltsTest = (body) => {
@@ -49,4 +49,8 @@ export const ieltsListeningQuestionList = (testId) => {
 
 export const getScore = (body) => {
     return post(`ielts-test/get-score`, body)
+}
+
+export const updateIeltsListeningPart = (body) => {
+    return post(`ielts-test-part/listening/update`, body)
 }

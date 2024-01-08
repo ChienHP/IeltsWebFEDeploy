@@ -39,13 +39,13 @@ const IeltsListeningTestList = () => {
 
     return (
         <div>
-            <h1 className="">Ielts Listening Test List</h1>
+            <h1 className="fw-bold fs-2">Ielts {type} Test List</h1>
             <div className="container">
                 <div className="text-right">
                     <IeltsListeningTestDetail mode="create" type={type}></IeltsListeningTestDetail>
                 </div>
 
-                <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 mt-4 border-double border-4">
                     <thead className="text-xs text-white uppercase bg-red-700">
                         <tr>
                             <th scope="col" className="px-6 py-3">
@@ -115,7 +115,7 @@ const IeltsListeningTestList = () => {
                     </tbody>
                 </table>
 
-                <div className="flex flex-col items-center">
+                <div className="flex flex-col items-center mt-4">
                     <span className="text-sm text-gray-700 dark:text-gray-400">
                         Showing{" "}
                         <span className="font-semibold text-gray-400">

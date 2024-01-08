@@ -7,12 +7,14 @@ import {
 } from "../../apis/ielts-listening-test.api";
 import { toast } from "react-toastify";
 import CreateListeningIeltsPartForm from "./CreateListeningIeltsPartForm";
+import { UpdateAudioModal } from "./UpdateAudioModal/UpdateAudioModal";
 
 export const AdminIeltsListeningPart = () => {
     const { testId } = useParams();
     const [test, setTest] = useState(null);
     const [ieltsListeningParts, setIeltsListeningParts] = useState(null);
     const [ieltsListeningPart, setIeltsListeningPart] = useState(null);
+    const [showUpdateAudioModal, setShowUpdateAudioModal] = useState(false);
 
     useEffect(() => {
         (async () => {
@@ -39,47 +41,63 @@ export const AdminIeltsListeningPart = () => {
 
     return (
         <div>
-            <h3>{test?.name}</h3>
-            <CreateListeningIeltsPartForm mode='create' testId={test?.id}></CreateListeningIeltsPartForm>
+            <div className="fw-bold fs-2">{test?.name}</div>
+            <div className="d-flex justify-content-end mt-4 mb-4">
+                <div className="my-button-74">
+                    <CreateListeningIeltsPartForm
+                        mode="create"
+                        testId={test?.id}
+                    ></CreateListeningIeltsPartForm>
+                </div>
+            </div>
+
             <Nav justify variant="tabs" defaultActiveKey="">
-                {/* <Nav.Item>
-                    <Nav.Link href="ho/me">Active</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                    <Nav.Link eventKey="link-1">Loooonger NavLink</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                    <Nav.Link eventKey="link-2">Link</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                    <Nav.Link eventKey="disabled" disabled>
-                        Disabled
-                    </Nav.Link>
-                </Nav.Item> */}
                 {ieltsListeningParts &&
                     ieltsListeningParts.map((item, index) => {
                         return (
                             <Nav.Item key={index}>
-                                <Nav.Link eventKey={index} onClick={() => setIeltsListeningPart(item)}>
-                                    Part number {item.partNumber}
+                                <Nav.Link
+                                    eventKey={index}
+                                    onClick={() => setIeltsListeningPart(item)}
+                                >
+                                    <span className="fw-bold fs-5">
+                                        Part number {item.partNumber}
+                                    </span>
                                 </Nav.Link>
                             </Nav.Item>
                         );
                     })}
-
-                <Nav.Item>
-                    <Nav.Link eventKey="Add more part">Add more part</Nav.Link>
-                </Nav.Item>
             </Nav>
-            
-            {ieltsListeningPart && (
-                <div>
-                <audio controls>
-                    <source src={ieltsListeningPart?.partDetail?.audioSrc}></source>
-                </audio>
+
+            <div className="d-flex justify-content-center mt-4">
+                {ieltsListeningPart && (
+                    <div className="d-flex justify-content-center">
+                        <audio
+                            controls
+                            className="my-audio-player"
+                            style={{ width: "500px" }}
+                            key={ieltsListeningPart?.partDetail?.audioSrc}
+                        >
+                            <source
+                                src={ieltsListeningPart?.partDetail?.audioSrc}
+                            ></source>
+                        </audio>
+
+                        <button
+                            className="my-button-74"
+                            onClick={() => setShowUpdateAudioModal(true)}
+                        >
+                            Update
+                        </button>
+
+                        <UpdateAudioModal
+                            show={showUpdateAudioModal}
+                            setShow={setShowUpdateAudioModal}
+                            partId={ieltsListeningPart?.id}
+                        ></UpdateAudioModal>
+                    </div>
+                )}
             </div>
-            )}
-            
         </div>
     );
 };

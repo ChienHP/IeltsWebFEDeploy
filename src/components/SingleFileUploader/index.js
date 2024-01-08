@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { CloudArrowUpFill } from "react-bootstrap-icons";
 
-const SingleFileUploader = (setUrl) => {
+const SingleFileUploader = ({setUrl}) => {
     const [file, setFile] = useState(null);
 
     const handleFileChange = (e) => {
@@ -37,25 +38,17 @@ const SingleFileUploader = (setUrl) => {
     };
 
     return (
-        <>
+        <div className="d-flex align-items-center">
             <div>
                 <label htmlFor="file" className="sr-only">
                     Choose a file
                 </label>
                 <input id="file" type="file" onChange={handleFileChange} />
             </div>
-            {/* {file && (
-                <section>
-                    File details:
-                    <ul>
-                        <li>Name: {file.name}</li>
-                        <li>Type: {file.type}</li>
-                        <li>Size: {file.size} bytes</li>
-                    </ul>
-                </section>
-            )} */}
-            {file && <button onClick={handleUpload}>Upload a file</button>}
-        </>
+            {file && <button onClick={handleUpload}>
+                <CloudArrowUpFill color="blue" size={40}></CloudArrowUpFill>    
+            </button>}
+        </div>
     );
 };
 
