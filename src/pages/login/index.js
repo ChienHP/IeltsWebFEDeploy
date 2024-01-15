@@ -58,7 +58,7 @@ function Login() {
             toast.success("Login successfully");
             localStorage.setItem("token", res.data.accessToken);
             setToken(res.data.accessToken);
-            navigate("/ielts-test-list");
+            navigate("/");
         } catch (error) {
             toast.error(error);
         }

@@ -1,10 +1,11 @@
 import { Editor } from "../../../node_modules/@tinymce/tinymce-react/lib/cjs/main/ts/index";
 
-export const EditorWrap = ({value, onChange}) => {
+export const EditorWrap = ({value, onChange, disabled}) => {
   return (
     <Editor
       apiKey="3ybenkspg56q99vgv88170npov83hsmybghawpra6srms960"
       value={value}
+      disabled={disabled}
       onEditorChange={(value, editor) => {
         onChange(value);
       }}

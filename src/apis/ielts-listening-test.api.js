@@ -54,3 +54,7 @@ export const getScore = (body) => {
 export const updateIeltsListeningPart = (body) => {
     return post(`ielts-test-part/listening/update`, body)
 }
+
+export const deleteQuestionGroup = (id) => {
+    return deleteReq(`/question-group/delete/${id}`)
+}

@@ -6,7 +6,6 @@ import { toast } from "react-toastify";
 
 export const UpdateAudioModal = ({ show, setShow, partId }) => {
     const [audioUrl, setAudioUrl] = useState("");
-    console.log("audioUrl", audioUrl);
     const handleUpdateAudio = async () => {
         try {
             if (!audioUrl) throw "Please choose a file";

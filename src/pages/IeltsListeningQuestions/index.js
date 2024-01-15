@@ -16,7 +16,7 @@ const initialFormState = {
     listOfQuestions: [],
 };
 
-const IeltsListeningQuestions = () => {
+const IeltsListeningQuestions = ({ partId, questionGroup, mode }) => {
     const [formState, setFormState] = useState(initialFormState);
     useEffect(() => {
         const numberOfQuestion = formState.to - formState.from + 1;
@@ -74,6 +74,22 @@ const IeltsListeningQuestions = () => {
         });
     }, [formState.from, formState.to]);
 
+    useEffect(() => {
+        if (mode == "read") {
+            setFormState({
+                partId: questionGroup?.partId,
+                type: questionGroup?.type,
+                from: questionGroup?.from,
+                to: questionGroup?.to,
+                content: questionGroup?.content,
+                typeOfLabel: "Alphabet",
+                listOfOptions: questionGroup?.options.map((e) => e.content),
+                listOfKeys: questionGroup?.keys.map((e) => e.key),
+                listOfQuestions: questionGroup?.keys.map((e) => e.content),
+            });
+        }
+    }, [questionGroup]);
+
     const handleChange = (field) => (e) => {
         if (typeof formState[field] === "number") {
             setFormState({
@@ -99,7 +115,7 @@ const IeltsListeningQuestions = () => {
     const handleSave = async () => {
         try {
             const request = {};
-            request.partId = formState.partId;
+            request.partId = partId;
             request.type = formState.type;
             request.from = formState.from;
             request.to = formState.to;
@@ -139,31 +155,26 @@ const IeltsListeningQuestions = () => {
 
             await createIeltsListeningQuestions(request);
             toast.success("Create successfully");
+            setFormState(initialFormState);
+            window.location.reload();
         } catch (error) {
             toast.error(error);
         }
     };
 
     return (
-        <div className="p-4">
-            <div className="d-flex align-items-center">
-                <span className="fw-bold fs-5">Part: </span>
-                <div className="ml-4">
-                    <input
-                        className="p-1 border border-dark rounded-xl"
-                        type="number"
-                        value={formState.partId ? formState.partId : ""}
-                        onChange={handleChange("partId")}
-                    ></input>
-                </div>
-            </div>
-
-            <div>
-                <label htmlFor="types"> Type </label>
+        <div className="p-4 border-2 border-black rounded-2xl mt-2 border-dotted">
+            <div className="">
+                <label htmlFor="types" className="fw-bold fs-5">
+                    {" "}
+                    Type:{" "}
+                </label>
                 <select
                     name="types"
                     value={formState.type}
                     onChange={handleChange("type")}
+                    disabled={mode == "read"}
+                    className="ml-4 border border-dark rounded-xl p-1"
                 >
                     <option value="none">Select an Option</option>
                     {Object.values(QUESTION_TYPE).map((type) => (
@@ -174,45 +185,61 @@ const IeltsListeningQuestions = () => {
                 </select>
             </div>
 
-            <div>
-                Question{" "}
+            <div className="mt-2">
+                <span className="fw-bold fs-5">Question:</span>
                 <input
                     type="number"
                     id="fname"
                     name="fname"
+                    className="ml-4 border border-dark rounded-xl p-1"
+                    disabled={mode == "read"}
                     value={formState.from ? formState.from : ""}
                     onChange={handleChange("from")}
                 ></input>{" "}
                 {formState.type !== QUESTION_TYPE.MULTIPLE_CHOICE && (
                     <Fragment>
-                        to{" "}
+                        <span className="fw-bold fs-5 ml-2">to</span>
                         <input
                             type="number"
                             id="fname"
                             name="fname"
+                            className="ml-4 border border-dark rounded-xl p-1"
                             value={formState.to ? formState.to : ""}
                             onChange={handleChange("to")}
                             disabled={
-                                formState.type === QUESTION_TYPE.MULTIPLE_CHOICE
+                                formState.type ===
+                                    QUESTION_TYPE.MULTIPLE_CHOICE ||
+                                mode == "read"
                             }
                         ></input>
                     </Fragment>
                 )}
             </div>
-
-            <EditorWrap
-                value={formState.content}
-                onChange={handleEditorChange}
-            ></EditorWrap>
+            <div className="mt-2">
+                <div>
+                    <span className="fw-bold fs-5">Content:</span>
+                </div>
+                <div className="border border-dark rounded-xl p-1">
+                    <EditorWrap
+                        value={formState.content}
+                        onChange={handleEditorChange}
+                        disabled={mode == "read"}
+                    ></EditorWrap>
+                </div>
+            </div>
 
             {[QUESTION_TYPE.MULTIPLE_CHOICE, QUESTION_TYPE.MATCHING].includes(
                 formState.type
             ) && (
-                <div>
-                    <label htmlFor="typeOfLabel"> Type of label: </label>
+                <div className="mt-2">
+                    <label htmlFor="typeOfLabel">
+                        <span className="fw-bold fs-5">Type of label: </span>
+                    </label>
                     <select
                         name="typeOfLabel"
                         value={formState.typeOfLabel}
+                        className="ml-4 border border-dark rounded-xl p-1"
+                        disabled={mode == "read"}
                         onChange={handleChange("typeOfLabel")}
                     >
                         <option value="none">Select an Option</option>
@@ -231,63 +258,84 @@ const IeltsListeningQuestions = () => {
                 formState.type
             ) && (
                 <div>
-                    <div>List of options</div>
+                    <div>
+                        <span className="fw-bold fs-5">List of options: </span>
+                    </div>
                     <ul>
                         {formState.listOfOptions.map((value, index) => (
-                            <li key={index}>
-                                <label htmlFor="fname">
-                                    {
-                                        Object.values(
-                                            TYPE_OF_QUESTION_LABEL
-                                        ).find((e) => {
-                                            return (
-                                                e.labelName ===
-                                                formState.typeOfLabel
-                                            );
-                                        })?.value[index]
-                                    }
-                                </label>
-                                <input
-                                    type="text"
-                                    value={formState.listOfOptions[index]}
-                                    onChange={(e) => {
-                                        formState.listOfOptions[index] =
-                                            e.target.value;
-                                        setFormState({
-                                            ...formState,
-                                            listOfOptions:
-                                                formState.listOfOptions,
-                                        });
-                                    }}
-                                ></input>
-                                <button
-                                    onClick={() => {
-                                        const newListOfOptions =
-                                            formState.listOfOptions;
-                                        newListOfOptions.splice(index, 1);
-                                        setFormState({
-                                            ...formState,
-                                            listOfOptions: newListOfOptions,
-                                        });
-                                    }}
-                                >
-                                    Remove
-                                </button>
+                            <li key={index} className="mt-2">
+                                <div className="border d-inline-block border-dark rounded-2xl p-1">
+                                    <label
+                                        htmlFor=""
+                                        className="fw-bold ml-2 border border-dark rounded-full p-1 px-2"
+                                    >
+                                        {
+                                            Object.values(
+                                                TYPE_OF_QUESTION_LABEL
+                                            ).find((e) => {
+                                                return (
+                                                    e.labelName ===
+                                                    formState.typeOfLabel
+                                                );
+                                            })?.value[index]
+                                        }
+                                    </label>
+                                    <input
+                                        type="text"
+                                        value={formState.listOfOptions[index]}
+                                        disabled={mode == "read"}
+                                        className="ml-2 border border-dark rounded-xl p-1 w-96"
+                                        onChange={(e) => {
+                                            formState.listOfOptions[index] =
+                                                e.target.value;
+                                            setFormState({
+                                                ...formState,
+                                                listOfOptions:
+                                                    formState.listOfOptions,
+                                            });
+                                        }}
+                                    ></input>
+                                    {mode == "create" && (
+                                        <button
+                                            onClick={() => {
+                                                const newListOfOptions =
+                                                    formState.listOfOptions;
+                                                newListOfOptions.splice(
+                                                    index,
+                                                    1
+                                                );
+                                                setFormState({
+                                                    ...formState,
+                                                    listOfOptions:
+                                                        newListOfOptions,
+                                                });
+                                            }}
+                                        >
+                                            <span className="border-1 rounded-xl border-red-600 p-1 text-red-400  p-1 ml-2">
+                                                Remove
+                                            </span>
+                                        </button>
+                                    )}
+                                </div>
                             </li>
                         ))}
-                        <button
-                            onClick={() => {
-                                const newListOfOptions =
-                                    formState.listOfOptions;
-                                newListOfOptions.push("");
-                                setFormState({
-                                    ...formState,
-                                    listOfOptions: newListOfOptions,
-                                });
-                            }}
-                        >
-                            More option
-                        </button>
+
+                        {mode == "create" && (
+                            <button
+                                className="border-1 border-green-400 rounded-xl p-1 text-green-400 fw-bold mt-2"
+                                onClick={() => {
+                                    const newListOfOptions =
+                                        formState.listOfOptions;
+                                    newListOfOptions.push("");
+                                    setFormState({
+                                        ...formState,
+                                        listOfOptions: newListOfOptions,
+                                    });
+                                }}
+                            >
+                                More option
+                            </button>
+                        )}
                     </ul>
                 </div>
             )}
@@ -297,24 +345,31 @@ const IeltsListeningQuestions = () => {
                 QUESTION_TYPE.MATCHING,
             ].includes(formState.type) && (
                 <div>
-                    List of questions
+                    <span className="fw-bold fs-5">List of questions: </span>
                     <ul>
                         {formState.listOfQuestions.map((value, index) => (
-                            <li key={index}>
-                                Question {formState.from + index}:
-                                <input
-                                    type="text"
-                                    value={value}
-                                    onChange={(e) => {
-                                        formState.listOfQuestions[index] =
-                                            e.target.value;
-                                        setFormState({
-                                            ...formState,
-                                            listOfQuestions:
-                                                formState.listOfQuestions,
-                                        });
-                                    }}
-                                ></input>
+                            <li key={index} className="mt-2">
+                                <div className="border-1 border-black rounded-2xl d-inline-block p-1">
+                                    {" "}
+                                    <span className="fw-bold ml-2">
+                                        Question {formState.from + index}:
+                                    </span>
+                                    <input
+                                        type="text"
+                                        value={value}
+                                        disabled={mode == "read"}
+                                        className="ml-2 border border-dark rounded-xl p-1 w-96"
+                                        onChange={(e) => {
+                                            formState.listOfQuestions[index] =
+                                                e.target.value;
+                                            setFormState({
+                                                ...formState,
+                                                listOfQuestions:
+                                                    formState.listOfQuestions,
+                                            });
+                                        }}
+                                    ></input>
+                                </div>
                             </li>
                         ))}
                     </ul>
@@ -322,31 +377,39 @@ const IeltsListeningQuestions = () => {
             )}
 
             <div>
-                List of keys
+                <span className="fw-bold fs-5">List of keys:</span>
                 <ul>
                     {formState.listOfKeys.map((value, index) => (
-                        <li key={index}>
-                            Question {formState.from + index}:
-                            <input
-                                type="text"
-                                value={value}
-                                onChange={(e) => {
-                                    formState.listOfKeys[index] =
-                                        e.target.value;
-                                    setFormState({
-                                        ...formState,
-                                        listOfKeys: formState.listOfKeys,
-                                    });
-                                }}
-                            ></input>
+                        <li key={index} className="mt-2">
+                            <div className="border-1 border-black rounded-2xl d-inline-block p-2">
+                                <span className="fw-bold ml-2">
+                                    Question {formState.from + index}:
+                                </span>
+                                <input
+                                    type="text"
+                                    value={value}
+                                    disabled={mode == "read"}
+                                    className="ml-2 border border-dark rounded-xl p-1 w-96"
+                                    onChange={(e) => {
+                                        formState.listOfKeys[index] =
+                                            e.target.value;
+                                        setFormState({
+                                            ...formState,
+                                            listOfKeys: formState.listOfKeys,
+                                        });
+                                    }}
+                                ></input>
+                            </div>
                         </li>
                     ))}
                 </ul>
             </div>
 
-            <button className="my-button-74" onClick={handleSave}>
-                Save
-            </button>
+            {mode == "create" && (
+                <button className="my-button-74" onClick={handleSave}>
+                    Save
+                </button>
+            )}
         </div>
     );
 };

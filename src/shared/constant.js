@@ -16,8 +16,8 @@ export const QUESTION_TYPE = {
     FILL_IN_THE_BLANKS: "Fill in the blanks",
     MULTIPLE_CHOICE: "Multiple choice",
     MATCHING: "Matching",
-    MULTIPLE_ANSWER_FOR_MULTIPLE_QUESTION:
-        "Multiple answer for multiple question",
+    // MULTIPLE_ANSWER_FOR_MULTIPLE_QUESTION:
+    //     "Multiple answer for multiple question",
     TRUE_FALSE_NOT_GIVEN: "True/False/Not given",
 };
 

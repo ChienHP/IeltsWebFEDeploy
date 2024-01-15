@@ -245,6 +245,9 @@ const IeltsListeningPart = ({
                                                             }
                                                         )}
                                                     </select>
+                                                    <span className="ml-2">
+                                                        {questionKey.content}
+                                                    </span>
                                                 </div>
                                             );
                                         }
