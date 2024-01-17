@@ -7,11 +7,21 @@ const TextToSpeech = ({ text }) => {
     const [pitch, setPitch] = useState(1);
     const [rate, setRate] = useState(1);
     const [volume, setVolume] = useState(1);
+    const [progress, setProgress] = useState(0);
 
     useEffect(() => {
+
         const synth = window.speechSynthesis;
         const u = new SpeechSynthesisUtterance(text);
         const voices = synth.getVoices();
+
+        u.onboundary = (event) => {
+            const currentTime = event.timeStamp;
+            const totalDuration = u.duration * 1000;
+            const currentProgress = (currentTime / totalDuration) * 100;
+            console.log("utterance.duration",event)
+            setProgress(currentProgress);
+        };
 
         setUtterance(u);
         setVoice(voices[0]);
@@ -124,10 +134,28 @@ const TextToSpeech = ({ text }) => {
             </label>
 
             <br />
+<div className={'flex gap-3'}>
+    <button onClick={handlePlay}>{isPaused ? "Resume" : "Play"}</button>
+    <button onClick={handlePause}>Pause</button>
+    <button onClick={handleStop}>Stop</button>
+</div>
 
-            <button onClick={handlePlay}>{isPaused ? "Resume" : "Play"}</button>
-            <button onClick={handlePause}>Pause</button>
-            <button onClick={handleStop}>Stop</button>
+            <div
+                style={{
+                    width: "100%",
+                    height: "10px",
+                    background: "#e0e0e0",
+                    marginTop: "10px",
+                }}
+            >
+                <div
+                    style={{
+                        width: `${progress}%`,
+                        height: "100%",
+                        background: "#4caf50",
+                    }}
+                ></div>
+            </div>
         </div>
     );
 };
