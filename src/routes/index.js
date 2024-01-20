@@ -4,10 +4,9 @@ import SingleFileUploader from "../components/SingleFileUploader";
 import configs from "../configs";
 import AdminIeltsListeningPart from "../pages/Admin-IeltsListeningPart";
 import AdminIeltsReadingPart from "../pages/Admin-IeltsReadingPart";
+import { AdminIeltsSpeakingParts } from "../pages/Admin-IeltsSpeakingParts/AdminIeltsSpeakingParts";
 import AdminIeltsWritingParts from "../pages/Admin-IeltsWritingParts/AdminIeltsWritingParts";
-import IeltsReadingTestDashboard from "../pages/Dashboard/IeltsReadingTestDashboard";
 import Home from "../pages/Home";
-import IELTSCourses from "../pages/IELTS_Courses";
 import IeltsListeningQuestions from "../pages/IeltsListeningQuestions";
 import IeltsListeningTest from "../pages/IeltsListeningTest";
 import IeltsListeningTestDashboard from "../pages/IeltsListeningTestDashboard";
@@ -23,7 +22,6 @@ import { Role } from "../shared/constant";
 
 const publicRoutes = [
   {path: configs.routes.home, Component: Home },
-  {path: configs.routes.ieltsCourses, Component: IELTSCourses},
 
 
   {path: configs.routes.ieltsTestList, Component: IeltsTestList},
@@ -51,6 +49,7 @@ const privateRoutes = [
   {path: configs.routes.adminIeltsListeningPart, Component: AdminIeltsListeningPart},
   {path: configs.routes.adminIeltsWritingPart, Component: AdminIeltsWritingParts},
   {path: configs.routes.adminIeltsReadingPart, Component: AdminIeltsReadingPart},
+  {path: configs.routes.adminIeltsSpeakingPart, Component: AdminIeltsSpeakingParts}
 ];
 
 export { publicRoutes, privateRoutes };

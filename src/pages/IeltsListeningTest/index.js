@@ -20,7 +20,7 @@ const IeltsListeningTest = () => {
     const [ieltsTestPartList, setIeltsTestPartList] = useState([]);
     const [ieltsTestPart, setIeltsTestPart] = useState(null);
     const navigate = useNavigate();
-    
+
     const currentPartIndex = ieltsTestPartList.findIndex((item) => {
         // @ts-ignore
         return item.partNumber === ieltsTestPart.partNumber;
@@ -50,7 +50,12 @@ const IeltsListeningTest = () => {
                 testId,
                 userAnswers,
             });
-            navigate(configs.routes.reviewAnswers.replace(":testResultId", res.data.id));
+            navigate(
+                configs.routes.reviewAnswers.replace(
+                    ":testResultId",
+                    res.data.id
+                )
+            );
         } catch (error) {
             toast.error(error);
         }
@@ -100,9 +105,12 @@ const IeltsListeningTest = () => {
                     <Header handleSubmitAnswers={handleSubmitAnswers}></Header>
                 </div>
 
-                <div className="ielts-listening-page-content question-only overflow-auto" style={{
-                    backgroundColor: '#f5f5f5'
-                }}>
+                <div
+                    className="ielts-listening-page-content question-only overflow-auto"
+                    style={{
+                        backgroundColor: "#f5f5f5",
+                    }}
+                >
                     {
                         // @ts-ignore
                         test.type == IELTS_TEST_TYPE.LISTENING && (
@@ -113,17 +121,16 @@ const IeltsListeningTest = () => {
                                         className="ielts-listening-part-announcement current"
                                     >
                                         <strong className="text-red-800 text-3xl">
-                                            Part{" "}
-                                            {
-                                                ieltsTestPart?.partNumber
-                                            }
-                                            :
+                                            Part {ieltsTestPart?.partNumber}:
                                         </strong>
                                         <audio
                                             controls
                                             id="ielts-listening-test-audio-1"
                                             className="ielts-listening-test-audio"
-                                            key={ieltsTestPart?.partDetail?.audioSrc}
+                                            key={
+                                                ieltsTestPart?.partDetail
+                                                    ?.audioSrc
+                                            }
                                         >
                                             <source
                                                 src={
@@ -138,7 +145,8 @@ const IeltsListeningTest = () => {
                                     </div>
                                 </div>
 
-                                {Object.values(ieltsTestPart ?? {}).length !== 0 && (
+                                {Object.values(ieltsTestPart ?? {}).length !==
+                                    0 && (
                                     <IeltsListeningPart
                                         ieltsTestPart={ieltsTestPart}
                                         getUserAnswer={getUserAnswer}
@@ -153,9 +161,12 @@ const IeltsListeningTest = () => {
                         // @ts-ignore
                         test.type == IELTS_TEST_TYPE.READING && (
                             <Split className="flex h-full w-full flex-1 ">
-                                <div className="px-4 py-2 overflow-auto h-[72vh] my-scroll-bar" style={{
-                                    backgroundColor: '#f5f5f5'
-                                }}>
+                                <div
+                                    className="px-4 py-2 overflow-auto h-[72vh] my-scroll-bar"
+                                    style={{
+                                        backgroundColor: "#f5f5f5",
+                                    }}
+                                >
                                     <p className="text-red-800 text-3xl font-bold">
                                         Part{" "}
                                         {
@@ -171,19 +182,19 @@ const IeltsListeningTest = () => {
                                         }
                                     </p>
                                     <div>
-                                        <span>
-                                            {
-                                                // @ts-ignore
-                                                ieltsTestPart?.partDetail
-                                                    ?.paragraphs
-                                            }
-                                        </span>
+                                        <div
+                                            dangerouslySetInnerHTML={{
+                                                __html: ieltsTestPart
+                                                    ?.partDetail?.paragraphs,
+                                            }}
+                                        ></div>
+                                        <span>{}</span>
                                     </div>
                                 </div>
 
                                 <div className="overflow-auto h-[72vh] bg-white">
-                                    {Object.values(ieltsTestPart || {}).length !==
-                                        0 && (
+                                    {Object.values(ieltsTestPart || {})
+                                        .length !== 0 && (
                                         <IeltsListeningPart
                                             ieltsTestPart={ieltsTestPart}
                                             getUserAnswer={getUserAnswer}

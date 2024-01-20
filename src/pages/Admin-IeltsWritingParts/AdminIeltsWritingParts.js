@@ -1,20 +1,21 @@
 import { useEffect, useState } from "react";
 import { Nav } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import {
-    getIeltsTestDetail,
-} from "../../apis/ielts-listening-test.api";
+import { getIeltsTestDetail } from "../../apis/ielts-listening-test.api";
 import { toast } from "react-toastify";
 import { CreateWritingPartForm } from "./CreateIeltsWritingPartForm";
-import { getIeltsWritingPartList } from "../../apis/ielts-writing-test.api";
+import {
+    getIeltsWritingPartList,
+    updateIeltsWritingPart,
+} from "../../apis/ielts-writing-test.api";
+import { EditorWrap } from "../../components/Editor";
 
 export const AdminIeltsWritingParts = () => {
     const { testId } = useParams();
     const [test, setTest] = useState(null);
     const [ieltsParts, setIeltsParts] = useState(null);
     const [ieltsPart, setIeltsPart] = useState(null);
-    
-    console.log("testId", testId);
+    console.log("ieltsPart", ieltsPart);
     useEffect(() => {
         (async () => {
             try {
@@ -37,6 +38,18 @@ export const AdminIeltsWritingParts = () => {
             }
         })();
     }, []);
+
+    const handleSave = async () => {
+        try {
+            await updateIeltsWritingPart({
+                id: ieltsPart.id,
+                content: ieltsPart.partDetail.content,
+            });
+            toast.success("Save successfully");
+        } catch (error) {
+            toast.error(error);
+        }
+    };
 
     return (
         <div>
@@ -62,11 +75,28 @@ export const AdminIeltsWritingParts = () => {
             </Nav>
 
             {ieltsPart && (
-                <div
-                    dangerouslySetInnerHTML={{
-                        __html: ieltsPart?.partDetail.content,
-                    }}
-                ></div>
+                <div className="mt-4">
+                    <EditorWrap
+                        value={ieltsPart.partDetail.content}
+                        onChange={(value) => {
+                            setIeltsPart({
+                                ...ieltsPart,
+                                partDetail: {
+                                    ...ieltsPart.partDetail,
+                                    content: value,
+                                }
+                            });
+                        }}
+                    ></EditorWrap>
+                    <div className="d-flex justify-content-end mt-2 mr-2">
+                        <button
+                            className="my-button-74"
+                            onClick={() => handleSave()}
+                        >
+                            Save
+                        </button>
+                    </div>
+                </div>
             )}
         </div>
     );

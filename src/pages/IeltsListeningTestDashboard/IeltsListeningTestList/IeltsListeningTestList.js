@@ -22,12 +22,7 @@ const IeltsListeningTestList = () => {
     useEffect(() => {
         (async () => {
             try {
-                const res = await getIeltsTestList(
-                    page,
-                    limit,
-                    null,
-                    type
-                );
+                const res = await getIeltsTestList(page, limit, null, type);
                 setTotalPage(res.meta.pagination.totalPages);
                 setTotalItems(res.meta.pagination.totalItems);
                 setIeltsListeningTests(res.data);
@@ -42,7 +37,10 @@ const IeltsListeningTestList = () => {
             <h1 className="fw-bold fs-2">Ielts {type} Test List</h1>
             <div className="container">
                 <div className="text-right">
-                    <IeltsListeningTestDetail mode="create" type={type}></IeltsListeningTestDetail>
+                    <IeltsListeningTestDetail
+                        mode="create"
+                        type={type}
+                    ></IeltsListeningTestDetail>
                 </div>
 
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 mt-4 border-double border-4">
@@ -73,14 +71,29 @@ const IeltsListeningTestList = () => {
                                 </td>
                                 <td className="px-6 py-4 text-right">
                                     <Link
-                                        to={(type == IELTS_TEST_TYPE.LISTENING && configs.routes.adminIeltsListeningPart.replace(
-                                            ":testId",
-                                            ieltsListeningTest.id
-                                        )) || (type == IELTS_TEST_TYPE.WRITING && configs.routes.adminIeltsWritingPart.replace(
-                                            ":testId",
-                                            ieltsListeningTest.id
-                                        ))
-                                    }
+                                        to={
+                                            (type ==
+                                                IELTS_TEST_TYPE.LISTENING &&
+                                                configs.routes.adminIeltsListeningPart.replace(
+                                                    ":testId",
+                                                    ieltsListeningTest.id
+                                                )) ||
+                                            (type == IELTS_TEST_TYPE.WRITING &&
+                                                configs.routes.adminIeltsWritingPart.replace(
+                                                    ":testId",
+                                                    ieltsListeningTest.id
+                                                )) ||
+                                            (type == IELTS_TEST_TYPE.READING &&
+                                                configs.routes.adminIeltsReadingPart.replace(
+                                                    ":testId",
+                                                    ieltsListeningTest.id
+                                                )) ||
+                                            (type == IELTS_TEST_TYPE.SPEAKING &&
+                                                configs.routes.adminIeltsSpeakingPart.replace(
+                                                    ":testId",
+                                                    ieltsListeningTest.id
+                                                ))
+                                        }
                                     >
                                         <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
                                             Detail
@@ -118,13 +131,9 @@ const IeltsListeningTestList = () => {
                 <div className="flex flex-col items-center mt-4">
                     <span className="text-sm text-gray-700 dark:text-gray-400">
                         Showing{" "}
-                        <span className="font-semibold text-gray-400">
-                            1
-                        </span>{" "}
+                        <span className="font-semibold text-gray-400">1</span>{" "}
                         to{" "}
-                        <span className="font-semibold text-gray-400">
-                            10
-                        </span>{" "}
+                        <span className="font-semibold text-gray-400">10</span>{" "}
                         of{" "}
                         <span className="font-semibold text-gray-400">
                             {totalItems}
@@ -132,8 +141,12 @@ const IeltsListeningTestList = () => {
                         Entries
                     </span>
                     <div className="inline-flex mt-2 xs:mt-0">
-                        <button className="flex items-center justify-center px-3 h-8 text-sm font-medium text-white bg-gray-800 rounded-s hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                        onClick={() => setPage(page => page > 1 ? page - 1 : page)}>
+                        <button
+                            className="flex items-center justify-center px-3 h-8 text-sm font-medium text-white bg-gray-800 rounded-s hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                            onClick={() =>
+                                setPage((page) => (page > 1 ? page - 1 : page))
+                            }
+                        >
                             <svg
                                 className="w-3.5 h-3.5 me-2 rtl:rotate-180"
                                 aria-hidden="true"
@@ -151,8 +164,10 @@ const IeltsListeningTestList = () => {
                             </svg>
                             Prev
                         </button>
-                        <button className="flex items-center justify-center px-3 h-8 text-sm font-medium text-white bg-gray-800 border-0 border-s border-gray-700 rounded-e hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                        onClick={() => setPage(page => page + 1)}>
+                        <button
+                            className="flex items-center justify-center px-3 h-8 text-sm font-medium text-white bg-gray-800 border-0 border-s border-gray-700 rounded-e hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                            onClick={() => setPage((page) => page + 1)}
+                        >
                             Next
                             <svg
                                 className="w-3.5 h-3.5 ms-2 rtl:rotate-180"

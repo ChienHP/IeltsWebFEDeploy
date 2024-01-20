@@ -48,8 +48,6 @@ const CreateListeningIeltsPartForm = ({
 
         try {
             if (mode == "create") {
-                console.log("formState: ", formState);
-
                 await createIeltsListeningPart({
                     ...formState,
                     testId,

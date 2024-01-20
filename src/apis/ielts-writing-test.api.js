@@ -7,3 +7,7 @@ export const getIeltsWritingPartList = (testId) => {
 export const createIeltsWritingPart = (data) => {
     return post(`/ielts-test-part/create-ielts-writing-part`, data);
 }
+
+export const updateIeltsWritingPart = (data) => {
+    return post(`/ielts-test-part/writing/update`, data);
+}

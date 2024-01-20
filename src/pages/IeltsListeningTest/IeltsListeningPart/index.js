@@ -19,7 +19,6 @@ const IeltsListeningPart = ({
                     //     placeholder="your answer"
                     //     value={getUserAnswer(questionKey.id)}
                     //     onChange={(event) => {
-                    //         console.log("event.target.value", event.target.value);
                     //         handleAnswerChange(questionKey.id, event.target.value);
                     //     }}
                     // ></input>

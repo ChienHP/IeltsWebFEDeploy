@@ -10,7 +10,6 @@ const TestResultList = () => {
     const [testResults, setTestResults] = useState([]);
     const { type } = useQueryString();
 
-    console.log("testResults", testResults);
     useEffect(() => {
         (async () => {
             try {
