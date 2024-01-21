@@ -1,4 +1,5 @@
 import "./style.css";
+import TextToSpeech from "../../../components/TextToSpeech";
 const HeroSection = () => {
   return (
     <section id="hero" className="hero d-flex align-items-center">
@@ -10,7 +11,8 @@ const HeroSection = () => {
               Get ready for your 2024 IELTS exam by practicing our 100+ IELTS
               mock tests for FREE.
             </h2>
-            <div data-aos="fade-up" data-aos-delay="600" className="m-4">
+            <TextToSpeech text={'hello'}/>
+            <div data-aos="fade-up" data-aos-delay="600">
               <div className="text-center text-lg-start">
                   <button className="my-button-74 px-8 py-2">Get Started</button>
               </div>
