@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 
 const TextToSpeech = ({ text }) => {
+    console.log("text", text);
+
     const [isPaused, setIsPaused] = useState(false);
     const [utterance, setUtterance] = useState(null);
     const [voice, setVoice] = useState(null);
@@ -10,7 +12,6 @@ const TextToSpeech = ({ text }) => {
     const [progress, setProgress] = useState(0);
 
     useEffect(() => {
-
         const synth = window.speechSynthesis;
         const u = new SpeechSynthesisUtterance(text);
         const voices = synth.getVoices();
@@ -19,7 +20,7 @@ const TextToSpeech = ({ text }) => {
             const currentTime = event.timeStamp;
             const totalDuration = u.duration * 1000;
             const currentProgress = (currentTime / totalDuration) * 100;
-            console.log("utterance.duration",event)
+            console.log("utterance.duration", event);
             setProgress(currentProgress);
         };
 
@@ -82,7 +83,7 @@ const TextToSpeech = ({ text }) => {
 
     return (
         <div>
-            <label>
+            {/* <label>
                 Voice:
                 <select value={voice?.name} onChange={handleVoiceChange}>
                     {window.speechSynthesis.getVoices().map((voice) => (
@@ -91,7 +92,7 @@ const TextToSpeech = ({ text }) => {
                         </option>
                     ))}
                 </select>
-            </label>
+            </label> */}
 
             <br />
 
@@ -107,9 +108,9 @@ const TextToSpeech = ({ text }) => {
                 />
             </label>
 
-            <br />
+            {/* <br /> */}
 
-            <label>
+            {/* <label>
                 Speed:
                 <input
                     type="range"
@@ -119,8 +120,8 @@ const TextToSpeech = ({ text }) => {
                     value={rate}
                     onChange={handleRateChange}
                 />
-            </label>
-            <br />
+            </label> */}
+            {/* <br /> */}
             <label>
                 Volume:
                 <input
@@ -134,13 +135,13 @@ const TextToSpeech = ({ text }) => {
             </label>
 
             <br />
-<div className={'flex gap-3'}>
+            {/* <div className={'flex gap-3'}>
     <button onClick={handlePlay}>{isPaused ? "Resume" : "Play"}</button>
     <button onClick={handlePause}>Pause</button>
     <button onClick={handleStop}>Stop</button>
-</div>
+</div> */}
 
-            <div
+            {/* <div
                 style={{
                     width: "100%",
                     height: "10px",
@@ -155,7 +156,7 @@ const TextToSpeech = ({ text }) => {
                         background: "#4caf50",
                     }}
                 ></div>
-            </div>
+            </div> */}
         </div>
     );
 };
