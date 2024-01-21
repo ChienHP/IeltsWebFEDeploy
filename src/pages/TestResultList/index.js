@@ -30,6 +30,7 @@ const TestResultList = () => {
         <div>
             <div className="container mx-auto p-6">
                 <div className="bg-white rounded-lg shadow p-6">
+
                     {/* <!-- Search and Sort --> */}
                     <div className="flex items-center mb-6">
                         <div className="flex border-2 rounded">
@@ -64,22 +65,35 @@ const TestResultList = () => {
                                     )}
                                 >
                                     <div className="bg-white rounded-lg p-4 flex flex-col items-center shadow">
-                                        <img
-                                            alt="IELTS Mock Test 2023 book cover"
-                                            className="h-32"
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="100"
                                             height="100"
-                                            src="https://ielts.s3.ap-southeast-2.amazonaws.com/IELTS_Mock_Test_book_cover.jpg1700973810336"
-                                            width="120"
-                                        />
+                                            fill="currentColor"
+                                            className="bi bi-journal-text"
+                                            viewBox="0 0 16 16"
+                                        >
+                                            <path d="M5 10.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5m0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5" />
+                                            <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2" />
+                                            <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1z" />
+                                        </svg>
                                         <h3 className="mt-4 text-lg font-semibold text-gray-700 text-center">
                                             {item?.name}
                                         </h3>
                                         <div className="text-sm text-gray-500">
                                             Submitted by:
-                                            <span className="text-red-800 font-bold"> {item?.fullName}</span>
+                                            <span className="text-red-800 font-bold">
+                                                {" "}
+                                                {item?.fullName}
+                                            </span>
                                         </div>
                                         <div className="text-sm text-center">
-                                            <span>Submitted at: {new Date(item?.createdAt).toLocaleString()}</span>
+                                            <span>
+                                                Submitted at:{" "}
+                                                {new Date(
+                                                    item?.createdAt
+                                                ).toLocaleString()}
+                                            </span>
                                         </div>
                                         {/* <p className="mt-2 text-sm text-gray-600 text text-center">
                                 

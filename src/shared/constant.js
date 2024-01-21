@@ -65,3 +65,8 @@ export const TETS_RESULT_STATUS = {
     PENDING_TO_EVALUATE: 'Pending to evaluate',
     EVALUATED: 'Evaluated'
 }
+
+export const FREQUENCY = {
+    DAILY: 'Daily',
+    MONTHLY: 'Monthly'
+}

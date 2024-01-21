@@ -15,6 +15,7 @@ import IeltsWritingTest from "../pages/IeltsWritingTest";
 import { ReviewAnswers } from "../pages/ReviewAnswers/ReviewAnswers";
 import SpeakingDetailWrapper from "../pages/Speaking/SpeakingDetailWrapper";
 import TestResultList from "../pages/TestResultList";
+import { UserDashboard } from "../pages/UserDashboard/UserDashboard";
 import Login from "../pages/login";
 import { Role } from "../shared/constant";
 
@@ -33,14 +34,16 @@ const publicRoutes = [
   {path: configs.routes.ieltsListeningTest, Component: IeltsListeningTest, Layout: null, role: ['user']},
   {path: configs.routes.ieltsListeningQuestions, Component: IeltsListeningQuestions},
   // ielts-reading-test
-  {path: configs.routes.ieltsReadingTest, Component: IeltsListeningTest, Layout: null},
+  {path: configs.routes.ieltsReadingTest, Component: IeltsListeningTest, Layout: null, role: ['user']},
   // ielts-writing-test
-  {path: configs.routes.ieltsWritingTest, Component: IeltsWritingTest, Layout: null},
+  {path: configs.routes.ieltsWritingTest, Component: IeltsWritingTest, Layout: null, role: ['user']},
   // ielts-speaking-test
-  {path: configs.routes.ieltsSpeakingTest, Component: SpeakingDetailWrapper},
+  {path: configs.routes.ieltsSpeakingTest, Component: SpeakingDetailWrapper, role: ['user']},
 
   {path: configs.routes.reviewAnswers, Component: ReviewAnswers, Layout: DefaultLayouts, role: [Role.User, Role.Examiner]},
   {path: configs.routes.testResultList, Component: TestResultList},
+  {path: configs.routes.userDashboard, Component: UserDashboard, Layout: DefaultLayouts, role: [Role.User]},
+
   {path: configs.routes.singleFileUploader, Component: SingleFileUploader},
 ];
 

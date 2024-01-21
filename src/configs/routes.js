@@ -27,6 +27,7 @@ const routes = {
 
     reviewAnswers: "/ielts-test/review-answers/:testResultId",
     testResultList: "/test-result-list",
+    userDashboard: "/user-dashboard",
     
     // SingleFileUploader
     singleFileUploader: "/single-file-uploader",

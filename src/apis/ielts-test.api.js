@@ -55,3 +55,24 @@ export const getTestResultList = ({page, limit, type, status}) => {
 export const createTestResult = (body) => {
     return post(`/ielts-test/create-test-result`, body);
 }
+
+export const getManyTestResults = ({testId, userId}) => {
+    return get(`/ielts-test/get-many-test-results`, {
+        params: {
+            testId,
+            userId,
+        },
+    });
+}
+
+export const getAverageScoreByFrequency = ({testType, userId, startDate, endDate, frequency}) => {
+    return get(`/ielts-test/get-average-score-by-frequency`, {
+        params: {
+            testType,
+            userId,
+            startDate,
+            endDate,
+            frequency,
+        },
+    });
+}

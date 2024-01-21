@@ -5,18 +5,28 @@ import { useQueryString } from "../../utils/utils";
 import { Link } from "react-router-dom";
 import configs from "../../configs";
 import { IELTS_TEST_TYPE } from "../../shared/constant";
+import { TestResultHistoryModal } from "./testResultHistoryModal";
 
 const IeltsTestList = () => {
     const [tests, setTests] = useState([]);
+    const [test, setTest] = useState(null);
     const { type } = useQueryString();
-
+    const [showHistoryModals, setShowHistoryModals] = useState([]);
     useEffect(() => {
         (async () => {
             try {
                 let res = null;
                 if (!type) await getIeltsTestList(1, 100, null, null);
                 else res = await getIeltsTestList(1, 100, null, type);
-                setTests(res.data);
+                const tests = res.data;
+                const showHistoryModals = tests.map((item) => {
+                    return {
+                        testId: item.id,
+                        show: false,
+                    };
+                });
+                setShowHistoryModals(showHistoryModals);
+                setTests(tests);
             } catch (error) {
                 toast.error(error);
             }
@@ -27,6 +37,13 @@ const IeltsTestList = () => {
         <div>
             <div className="container mx-auto p-6">
                 <div className="bg-white rounded-lg shadow p-6">
+                    <div className="d-flex justify-content-end">
+                        <Link to={configs.routes.userDashboard}>
+                            <button className="my-button-74">
+                                My Test Performance
+                            </button>
+                        </Link>
+                    </div>
                     {/* <!-- Skills Filter --> */}
                     {/* <div className="flex space-x-4 mb-6">
                         <button className="bg-gray-200 text-gray-700 rounded-full px-6 py-2 text-sm focus:outline-none">
@@ -67,48 +84,104 @@ const IeltsTestList = () => {
                             </div>
                         </div> */}
                     </div>
-                    {/* <!-- Test Cards --> */}
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 ">
                         {tests.length > 0 &&
                             tests.map((item, index) => {
+                                const showModalItem = showHistoryModals.find(
+                                    (showHistoryModal) =>
+                                        showHistoryModal.testId === item.id
+                                );
                                 return (
-                                    <Link key={index} to={
-                                        (item.type === IELTS_TEST_TYPE.LISTENING && configs.routes.ieltsListeningTest.replace(":testId", item.id))
-                                        || (item.type === IELTS_TEST_TYPE.READING && configs.routes.ieltsReadingTest.replace(":testId", item.id))
-                                        || (item.type === IELTS_TEST_TYPE.WRITING && configs.routes.ieltsWritingTest.replace(":testId", item.id))
-                                        || (item.type === IELTS_TEST_TYPE.SPEAKING && configs.routes.ieltsSpeakingTest.replace(":testId", item.id))
-                                        }>
-                                        <div
-                                            className="bg-white rounded-lg p-4 flex flex-col items-center shadow"
-                                        >
-                                            <img
-                                                alt="IELTS Mock Test 2023 book cover"
-                                                className="h-32"
-                                                height="100"
-                                                src="https://ielts.s3.ap-southeast-2.amazonaws.com/IELTS_Mock_Test_book_cover.jpg1700973810336"
-                                                width="120"
-                                            />
-                                            <h3 className="mt-4 text-lg font-semibold text-gray-700 text-center">
-                                                {item.name}
-                                            </h3>
-                                            {/* <p className="text-sm text-gray-500">January</p> */}
-                                            {/* <p className="mt-2 text-sm text-gray-600 text text-center">
-                                
-                            </p> */}
-                                            <p className="text-sm text-gray-500">
-                                                51 tests taken
-                                            </p>
-                                            <div className="mt-4 w-full bg-gray-200 rounded-full h-2.5">
-                                                <div
-                                                    className="bg-blue-600 h-2.5 rounded-full"
-                                                    // style={{ width: "0%;" }}
-                                                ></div>
-                                            </div>
-                                            <span className="text-sm font-semibold text-blue-600">
-                                                0.0%
-                                            </span>
+                                    <div
+                                        key={index}
+                                        className="bg-white rounded-lg p-4 flex flex-col items-center shadow"
+                                    >
+                                        <img
+                                            alt="IELTS Mock Test 2023 book cover"
+                                            className="h-32"
+                                            height="100"
+                                            src="https://ielts.s3.ap-southeast-2.amazonaws.com/IELTS_Mock_Test_book_cover.jpg1700973810336"
+                                            width="120"
+                                        />
+                                        <h3 className="mt-4 text-lg font-semibold text-gray-700 text-center">
+                                            {item.name}
+                                        </h3>
+
+                                        <div className="d-flex">
+                                            <Link
+                                                key={index}
+                                                to={
+                                                    (item.type ===
+                                                        IELTS_TEST_TYPE.LISTENING &&
+                                                        configs.routes.ieltsListeningTest.replace(
+                                                            ":testId",
+                                                            item.id
+                                                        )) ||
+                                                    (item.type ===
+                                                        IELTS_TEST_TYPE.READING &&
+                                                        configs.routes.ieltsReadingTest.replace(
+                                                            ":testId",
+                                                            item.id
+                                                        )) ||
+                                                    (item.type ===
+                                                        IELTS_TEST_TYPE.WRITING &&
+                                                        configs.routes.ieltsWritingTest.replace(
+                                                            ":testId",
+                                                            item.id
+                                                        )) ||
+                                                    (item.type ===
+                                                        IELTS_TEST_TYPE.SPEAKING &&
+                                                        configs.routes.ieltsSpeakingTest.replace(
+                                                            ":testId",
+                                                            item.id
+                                                        ))
+                                                }
+                                            >
+                                                <button className="border-2 border-gray rounded-2xl px-3">
+                                                    <span className="fw-bold fs-5">
+                                                        Start
+                                                    </span>
+                                                </button>
+                                            </Link>
+
+                                            <button
+                                                onClick={() => {
+                                                    showModalItem.show = true;
+                                                    setShowHistoryModals([
+                                                        ...showHistoryModals,
+                                                    ]);
+                                                }}
+                                                className="border-2 border-gray rounded-2xl px-3 ml-2"
+                                            >
+                                                <span className="fw-bold fs-5">
+                                                    History
+                                                </span>
+                                            </button>
+
+                                            <TestResultHistoryModal
+                                                show={showModalItem.show}
+                                                onHide={() => {
+                                                    showModalItem.show = false;
+                                                    setShowHistoryModals([
+                                                        ...showHistoryModals,
+                                                    ]);
+                                                }}
+                                                testId={item.id}
+                                            ></TestResultHistoryModal>
                                         </div>
-                                    </Link>
+
+                                        <p className="text-sm text-gray-500 mt-2">
+                                            {Math.round(Math.random() * 100)}{" "}
+                                            tests taken
+                                        </p>
+                                        <div className="mt-4 w-full bg-gray-200 rounded-full h-2.5">
+                                            <div className="bg-blue-600 h-2.5 rounded-full"></div>
+                                        </div>
+                                        <span className="text-sm font-semibold text-blue-600">
+                                            {Math.round(Math.random() * 100) +
+                                                "%"}
+                                        </span>
+                                    </div>
                                 );
                             })}
                     </div>
