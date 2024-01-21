@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 
 const TextToSpeech = ({ text }) => {
-    console.log("text", text);
-
     const [isPaused, setIsPaused] = useState(false);
     const [utterance, setUtterance] = useState(null);
     const [voice, setVoice] = useState(null);
@@ -89,8 +87,8 @@ const TextToSpeech = ({ text }) => {
                 </select>
             </label> */}
 
-            <label>
-                Pitch:
+            <div className="d-flex align-items-center">
+                <label className="fw-bold fs-5">Pitch:</label>
                 <input
                     type="range"
                     min="0.5"
@@ -99,7 +97,16 @@ const TextToSpeech = ({ text }) => {
                     value={pitch}
                     onChange={handlePitchChange}
                 />
-            </label>
+                <label className="fw-bold fs-5 ml-4">Volume:</label>
+                <input
+                    type="range"
+                    min="0"
+                    max="1"
+                    step="0.1"
+                    value={volume}
+                    onChange={handleVolumeChange}
+                />
+            </div>
 
             {/* <label>
                 Speed:
@@ -114,20 +121,6 @@ const TextToSpeech = ({ text }) => {
             </label>
             <br/>
             </label> */}
-            {/* <br /> */}
-            <label>
-                Volume:
-                <input
-                    type="range"
-                    min="0"
-                    max="1"
-                    step="0.1"
-                    value={volume}
-                    onChange={handleVolumeChange}
-                />
-            </label>
-
-            <br />
 
             {/* <button onClick={handlePlay}>{isPaused ? "Resume" : "Play"}</button>
             <button onClick={handlePause}>Pause</button>
