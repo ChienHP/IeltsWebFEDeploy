@@ -7,6 +7,7 @@ import axios from "axios";
 import { createTestResult } from "../../apis/ielts-test.api";
 import { EndModal } from "./EndModal";
 import configs from "../../configs";
+import TextToSpeech from "../../components/TextToSpeech";
 
 const DetailPartSpeaking = () => {
     const [isStarted, setIsStarted] = useState(false);
@@ -148,6 +149,9 @@ const DetailPartSpeaking = () => {
                 </div>
 
                 <div className="font-bold fs-3 text-center">{currentQuestion?.content}</div>
+                {currentQuestion?.content && (
+                    <TextToSpeech text={currentQuestion?.content}></TextToSpeech>
+                )}
 
                 <div className="mt-8">
                     <Dictaphone audioFile={audioFile} setAudioFile={setAudioFile}/>

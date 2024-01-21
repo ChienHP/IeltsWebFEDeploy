@@ -31,9 +31,9 @@ function App() {
                                         key={index}
                                         path={path}
                                         element={
-                                            <Layout>
+                                            <DefaultLayouts>
                                                 <Login></Login>
-                                            </Layout>
+                                            </DefaultLayouts>
                                         }
                                     ></Route>
                                 );

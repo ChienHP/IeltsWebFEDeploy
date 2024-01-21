@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 
 const TextToSpeech = ({ text }) => {
     console.log("text", text);
@@ -24,8 +24,7 @@ const TextToSpeech = ({ text }) => {
     }, [text]);
 
     useEffect(() => {
-
-        handlePlay()
+        handlePlay();
     }, [utterance]);
 
     const handlePlay = () => {
@@ -90,8 +89,6 @@ const TextToSpeech = ({ text }) => {
                 </select>
             </label> */}
 
-            <br/>
-
             <label>
                 Pitch:
                 <input
@@ -103,9 +100,6 @@ const TextToSpeech = ({ text }) => {
                     onChange={handlePitchChange}
                 />
             </label>
-
-            <br/>
-            {/* <br /> */}
 
             {/* <label>
                 Speed:
@@ -133,11 +127,11 @@ const TextToSpeech = ({ text }) => {
                 />
             </label>
 
-            <br/>
+            <br />
 
-            <button onClick={handlePlay}>{isPaused ? "Resume" : "Play"}</button>
+            {/* <button onClick={handlePlay}>{isPaused ? "Resume" : "Play"}</button>
             <button onClick={handlePause}>Pause</button>
-            <button onClick={handleStop}>Stop</button>
+            <button onClick={handleStop}>Stop</button> */}
         </div>
     );
 };
