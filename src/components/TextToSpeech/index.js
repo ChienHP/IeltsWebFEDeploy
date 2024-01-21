@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 
 const TextToSpeech = ({ text }) => {
     console.log("text", text);
@@ -9,20 +9,11 @@ const TextToSpeech = ({ text }) => {
     const [pitch, setPitch] = useState(1);
     const [rate, setRate] = useState(1);
     const [volume, setVolume] = useState(1);
-    const [progress, setProgress] = useState(0);
 
     useEffect(() => {
         const synth = window.speechSynthesis;
         const u = new SpeechSynthesisUtterance(text);
         const voices = synth.getVoices();
-
-        u.onboundary = (event) => {
-            const currentTime = event.timeStamp;
-            const totalDuration = u.duration * 1000;
-            const currentProgress = (currentTime / totalDuration) * 100;
-            console.log("utterance.duration", event);
-            setProgress(currentProgress);
-        };
 
         setUtterance(u);
         setVoice(voices[0]);
@@ -32,12 +23,17 @@ const TextToSpeech = ({ text }) => {
         };
     }, [text]);
 
+    useEffect(() => {
+
+        handlePlay()
+    }, [utterance]);
+
     const handlePlay = () => {
         const synth = window.speechSynthesis;
 
         if (isPaused) {
             synth.resume();
-        } else {
+        } else if (utterance !== null) {
             utterance.voice = voice;
             utterance.pitch = pitch;
             utterance.rate = rate;
@@ -94,7 +90,7 @@ const TextToSpeech = ({ text }) => {
                 </select>
             </label> */}
 
-            <br />
+            <br/>
 
             <label>
                 Pitch:
@@ -108,6 +104,7 @@ const TextToSpeech = ({ text }) => {
                 />
             </label>
 
+            <br/>
             {/* <br /> */}
 
             {/* <label>
@@ -120,6 +117,8 @@ const TextToSpeech = ({ text }) => {
                     value={rate}
                     onChange={handleRateChange}
                 />
+            </label>
+            <br/>
             </label> */}
             {/* <br /> */}
             <label>
@@ -134,29 +133,11 @@ const TextToSpeech = ({ text }) => {
                 />
             </label>
 
-            <br />
-            {/* <div className={'flex gap-3'}>
-    <button onClick={handlePlay}>{isPaused ? "Resume" : "Play"}</button>
-    <button onClick={handlePause}>Pause</button>
-    <button onClick={handleStop}>Stop</button>
-</div> */}
+            <br/>
 
-            {/* <div
-                style={{
-                    width: "100%",
-                    height: "10px",
-                    background: "#e0e0e0",
-                    marginTop: "10px",
-                }}
-            >
-                <div
-                    style={{
-                        width: `${progress}%`,
-                        height: "100%",
-                        background: "#4caf50",
-                    }}
-                ></div>
-            </div> */}
+            <button onClick={handlePlay}>{isPaused ? "Resume" : "Play"}</button>
+            <button onClick={handlePause}>Pause</button>
+            <button onClick={handleStop}>Stop</button>
         </div>
     );
 };
