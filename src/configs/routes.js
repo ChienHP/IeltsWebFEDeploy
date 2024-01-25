@@ -38,6 +38,7 @@ const routes = {
     adminIeltsReadingPart: "/admin/test/:testId/ielts-reading-parts",
     adminIeltsWritingPart: "/admin/test/:testId/ielts-writing-parts",
     adminIeltsSpeakingPart: "/admin/test/:testId/ielts-speaking-parts",
+    userManagement: "/admin/user-management",
 };
 
 export default routes;

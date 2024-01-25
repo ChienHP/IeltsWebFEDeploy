@@ -16,6 +16,7 @@ import { ReviewAnswers } from "../pages/ReviewAnswers/ReviewAnswers";
 import SpeakingDetailWrapper from "../pages/Speaking/SpeakingDetailWrapper";
 import TestResultList from "../pages/TestResultList";
 import { UserDashboard } from "../pages/UserDashboard/UserDashboard";
+import { UserManagement } from "../pages/UserManagement/UserManagement";
 import Login from "../pages/login";
 import { Role } from "../shared/constant";
 
@@ -48,11 +49,12 @@ const publicRoutes = [
 ];
 
 const privateRoutes = [
-  {path: configs.routes.ieltsTestDashboard, Component: IeltsListeningTestDashboard},
+  {path: configs.routes.ieltsTestDashboard, Component: IeltsListeningTestDashboard, role: [Role.Admin, Role.TestManager]},
   {path: configs.routes.adminIeltsListeningPart, Component: AdminIeltsListeningPart},
   {path: configs.routes.adminIeltsWritingPart, Component: AdminIeltsWritingParts},
   {path: configs.routes.adminIeltsReadingPart, Component: AdminIeltsReadingPart},
-  {path: configs.routes.adminIeltsSpeakingPart, Component: AdminIeltsSpeakingParts}
+  {path: configs.routes.adminIeltsSpeakingPart, Component: AdminIeltsSpeakingParts},
+  {path: configs.routes.userManagement, Component: UserManagement},
 ];
 
 export { publicRoutes, privateRoutes };

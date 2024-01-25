@@ -59,6 +59,7 @@ export const Role = {
     Admin: "admin",
     SupperAdmin: "supperadmin",
     Examiner: "examiner",
+    TestManager: "test manager",
 };
 
 export const TETS_RESULT_STATUS = {

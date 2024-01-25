@@ -11,3 +11,7 @@ export const login = (data) => {
 export const getUserById = () => {
     return get("/user/me");
 }
+
+export const getManyUsers = (params) => {
+    return get("/user/list", params);
+}

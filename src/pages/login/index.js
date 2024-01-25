@@ -16,12 +16,13 @@ import { toast } from "react-toastify";
 import { AuthContext } from "./authContext";
 import { Navigate, useNavigate } from "react-router-dom";
 import { Role } from "../../shared/constant";
+import configs from "../../configs";
 
 const initialFormState = {
     fullName: "",
     email: "",
     password: "",
-    roles: [''],
+    roles: [""],
 };
 
 function Login() {
@@ -56,9 +57,14 @@ function Login() {
                 rememberMe: "true",
             });
             toast.success("Login successfully");
+            const user = res.data;
             localStorage.setItem("token", res.data.accessToken);
             setToken(res.data.accessToken);
-            navigate("/");
+            if ([Role.Admin, Role.TestManager].includes(user.roles[0])) {
+                navigate(configs.routes.ieltsTestDashboard);
+            } else {
+                navigate("/");
+            }
         } catch (error) {
             toast.error(error);
         }
@@ -70,7 +76,7 @@ function Login() {
                 fullName: formState.fullName,
                 email: formState.email,
                 password: formState.password,
-                roles: formState.roles
+                roles: formState.roles,
             });
             toast.success("Register successfully");
         } catch (error) {
@@ -256,7 +262,7 @@ function Login() {
                                 className="form-check-label"
                                 htmlFor="flexRadioDefault1"
                             >
-                               User Account 
+                                User Account
                             </label>
                         </div>
                         <div className="form-check ml-8">

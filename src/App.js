@@ -59,10 +59,24 @@ function App() {
                                 Component,
                                 Layout = DashboardLayout,
                                 data = null,
+                                role = null,
                             },
                             index
                         ) => {
                             Layout ??= Fragment;
+                            if (role && !role.includes(user?.roles[0])) {
+                                return (
+                                    <Route
+                                        key={index}
+                                        path={path}
+                                        element={
+                                            <DefaultLayouts>
+                                                <Login></Login>
+                                            </DefaultLayouts>
+                                        }
+                                    ></Route>
+                                );
+                            }
                             return (
                                 <Route
                                     key={index}
